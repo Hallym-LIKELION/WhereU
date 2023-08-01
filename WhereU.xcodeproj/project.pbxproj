@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D542A78E49B00524D88 /* SnapKit */; };
+		CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D572A78E4A900524D88 /* SDWebImage */; };
+		CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */; };
 		CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */; };
 		CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */; };
 		CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */; };
@@ -19,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CFFFF2CD2A73CD4700C2B404 /* WhereU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,12 +41,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */,
+				CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF0938202A7520A1009666FC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */,
+				CFC22D592A78E6FE00524D88 /* Home */,
+				CFFFF2E92A73D08700C2B404 /* MapViewController.swift */,
+				CFFFF2EB2A73D0A800C2B404 /* BoardViewController.swift */,
+				CFFFF2ED2A73D0B100C2B404 /* MyPageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CF0938212A7520B3009666FC /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */,
+				CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CFC22D592A78E6FE00524D88 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CFFFF2E72A73D07800C2B404 /* HomeViewController.swift */,
+				CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		CFFFF2C42A73CD4700C2B404 = {
 			isa = PBXGroup;
 			children = (
@@ -62,8 +98,7 @@
 		CFFFF2CF2A73CD4700C2B404 /* WhereU */ = {
 			isa = PBXGroup;
 			children = (
-				CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */,
-				CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */,
+				CF0938212A7520B3009666FC /* App */,
 				CFFFF2E62A73CFB100C2B404 /* Model */,
 				CFFFF2E42A73CFA100C2B404 /* View */,
 				CFFFF2E52A73CFAC00C2B404 /* ViewModel */,
@@ -77,11 +112,7 @@
 		CFFFF2E42A73CFA100C2B404 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */,
-				CFFFF2E72A73D07800C2B404 /* HomeViewController.swift */,
-				CFFFF2E92A73D08700C2B404 /* MapViewController.swift */,
-				CFFFF2EB2A73D0A800C2B404 /* BoardViewController.swift */,
-				CFFFF2ED2A73D0B100C2B404 /* MyPageViewController.swift */,
+				CF0938202A7520A1009666FC /* Controller */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,6 +147,10 @@
 			dependencies = (
 			);
 			name = WhereU;
+			packageProductDependencies = (
+				CFC22D542A78E49B00524D88 /* SnapKit */,
+				CFC22D572A78E4A900524D88 /* SDWebImage */,
+			);
 			productName = WhereU;
 			productReference = CFFFF2CD2A73CD4700C2B404 /* WhereU.app */;
 			productType = "com.apple.product-type.application";
@@ -144,6 +179,10 @@
 				Base,
 			);
 			mainGroup = CFFFF2C42A73CD4700C2B404;
+			packageReferences = (
+				CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = CFFFF2CE2A73CD4700C2B404 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,6 +214,7 @@
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
+				CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */,
 				CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */,
 				CFFFF2EC2A73D0A800C2B404 /* BoardViewController.swift in Sources */,
 			);
@@ -392,6 +432,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CFC22D542A78E49B00524D88 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		CFC22D572A78E4A900524D88 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CFFFF2C52A73CD4700C2B404 /* Project object */;
 }

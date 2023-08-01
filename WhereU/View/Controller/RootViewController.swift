@@ -22,7 +22,6 @@ class RootViewController: UITabBarController {
     func configureViewControllers() {
         
         view.backgroundColor = .white
-        
         let homeVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "home"),
             selectedImage: #imageLiteral(resourceName: "home").withTintColor(.systemPurple),
@@ -61,10 +60,10 @@ class RootViewController: UITabBarController {
         // UINavigationBarAppearance를 설정해야 NavBar의 background를 지정할 수 있음
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : UIColor.white
-        ]
-        appearance.backgroundColor = UIColor(named: "red")?.withAlphaComponent(0.7)
+//        appearance.titleTextAttributes = [
+//            NSAttributedString.Key.foregroundColor : UIColor.black
+//        ]
+        appearance.backgroundColor = .systemBackground
         nav.navigationBar.standardAppearance = appearance
         nav.navigationBar.scrollEdgeAppearance = appearance
         return nav
