@@ -8,10 +8,14 @@
 import Foundation
 import MapKit
 
-
 final class SearchViewModel {
     
-    var searchText: String = ""
+    var searchText: String = "" {
+        didSet {
+            searchTextObserver(searchText)
+        }
+    }
+    var searchTextObserver: (String) -> Void = { _ in }
     
     var searchResults = [MKLocalSearchCompletion]() // 검색 결과를 담는 변수
     var searchCompleter = MKLocalSearchCompleter() // 검색을 도와주는 변수
@@ -34,7 +38,6 @@ final class SearchViewModel {
     
     func fetchSearchResults(results: [MKLocalSearchCompletion]) {
         searchResults = results
-        print(searchResults)
     }
     
     func searchResultAddress(index: Int) -> String {

@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 protocol SearchLocationCompleteDelegate: AnyObject {
     func updateLocation(location: String)
@@ -72,13 +73,13 @@ class SearchLocationViewController: UIViewController {
         button.clipsToBounds = true
         button.layer.cornerRadius = 8
         button.heightAnchor.constraint(equalToConstant: 41).isActive = true
+        button.addTarget(self, action: #selector(handleLocationButtonTapped), for: .touchUpInside)
         return button
     }()
     
     private let searchLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 14)
-//        label.isHidden = true
         return label
     }()
     
@@ -107,12 +108,13 @@ class SearchLocationViewController: UIViewController {
         sv.spacing = 18
         sv.alignment = .center
         sv.distribution = .fill
-        sv.isHidden = true
         return sv
     }()
     
+    let locationManager = CLLocationManager()
     let viewModel = SearchViewModel()
     weak var delegate: SearchLocationCompleteDelegate?
+    
     
     
     //MARK: - LifeCycle
@@ -128,6 +130,8 @@ class SearchLocationViewController: UIViewController {
         configureUI()
         setupTableView()
         setupSearchCompleter()
+        setupLocationManger()
+        addViewModelObserver()
     }
     
     //MARK: - Helpers
@@ -189,6 +193,21 @@ class SearchLocationViewController: UIViewController {
         viewModel.setupSearchCompleter(delegate: self)
     }
     
+    func setupLocationManger() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
+    
+    func addViewModelObserver() {
+        viewModel.searchTextObserver = { [weak self] text in
+            self?.searchTextField.text = text
+            self?.searchLabel.text = self?.viewModel.searchResultText
+            self?.searchLabel.isHidden = self?.viewModel.searchResultTextIsHidden ?? true
+        }
+    }
+    
     //MARK: - Actions
     @objc func handleClearButtonTapped() {
         dismiss(animated: true)
@@ -197,8 +216,34 @@ class SearchLocationViewController: UIViewController {
     @objc func handleSearchTextChanged(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
         viewModel.searchTextChanged(text: searchText)
-        searchLabel.text = viewModel.searchResultText
-        searchLabel.isHidden = viewModel.searchResultTextIsHidden
+    }
+    
+    @objc func handleLocationButtonTapped() {
+        guard let coor = locationManager.location?.coordinate else { return }
+        let lat = coor.latitude
+        let lon = coor.longitude
+        
+        let findLocation = CLLocation(latitude: lat, longitude: lon)
+        let geoCoder = CLGeocoder()
+        let local = Locale(identifier: "Ko-kr")
+        geoCoder.reverseGeocodeLocation(findLocation, preferredLocale: local) { places, error in
+            if let error = error {
+                // 에러 발생
+                print(error.localizedDescription)
+                return
+            }
+            guard let place = places?.last,
+                  let area = place.administrativeArea,
+                  let local = place.locality else {
+                print("주소가 없음")
+                return
+            }
+            if let subLocal = place.subLocality {
+                self.viewModel.searchTextChanged(text: "\(area) \(local) \(subLocal)")
+            } else {
+                self.viewModel.searchTextChanged(text: "\(area) \(local)")
+            }
+        }
     }
     
     //MARK: - Override
@@ -245,10 +290,13 @@ extension SearchLocationViewController: MKLocalSearchCompleterDelegate {
         viewModel.fetchSearchResults(results: completer.results)
         labelStack.isHidden = viewModel.noResultLabelIsHidden
         resultTableView.reloadData()
-        
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         print(error.localizedDescription)
     }
+}
+
+extension SearchLocationViewController: CLLocationManagerDelegate {
+    
 }

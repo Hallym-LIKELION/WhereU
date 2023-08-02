@@ -450,6 +450,8 @@
 				DEVELOPMENT_TEAM = EX6G2VC9J8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhereU/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "재난 상황을 빠르게 파악하고, 사용자의 위치를 기반으로 재난 상황을 전달하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "재난 상황을 빠르게 파악하고, 사용자의 위치를 기반으로 재난 상황을 전달하기 위해 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
@@ -484,6 +486,8 @@
 				DEVELOPMENT_TEAM = EX6G2VC9J8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhereU/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "재난 상황을 빠르게 파악하고, 사용자의 위치를 기반으로 재난 상황을 전달하기 위해 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "재난 상황을 빠르게 파악하고, 사용자의 위치를 기반으로 재난 상황을 전달하기 위해 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
