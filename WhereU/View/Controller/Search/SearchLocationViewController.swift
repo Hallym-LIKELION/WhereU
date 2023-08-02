@@ -297,6 +297,5 @@ extension SearchLocationViewController: MKLocalSearchCompleterDelegate {
     }
 }
 
-extension SearchLocationViewController: CLLocationManagerDelegate {
-    
-}
+//MARK: - CLLocationManagerDelegate
+extension SearchLocationViewController: CLLocationManagerDelegate {}

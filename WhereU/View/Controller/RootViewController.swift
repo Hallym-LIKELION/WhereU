@@ -35,15 +35,15 @@ class RootViewController: UITabBarController {
     }
     
     func checkLogin() {
-        let isLoggedIn = viewModel.checkUserLoggedIn()
-
-        if !isLoggedIn {
-            DispatchQueue.main.async { [weak self] in
-                let startVC = StartViewController()
-                startVC.delegate = self
-                let nav = UINavigationController(rootViewController: startVC)
-                nav.modalPresentationStyle = .fullScreen
-                self?.present(nav, animated: true)
+        viewModel.checkUserLoggedIn { isLoggedIn in
+            if !isLoggedIn {
+                DispatchQueue.main.async { [weak self] in
+                    let startVC = StartViewController()
+                    startVC.delegate = self
+                    let nav = UINavigationController(rootViewController: startVC)
+                    nav.modalPresentationStyle = .fullScreen
+                    self?.present(nav, animated: true)
+                }
             }
         }
     }
@@ -102,6 +102,6 @@ class RootViewController: UITabBarController {
 
 extension RootViewController: AuthenticationDelegate {
     func authenticationComplete() {
-        _ = viewModel.checkUserLoggedIn() // 로그인 완료 시점에 다시 한번 호출
+        viewModel.checkUserLoggedIn { _ in } // 로그인 완료 시점에 다시 한번 호출
     }
 }
