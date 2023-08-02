@@ -18,6 +18,8 @@
 		CF7559122A7A3C96005E3583 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559112A7A3C96005E3583 /* User.swift */; };
 		CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559132A7A4704005E3583 /* HomeViewModel.swift */; };
 		CF7559172A7A6274005E3583 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559162A7A6274005E3583 /* SearchResultCell.swift */; };
+		CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */; };
+		CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */; };
 		CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D542A78E49B00524D88 /* SnapKit */; };
 		CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D572A78E4A900524D88 /* SDWebImage */; };
 		CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */; };
@@ -43,6 +45,8 @@
 		CF7559112A7A3C96005E3583 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CF7559132A7A4704005E3583 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CF7559162A7A6274005E3583 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 				CF7559012A7A2601005E3583 /* StartViewModel.swift */,
 				CF75590F2A7A361D005E3583 /* RootViewModel.swift */,
 				CF7559132A7A4704005E3583 /* HomeViewModel.swift */,
+				CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */,
+				CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -287,9 +293,11 @@
 				CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */,
 				CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */,
 				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
+				CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */,
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
 				CF7559172A7A6274005E3583 /* SearchResultCell.swift in Sources */,
+				CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
 				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
 				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,

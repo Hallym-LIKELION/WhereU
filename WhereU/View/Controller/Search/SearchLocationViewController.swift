@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 protocol SearchLocationCompleteDelegate: AnyObject {
     func updateLocation(location: String)
@@ -41,10 +42,11 @@ class SearchLocationViewController: UIViewController {
         return button
     }()
     
-    private let searchTextField: UITextField = {
+    private lazy var searchTextField: UITextField = {
         let textField = UITextField()
         textField.font = .systemFont(ofSize: 15)
-        textField.placeholder = "지역 검색"
+        textField.placeholder = "도시 검색"
+        textField.addTarget(self, action: #selector(handleSearchTextChanged), for: .editingChanged)
         return textField
     }()
     
@@ -75,13 +77,41 @@ class SearchLocationViewController: UIViewController {
     
     private let searchLabel: UILabel = {
         let label = UILabel()
-        label.text = "'서울' 검색 결과"
         label.font = .boldSystemFont(ofSize: 14)
+//        label.isHidden = true
         return label
     }()
     
     private let resultTableView = UITableView()
     
+    private let noResultMainLabel: UILabel = {
+        let label = UILabel()
+        label.text = "검색 결과가 없어요.\n동네 이름을 다시 확인해주세요!"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = UIColor(named: "C3BEBE")
+        return label
+    }()
+    
+    private let noResultSubLabel: UILabel = {
+        let label = UILabel()
+        label.text = "동네 이름 다시 검색하기"
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = UIColor(named: "477AE6")
+        return label
+    }()
+    
+    private lazy var labelStack: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [noResultMainLabel, noResultSubLabel])
+        sv.axis = .vertical
+        sv.spacing = 18
+        sv.alignment = .center
+        sv.distribution = .fill
+        sv.isHidden = true
+        return sv
+    }()
+    
+    let viewModel = SearchViewModel()
     weak var delegate: SearchLocationCompleteDelegate?
     
     
@@ -97,6 +127,7 @@ class SearchLocationViewController: UIViewController {
         
         configureUI()
         setupTableView()
+        setupSearchCompleter()
     }
     
     //MARK: - Helpers
@@ -138,6 +169,12 @@ class SearchLocationViewController: UIViewController {
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }
+        
+        view.addSubview(labelStack)
+        labelStack.snp.makeConstraints { make in
+            make.top.equalTo(searchLabel.snp.bottom).offset(236)
+            make.left.right.equalToSuperview()
+        }
     }
     
     func setupTableView() {
@@ -148,9 +185,20 @@ class SearchLocationViewController: UIViewController {
         resultTableView.rowHeight = 40
     }
     
+    func setupSearchCompleter() {
+        viewModel.setupSearchCompleter(delegate: self)
+    }
+    
     //MARK: - Actions
     @objc func handleClearButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc func handleSearchTextChanged(_ textField: UITextField) {
+        guard let searchText = textField.text else { return }
+        viewModel.searchTextChanged(text: searchText)
+        searchLabel.text = viewModel.searchResultText
+        searchLabel.isHidden = viewModel.searchResultTextIsHidden
     }
     
     //MARK: - Override
@@ -170,7 +218,8 @@ extension SearchLocationViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // cell 터치시
-        delegate?.updateLocation(location: "서울특별시 마포구")
+        let address = viewModel.searchResults[indexPath.row].title
+        delegate?.updateLocation(location: address)
         dismiss(animated: true)
     }
 }
@@ -178,14 +227,28 @@ extension SearchLocationViewController: UITableViewDelegate {
 //MARK: - UITableViewDataSource
 extension SearchLocationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return viewModel.searchResultCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NameStore.searchResultCell, for: indexPath) as! SearchResultCell
-        
+        let address = viewModel.searchResultAddress(index: indexPath.row)
+        cell.viewModel = SearchResultViewModel(address: address)
         return cell
     }
+}
+
+//MARK: - MKLocalSearchCompleterDelegate
+extension SearchLocationViewController: MKLocalSearchCompleterDelegate {
+    // 검색 결과를 받아오는 메소드
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        viewModel.fetchSearchResults(results: completer.results)
+        labelStack.isHidden = viewModel.noResultLabelIsHidden
+        resultTableView.reloadData()
+        
+    }
     
-    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
 }
