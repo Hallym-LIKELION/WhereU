@@ -20,7 +20,9 @@ class RootViewController: UITabBarController {
         checkLogin()
     }
     
+    
     //MARK: - Helpers
+    
     func baseSetUp() {
         view.backgroundColor = .white
         
@@ -36,12 +38,12 @@ class RootViewController: UITabBarController {
         let isLoggedIn = viewModel.checkUserLoggedIn()
 
         if !isLoggedIn {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 let startVC = StartViewController()
                 startVC.delegate = self
                 let nav = UINavigationController(rootViewController: startVC)
                 nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true)
+                self?.present(nav, animated: true)
             }
         }
     }
@@ -85,7 +87,6 @@ class RootViewController: UITabBarController {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = unselectedImage
         nav.tabBarItem.selectedImage = selectedImage
-        nav.navigationBar.tintColor = .white
         // UINavigationBarAppearance를 설정해야 NavBar의 background를 지정할 수 있음
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()

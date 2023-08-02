@@ -13,4 +13,9 @@ class Constants {
     static let LOGIN_PLATFORM = "LoginPlatform" // kakao or apple 중 어떤 플랫폼을 통해 로그인했는지 저장하기 위한 Key
     static let APPLE = "Apple"
     static let KAKAO = "Kakao"
+    
+}
+
+class NameStore {
+    static let searchResultCell = "searchResultCell"
 }

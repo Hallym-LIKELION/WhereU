@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
         let textfield = PaddingTextField(horizon: 18, vertical: 0)
         textfield.clipsToBounds = true
         textfield.layer.cornerRadius = 15
+        textfield.placeholder = "지역 설정"
         textfield.backgroundColor = UIColor(named: "F4F6FA")
         textfield.heightAnchor.constraint(equalToConstant: 35).isActive = true
         return textfield
@@ -80,23 +81,30 @@ class HomeViewController: UIViewController {
         searchTextField.delegate = self
     }
     
-    // 화면 터치시 키보드 내림
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-
 }
 
 //MARK: - UICollectionViewDataSource
 extension HomeViewController {
     
 }
-
+//MARK: - UITextFieldDelegate
 extension HomeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let searchVC = SearchLocationViewController()
         searchVC.modalPresentationStyle = .fullScreen
+        searchVC.delegate = self
         present(searchVC, animated: true)
     }
     
 }
+
+//MARK: - SearchLocationCompleteDelegate
+
+extension HomeViewController: SearchLocationCompleteDelegate {
+    // SearchController의 대리자 역할 정의
+    
+    func updateLocation(location: String) {
+        searchTextField.text = location
+    }
+}
+

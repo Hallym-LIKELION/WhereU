@@ -17,6 +17,7 @@
 		CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF75590F2A7A361D005E3583 /* RootViewModel.swift */; };
 		CF7559122A7A3C96005E3583 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559112A7A3C96005E3583 /* User.swift */; };
 		CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559132A7A4704005E3583 /* HomeViewModel.swift */; };
+		CF7559172A7A6274005E3583 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559162A7A6274005E3583 /* SearchResultCell.swift */; };
 		CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D542A78E49B00524D88 /* SnapKit */; };
 		CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D572A78E4A900524D88 /* SDWebImage */; };
 		CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */; };
@@ -41,6 +42,7 @@
 		CF75590F2A7A361D005E3583 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		CF7559112A7A3C96005E3583 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CF7559132A7A4704005E3583 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		CF7559162A7A6274005E3583 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
@@ -79,11 +81,11 @@
 			children = (
 				CF7558FD2A7A19B8005E3583 /* Login */,
 				CFC22D592A78E6FE00524D88 /* Home */,
+				CF7559152A7A625C005E3583 /* Search */,
 				CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */,
 				CFFFF2E92A73D08700C2B404 /* MapViewController.swift */,
 				CFFFF2EB2A73D0A800C2B404 /* BoardViewController.swift */,
 				CFFFF2ED2A73D0B100C2B404 /* MyPageViewController.swift */,
-				CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -111,6 +113,15 @@
 				CF75590D2A7A303A005E3583 /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		CF7559152A7A625C005E3583 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */,
+				CF7559162A7A6274005E3583 /* SearchResultCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		CFC22D592A78E6FE00524D88 /* Home */ = {
@@ -278,6 +289,7 @@
 				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
+				CF7559172A7A6274005E3583 /* SearchResultCell.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
 				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
 				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
@@ -432,8 +444,10 @@
 				INFOPLIST_FILE = WhereU/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -464,8 +478,10 @@
 				INFOPLIST_FILE = WhereU/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

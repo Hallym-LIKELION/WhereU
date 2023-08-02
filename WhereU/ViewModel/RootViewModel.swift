@@ -14,10 +14,11 @@ final class RootViewModel {
     var user: User? {
         didSet {
             guard let user = user else { return }
-            loginStateObserver(user)
+            DispatchQueue.main.async { [weak self] in
+                self?.loginStateObserver(user)
+            }
         }
     }
-    
     var loginStateObserver: (User) -> Void = { _ in }
     
     func checkUserLoggedIn() -> Bool {
