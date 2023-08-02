@@ -7,9 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */; };
+		CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559012A7A2601005E3583 /* StartViewModel.swift */; };
+		CF7559052A7A2F5A005E3583 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559042A7A2F5A005E3583 /* KakaoSDK */; };
+		CF7559072A7A2F5A005E3583 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559062A7A2F5A005E3583 /* KakaoSDKAuth */; };
+		CF7559092A7A2F5A005E3583 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */; };
+		CF75590B2A7A2F5A005E3583 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */; };
+		CF75590E2A7A303A005E3583 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF75590D2A7A303A005E3583 /* Constants.swift */; };
+		CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF75590F2A7A361D005E3583 /* RootViewModel.swift */; };
+		CF7559122A7A3C96005E3583 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559112A7A3C96005E3583 /* User.swift */; };
+		CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559132A7A4704005E3583 /* HomeViewModel.swift */; };
 		CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D542A78E49B00524D88 /* SnapKit */; };
 		CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D572A78E4A900524D88 /* SDWebImage */; };
 		CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */; };
+		CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */; };
+		CFC22D602A78FAF200524D88 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */; };
 		CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */; };
 		CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */; };
 		CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */; };
@@ -22,7 +34,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = WhereU/View/Controller/Home/StartViewController.swift; sourceTree = SOURCE_ROOT; };
+		CF7559002A7A1E20005E3583 /* WhereU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhereU.entitlements; sourceTree = "<group>"; };
+		CF7559012A7A2601005E3583 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
+		CF75590D2A7A303A005E3583 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CF75590F2A7A361D005E3583 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		CF7559112A7A3C96005E3583 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CF7559132A7A4704005E3583 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
+		CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
+		CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
 		CFFFF2CD2A73CD4700C2B404 /* WhereU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +64,10 @@
 			files = (
 				CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */,
 				CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */,
+				CF75590B2A7A2F5A005E3583 /* KakaoSDKUser in Frameworks */,
+				CF7559052A7A2F5A005E3583 /* KakaoSDK in Frameworks */,
+				CF7559092A7A2F5A005E3583 /* KakaoSDKCommon in Frameworks */,
+				CF7559072A7A2F5A005E3583 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,11 +77,13 @@
 		CF0938202A7520A1009666FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */,
+				CF7558FD2A7A19B8005E3583 /* Login */,
 				CFC22D592A78E6FE00524D88 /* Home */,
+				CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */,
 				CFFFF2E92A73D08700C2B404 /* MapViewController.swift */,
 				CFFFF2EB2A73D0A800C2B404 /* BoardViewController.swift */,
 				CFFFF2ED2A73D0B100C2B404 /* MyPageViewController.swift */,
+				CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -70,6 +97,22 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		CF7558FD2A7A19B8005E3583 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CF75590C2A7A3033005E3583 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CF75590D2A7A303A005E3583 /* Constants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		CFC22D592A78E6FE00524D88 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +120,14 @@
 				CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		CFC22D5E2A78FAE700524D88 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		CFFFF2C42A73CD4700C2B404 = {
@@ -98,6 +149,8 @@
 		CFFFF2CF2A73CD4700C2B404 /* WhereU */ = {
 			isa = PBXGroup;
 			children = (
+				CF75590C2A7A3033005E3583 /* Utils */,
+				CF7559002A7A1E20005E3583 /* WhereU.entitlements */,
 				CF0938212A7520B3009666FC /* App */,
 				CFFFF2E62A73CFB100C2B404 /* Model */,
 				CFFFF2E42A73CFA100C2B404 /* View */,
@@ -112,6 +165,7 @@
 		CFFFF2E42A73CFA100C2B404 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFC22D5E2A78FAE700524D88 /* Custom */,
 				CF0938202A7520A1009666FC /* Controller */,
 			);
 			path = View;
@@ -120,6 +174,9 @@
 		CFFFF2E52A73CFAC00C2B404 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF7559012A7A2601005E3583 /* StartViewModel.swift */,
+				CF75590F2A7A361D005E3583 /* RootViewModel.swift */,
+				CF7559132A7A4704005E3583 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -127,6 +184,7 @@
 		CFFFF2E62A73CFB100C2B404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF7559112A7A3C96005E3583 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +208,10 @@
 			packageProductDependencies = (
 				CFC22D542A78E49B00524D88 /* SnapKit */,
 				CFC22D572A78E4A900524D88 /* SDWebImage */,
+				CF7559042A7A2F5A005E3583 /* KakaoSDK */,
+				CF7559062A7A2F5A005E3583 /* KakaoSDKAuth */,
+				CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */,
+				CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */,
 			);
 			productName = WhereU;
 			productReference = CFFFF2CD2A73CD4700C2B404 /* WhereU.app */;
@@ -182,6 +244,7 @@
 			packageReferences = (
 				CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = CFFFF2CE2A73CD4700C2B404 /* Products */;
 			projectDirPath = "";
@@ -210,13 +273,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */,
+				CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */,
 				CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */,
+				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
+				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
+				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
+				CF7559122A7A3C96005E3583 /* User.swift in Sources */,
 				CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */,
+				CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */,
+				CF75590E2A7A303A005E3583 /* Constants.swift in Sources */,
 				CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */,
 				CFFFF2EC2A73D0A800C2B404 /* BoardViewController.swift in Sources */,
+				CFC22D602A78FAF200524D88 /* PaddingTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WhereU/WhereU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EX6G2VC9J8;
@@ -384,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WhereU/WhereU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EX6G2VC9J8;
@@ -434,6 +507,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -453,6 +534,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CF7559042A7A2F5A005E3583 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		CF7559062A7A2F5A005E3583 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
+		};
 		CFC22D542A78E49B00524D88 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */;

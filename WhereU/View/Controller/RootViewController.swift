@@ -10,22 +10,44 @@ import UIKit
 class RootViewController: UITabBarController {
     
     //MARK: - Properties
-    
+    let viewModel = RootViewModel()
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewControllers()
+        view.backgroundColor = .white
+        checkLogin()
+        fetchUser()
     }
     
     //MARK: - Helpers
-    func configureViewControllers() {
-        
+    func checkLogin() {
+        let isLoggedIn = viewModel.checkUserLoggedIn()
+
+        if !isLoggedIn {
+            DispatchQueue.main.async {
+                let startVC = StartViewController()
+                let nav = UINavigationController(rootViewController: startVC)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+            }
+        }
+    }
+    
+    func fetchUser() {
+        viewModel.loginStateObserver = { [weak self] user in
+            self?.configureViewControllers(user: user)
+        }
+    }
+    
+    func configureViewControllers(user: User) {
         view.backgroundColor = .white
+        let homeViewModel = HomeViewModel(user: user)
+        
         let homeVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "home"),
             selectedImage: #imageLiteral(resourceName: "home").withTintColor(.systemPurple),
-            rootViewController: HomeViewController()
+            rootViewController: HomeViewController(viewModel: homeViewModel)
         )
         let mapVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "pin"),
@@ -45,8 +67,8 @@ class RootViewController: UITabBarController {
         viewControllers = [homeVC, mapVC, boardVC, myPageVC]
         let tabBarAppear = UITabBarAppearance()
         tabBarAppear.configureWithOpaqueBackground()
-        tabBarAppear.backgroundColor = .systemBackground
-        
+        tabBarAppear.backgroundColor = .white
+        tabBarAppear.shadowColor = .black
         tabBar.standardAppearance = tabBarAppear
         tabBar.scrollEdgeAppearance = tabBarAppear
     }
@@ -63,7 +85,7 @@ class RootViewController: UITabBarController {
 //        appearance.titleTextAttributes = [
 //            NSAttributedString.Key.foregroundColor : UIColor.black
 //        ]
-        appearance.backgroundColor = .systemBackground
+        appearance.backgroundColor = .white
         nav.navigationBar.standardAppearance = appearance
         nav.navigationBar.scrollEdgeAppearance = appearance
         return nav

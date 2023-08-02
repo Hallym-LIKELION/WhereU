@@ -25,10 +25,10 @@ class HomeHeader: UICollectionReusableView {
         return iv
     }()
     
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
-        label.text = "은재님,"
+        label.text = "\(viewModel.name)님,"
         return label
     }()
     
@@ -57,12 +57,15 @@ class HomeHeader: UICollectionReusableView {
         return label
     }()
     
+    let viewModel: HomeViewModel
+    
     //MARK: - LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         
         configureUI()
-        
     }
     
     required init?(coder: NSCoder) {
