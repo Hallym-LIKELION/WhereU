@@ -8,6 +8,10 @@
 import UIKit
 import AuthenticationServices
 
+protocol AuthenticationDelegate: AnyObject {
+    func authenticationComplete()
+}
+
 class StartViewController: UIViewController {
     
     //MARK: - Properties
@@ -69,6 +73,7 @@ class StartViewController: UIViewController {
     }()
     
     private let viewModel = StartViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -82,7 +87,7 @@ class StartViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(logoLabelStack)
         logoLabelStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(120)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(120)
             make.left.right.equalToSuperview()
         }
         logoImageView.snp.makeConstraints { make in
@@ -100,6 +105,7 @@ class StartViewController: UIViewController {
     //MARK: - Actions
     @objc func handleKakaoButtonTapped() {
         viewModel.kakaoLogin { [weak self] in
+            self?.delegate?.authenticationComplete()
             self?.dismiss(animated: true)
         }
     }
@@ -116,6 +122,7 @@ extension StartViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     // Apple ID 연동 성공 시
     func authorizationController(controller _: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         viewModel.successAppleLogin(authorization: authorization)
+        delegate?.authenticationComplete()
         dismiss(animated: true)
     }
 

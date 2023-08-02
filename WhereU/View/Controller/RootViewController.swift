@@ -15,18 +15,30 @@ class RootViewController: UITabBarController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        checkLogin()
+        baseSetUp()
         fetchUser()
+        checkLogin()
     }
     
     //MARK: - Helpers
+    func baseSetUp() {
+        view.backgroundColor = .white
+        
+        let tabBarAppear = UITabBarAppearance()
+        tabBarAppear.configureWithOpaqueBackground()
+        tabBarAppear.backgroundColor = .white
+        tabBarAppear.shadowColor = .black
+        tabBar.standardAppearance = tabBarAppear
+        tabBar.scrollEdgeAppearance = tabBarAppear
+    }
+    
     func checkLogin() {
         let isLoggedIn = viewModel.checkUserLoggedIn()
 
         if !isLoggedIn {
             DispatchQueue.main.async {
                 let startVC = StartViewController()
+                startVC.delegate = self
                 let nav = UINavigationController(rootViewController: startVC)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true)
@@ -42,6 +54,7 @@ class RootViewController: UITabBarController {
     
     func configureViewControllers(user: User) {
         view.backgroundColor = .white
+        print("configureViewControllers : \(user)")
         let homeViewModel = HomeViewModel(user: user)
         
         let homeVC = templateNavigationController(
@@ -65,12 +78,6 @@ class RootViewController: UITabBarController {
             rootViewController: MyPageViewController()
         )
         viewControllers = [homeVC, mapVC, boardVC, myPageVC]
-        let tabBarAppear = UITabBarAppearance()
-        tabBarAppear.configureWithOpaqueBackground()
-        tabBarAppear.backgroundColor = .white
-        tabBarAppear.shadowColor = .black
-        tabBar.standardAppearance = tabBarAppear
-        tabBar.scrollEdgeAppearance = tabBarAppear
     }
     // 기본적인 셋팅이 끝난 NavigationController 생성해서 리턴
     func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController) -> UINavigationController {
@@ -92,3 +99,8 @@ class RootViewController: UITabBarController {
     }
 }
 
+extension RootViewController: AuthenticationDelegate {
+    func authenticationComplete() {
+        _ = viewModel.checkUserLoggedIn() // 로그인 완료 시점에 다시 한번 호출
+    }
+}
