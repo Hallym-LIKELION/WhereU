@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class RootViewController: UITabBarController {
     
@@ -32,6 +33,7 @@ class RootViewController: UITabBarController {
         tabBarAppear.shadowColor = .black
         tabBar.standardAppearance = tabBarAppear
         tabBar.scrollEdgeAppearance = tabBarAppear
+        LocationManager.shared.setupLocationManger(delegate: self)
     }
     
     func checkLogin() {
@@ -101,9 +103,14 @@ class RootViewController: UITabBarController {
         return nav
     }
 }
-
+//MARK: - AuthenticationDelegate
 extension RootViewController: AuthenticationDelegate {
     func authenticationComplete() {
         viewModel.checkUserLoggedIn { _ in } // 로그인 완료 시점에 다시 한번 호출
     }
+}
+
+//MARK: - CLLocationManagerDelegate
+extension RootViewController: CLLocationManagerDelegate {
+    
 }

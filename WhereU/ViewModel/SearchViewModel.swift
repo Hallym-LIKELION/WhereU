@@ -57,4 +57,10 @@ final class SearchViewModel {
             searchCompleter.queryFragment = searchText
         }
     }
+    
+    func findCurrentLocation() {
+        LocationManager.shared.reverseGeoCodeLocation { [weak self] address in
+            self?.searchTextChanged(text: address)
+        }
+    }
 }

@@ -21,6 +21,7 @@
 		CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */; };
 		CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */; };
 		CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA669E72A7BE6F900F0F259 /* Extensions.swift */; };
+		CFA669EA2A7BEB3D00F0F259 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */; };
 		CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D542A78E49B00524D88 /* SnapKit */; };
 		CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D572A78E4A900524D88 /* SDWebImage */; };
 		CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */; };
@@ -49,6 +50,7 @@
 		CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CFA669E72A7BE6F900F0F259 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				CF7559112A7A3C96005E3583 /* User.swift */,
+				CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */,
 				CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */,
 				CF75590E2A7A303A005E3583 /* Constants.swift in Sources */,
+				CFA669EA2A7BEB3D00F0F259 /* LocationManager.swift in Sources */,
 				CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */,
 				CFFFF2EC2A73D0A800C2B404 /* BoardViewController.swift in Sources */,
 				CFC22D602A78FAF200524D88 /* PaddingTextField.swift in Sources */,

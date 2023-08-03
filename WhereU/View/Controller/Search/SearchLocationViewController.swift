@@ -121,7 +121,6 @@ class SearchLocationViewController: UIViewController {
         configureUI()
         setupTableView()
         setupSearchCompleter()
-        setupLocationManger()
         addViewModelObserver()
         
     }
@@ -188,13 +187,6 @@ class SearchLocationViewController: UIViewController {
         viewModel.setupSearchCompleter(delegate: self)
     }
     
-    func setupLocationManger() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-    }
-    
     func addViewModelObserver() {
         viewModel.searchTextObserver = { [weak self] text in
             self?.searchTextField.text = text
@@ -218,31 +210,7 @@ class SearchLocationViewController: UIViewController {
     }
     
     @objc func handleLocationButtonTapped() {
-        guard let coor = locationManager.location?.coordinate else { return }
-        let lat = coor.latitude
-        let lon = coor.longitude
-        
-        let findLocation = CLLocation(latitude: lat, longitude: lon)
-        let geoCoder = CLGeocoder()
-        let local = Locale(identifier: "Ko-kr")
-        geoCoder.reverseGeocodeLocation(findLocation, preferredLocale: local) { places, error in
-            if let error = error {
-                // 에러 발생
-                print(error.localizedDescription)
-                return
-            }
-            guard let place = places?.last,
-                  let area = place.administrativeArea,
-                  let local = place.locality else {
-                print("주소가 없음")
-                return
-            }
-            if let subLocal = place.subLocality {
-                self.viewModel.searchTextChanged(text: "\(area) \(local) \(subLocal)")
-            } else {
-                self.viewModel.searchTextChanged(text: "\(area) \(local)")
-            }
-        }
+        viewModel.findCurrentLocation()
     }
     
     //MARK: - Override
@@ -295,6 +263,3 @@ extension SearchLocationViewController: MKLocalSearchCompleterDelegate {
         print(error.localizedDescription)
     }
 }
-
-//MARK: - CLLocationManagerDelegate
-extension SearchLocationViewController: CLLocationManagerDelegate {}
