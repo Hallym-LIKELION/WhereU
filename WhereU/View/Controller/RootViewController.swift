@@ -87,6 +87,8 @@ class RootViewController: UITabBarController {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = unselectedImage
         nav.tabBarItem.selectedImage = selectedImage
+        nav.isNavigationBarHidden = true
+        nav.interactivePopGestureRecognizer?.delegate = nil
         // UINavigationBarAppearance를 설정해야 NavBar의 background를 지정할 수 있음
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()

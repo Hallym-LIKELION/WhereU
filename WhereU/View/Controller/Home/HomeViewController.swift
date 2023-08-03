@@ -91,9 +91,8 @@ extension HomeViewController {
 extension HomeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let searchVC = SearchLocationViewController()
-        searchVC.modalPresentationStyle = .fullScreen
         searchVC.delegate = self
-        present(searchVC, animated: true)
+        navigationController?.pushViewController(searchVC, animated: true)
     }
     
 }

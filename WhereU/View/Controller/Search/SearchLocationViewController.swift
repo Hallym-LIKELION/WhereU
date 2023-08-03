@@ -16,22 +16,12 @@ protocol SearchLocationCompleteDelegate: AnyObject {
 class SearchLocationViewController: UIViewController {
     
     //MARK: - Properties
-    private let searchBar = UISearchBar()
     
-    private let titleView: UILabel = {
-        let label = UILabel()
-        label.text = "지역설정"
-        label.font = .systemFont(ofSize: 20, weight: .heavy)
-        label.textColor = .black
-        return label
-    }()
-    
-    private let searchIcon: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "icon_search")
-        iv.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        iv.widthAnchor.constraint(equalToConstant: 15).isActive = true
-        return iv
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "left_arrow"), for: .normal)
+        button.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private lazy var clearButton: UIButton = {
@@ -45,20 +35,22 @@ class SearchLocationViewController: UIViewController {
     
     private lazy var searchTextField: UITextField = {
         let textField = UITextField()
-        textField.font = .systemFont(ofSize: 15)
-        textField.placeholder = "도시 검색"
+        textField.font = .systemFont(ofSize: 12)
+        textField.placeholder = "동면(읍,면) 으로 검색 (ex. 석사동)"
         textField.addTarget(self, action: #selector(handleSearchTextChanged), for: .editingChanged)
         return textField
     }()
     
     private lazy var searchStack: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [searchIcon, searchTextField, clearButton])
+        let sv = UIStackView(arrangedSubviews: [searchTextField, clearButton])
         sv.alignment = .center
         sv.distribution = .fill
         sv.clipsToBounds = true
-        sv.layer.cornerRadius = 8
+        sv.layer.cornerRadius = 4
         sv.spacing = 8
-        sv.backgroundColor = UIColor(named: "F4F6FA")
+        sv.layer.borderColor = UIColor(named: "D9D9D9")?.cgColor
+        sv.layer.borderWidth = 0.5
+        sv.backgroundColor = UIColor(named: "F9F9F9")
         sv.layoutMargins = UIEdgeInsets(top: 0, left: 15, bottom: .zero, right: 15)
         sv.isLayoutMarginsRelativeArrangement = true
         return sv
@@ -66,13 +58,12 @@ class SearchLocationViewController: UIViewController {
     
     private lazy var findCurrentLocationButton: UIButton = {
         let button = UIButton(type: .system)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.titleLabel?.font = .systemFont(ofSize: 12)
         button.setTitle("현재위치로 찾기", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "845BED")
+        button.backgroundColor = UIColor(named: "9BC6E4")
         button.clipsToBounds = true
         button.layer.cornerRadius = 8
-        button.heightAnchor.constraint(equalToConstant: 41).isActive = true
         button.addTarget(self, action: #selector(handleLocationButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -132,46 +123,50 @@ class SearchLocationViewController: UIViewController {
         setupSearchCompleter()
         setupLocationManger()
         addViewModelObserver()
+        
     }
     
     //MARK: - Helpers
-
+    
+    
     func configureUI() {
         view.backgroundColor = .white
         
-        view.addSubview(titleView)
-        titleView.snp.makeConstraints { make in
+        view.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
-            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(9)
+            make.height.width.equalTo(30)
         }
-        view.addSubview(searchStack)
         
+        view.addSubview(searchStack)
         searchStack.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.bottom).offset(46)
-            make.left.equalTo(view).offset(29)
-            make.right.equalTo(view).offset(-29)
-            make.height.equalTo(40)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.left.equalTo(backButton.snp.right).offset(8)
+            make.right.equalTo(view).offset(-32)
+            make.height.equalTo(31)
         }
         
         view.addSubview(findCurrentLocationButton)
         findCurrentLocationButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(38)
-            make.right.equalToSuperview().offset(-38)
-            make.top.equalTo(searchStack.snp.bottom).offset(15)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(searchStack.snp.bottom).offset(13)
+            make.height.equalTo(36)
         }
         
         view.addSubview(searchLabel)
         searchLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(30)
+            make.left.equalToSuperview().offset(26)
             make.top.equalTo(findCurrentLocationButton.snp.bottom).offset(25)
         }
         
         view.addSubview(resultTableView)
         resultTableView.snp.makeConstraints { make in
-            make.top.equalTo(searchLabel.snp.bottom).offset(10)
+            make.top.equalTo(searchLabel.snp.bottom).offset(27)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().offset(-30)
+            make.left.equalToSuperview().offset(26)
+            make.right.equalToSuperview().offset(-26)
         }
         
         view.addSubview(labelStack)
@@ -209,8 +204,12 @@ class SearchLocationViewController: UIViewController {
     }
     
     //MARK: - Actions
+    @objc func handleBackButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func handleClearButtonTapped() {
-        dismiss(animated: true)
+        viewModel.searchTextChanged(text: "")
     }
     
     @objc func handleSearchTextChanged(_ textField: UITextField) {
@@ -265,7 +264,7 @@ extension SearchLocationViewController: UITableViewDelegate {
         // cell 터치시
         let address = viewModel.searchResults[indexPath.row].title
         delegate?.updateLocation(location: address)
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
 
