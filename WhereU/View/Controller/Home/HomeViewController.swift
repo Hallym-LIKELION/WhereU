@@ -20,12 +20,14 @@ class HomeViewController: UIViewController {
         return header
     }()
     
-    private let naviIcon : UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "icon_navigate")
-        iv.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        iv.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        return iv
+    private lazy var naviIcon : UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "icon_navigate"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        button.addTarget(self, action: #selector(handleNaviIconTapped), for: .touchUpInside)
+        return button
     }()
     private let searchTextField: PaddingTextField = {
         let textfield = PaddingTextField(horizon: 18, vertical: 0)
@@ -86,6 +88,7 @@ class HomeViewController: UIViewController {
         configureUI()
         setupTableView()
         setupCollectionView()
+        addViewModelObserver()
     }
     
     //MARK: - Helpers
@@ -156,6 +159,20 @@ class HomeViewController: UIViewController {
         collectionView.register(GuideCell.self, forCellWithReuseIdentifier: "GuideCell")
         collectionView.showsHorizontalScrollIndicator = false
     }
+
+    func addViewModelObserver() {
+        viewModel.locationObserver = { [weak self] address in
+            self?.searchTextField.text = address
+        }
+    }
+    
+    //MARK: - Actions
+    @objc func handleNaviIconTapped() {
+        let searchVC = SearchLocationViewController()
+        searchVC.delegate = self
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
 }
 
 //MARK: - UITableViewDataSource
@@ -203,9 +220,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 //MARK: - UITextFieldDelegate
 extension HomeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        let searchVC = SearchLocationViewController()
-        searchVC.delegate = self
-        navigationController?.pushViewController(searchVC, animated: true)
+        handleNaviIconTapped()
     }
     
 }

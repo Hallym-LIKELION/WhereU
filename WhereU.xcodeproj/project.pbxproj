@@ -22,6 +22,11 @@
 		CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */; };
 		CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */; };
 		CF955B902A7E13D3002ED1E9 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8F2A7E13D3002ED1E9 /* GuideCell.swift */; };
+		CF955B932A7E2BC4002ED1E9 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = CF955B922A7E2BC4002ED1E9 /* CoreXLSX */; };
+		CF955B962A7E2BF9002ED1E9 /* OpenXlsx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B952A7E2BF9002ED1E9 /* OpenXlsx.swift */; };
+		CF955B9D2A7E3774002ED1E9 /* XYFromAddress.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = CF955B9C2A7E3766002ED1E9 /* XYFromAddress.xlsx */; };
+		CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */; };
+		CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955BA12A7E4356002ED1E9 /* WeatherManager.swift */; };
 		CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA669E72A7BE6F900F0F259 /* Extensions.swift */; };
 		CFA669EA2A7BEB3D00F0F259 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */; };
 		CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFC22D542A78E49B00524D88 /* SnapKit */; };
@@ -53,6 +58,10 @@
 		CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		CF955B8F2A7E13D3002ED1E9 /* GuideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
+		CF955B952A7E2BF9002ED1E9 /* OpenXlsx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenXlsx.swift; sourceTree = "<group>"; };
+		CF955B9C2A7E3766002ED1E9 /* XYFromAddress.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = XYFromAddress.xlsx; sourceTree = "<group>"; };
+		CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		CF955BA12A7E4356002ED1E9 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		CFA669E72A7BE6F900F0F259 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CFC22D5A2A78E7AF00524D88 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
@@ -76,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF955B932A7E2BC4002ED1E9 /* CoreXLSX in Frameworks */,
 				CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */,
 				CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */,
 				CF75590B2A7A2F5A005E3583 /* KakaoSDKUser in Frameworks */,
@@ -122,6 +132,7 @@
 		CF75590C2A7A3033005E3583 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CF955B952A7E2BF9002ED1E9 /* OpenXlsx.swift */,
 				CF75590D2A7A303A005E3583 /* Constants.swift */,
 				CFA669E72A7BE6F900F0F259 /* Extensions.swift */,
 			);
@@ -135,6 +146,15 @@
 				CF7559162A7A6274005E3583 /* SearchResultCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		CF955BA02A7E433F002ED1E9 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */,
+				CF955BA12A7E4356002ED1E9 /* WeatherManager.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		CFC22D592A78E6FE00524D88 /* Home */ = {
@@ -178,12 +198,14 @@
 				CF75590C2A7A3033005E3583 /* Utils */,
 				CF7559002A7A1E20005E3583 /* WhereU.entitlements */,
 				CF0938212A7520B3009666FC /* App */,
+				CF955BA02A7E433F002ED1E9 /* API */,
 				CFFFF2E62A73CFB100C2B404 /* Model */,
 				CFFFF2E42A73CFA100C2B404 /* View */,
 				CFFFF2E52A73CFAC00C2B404 /* ViewModel */,
 				CFFFF2D92A73CD4800C2B404 /* Assets.xcassets */,
 				CFFFF2DB2A73CD4800C2B404 /* LaunchScreen.storyboard */,
 				CFFFF2DE2A73CD4800C2B404 /* Info.plist */,
+				CF955B9C2A7E3766002ED1E9 /* XYFromAddress.xlsx */,
 			);
 			path = WhereU;
 			sourceTree = "<group>";
@@ -213,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				CF7559112A7A3C96005E3583 /* User.swift */,
-				CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */,
+				CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,6 +263,7 @@
 				CF7559062A7A2F5A005E3583 /* KakaoSDKAuth */,
 				CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */,
 				CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */,
+				CF955B922A7E2BC4002ED1E9 /* CoreXLSX */,
 			);
 			productName = WhereU;
 			productReference = CFFFF2CD2A73CD4700C2B404 /* WhereU.app */;
@@ -274,6 +297,7 @@
 				CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				CF955B912A7E2BC4002ED1E9 /* XCRemoteSwiftPackageReference "CoreXLSX" */,
 			);
 			productRefGroup = CFFFF2CE2A73CD4700C2B404 /* Products */;
 			projectDirPath = "";
@@ -289,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF955B9D2A7E3774002ED1E9 /* XYFromAddress.xlsx in Resources */,
 				CFFFF2DD2A73CD4800C2B404 /* LaunchScreen.storyboard in Resources */,
 				CFFFF2DA2A73CD4800C2B404 /* Assets.xcassets in Resources */,
 			);
@@ -305,6 +330,7 @@
 				CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */,
 				CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */,
 				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
+				CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */,
 				CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */,
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
@@ -312,6 +338,7 @@
 				CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
 				CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */,
+				CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */,
 				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
 				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
 				CF7559122A7A3C96005E3583 /* User.swift in Sources */,
@@ -319,6 +346,7 @@
 				CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */,
 				CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */,
 				CF75590E2A7A303A005E3583 /* Constants.swift in Sources */,
+				CF955B962A7E2BF9002ED1E9 /* OpenXlsx.swift in Sources */,
 				CFA669EA2A7BEB3D00F0F259 /* LocationManager.swift in Sources */,
 				CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */,
 				CF955B902A7E13D3002ED1E9 /* GuideCell.swift in Sources */,
@@ -559,6 +587,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		CF955B912A7E2BC4002ED1E9 /* XCRemoteSwiftPackageReference "CoreXLSX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/CoreXLSX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.2;
+			};
+		};
 		CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -597,6 +633,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		CF955B922A7E2BC4002ED1E9 /* CoreXLSX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF955B912A7E2BC4002ED1E9 /* XCRemoteSwiftPackageReference "CoreXLSX" */;
+			productName = CoreXLSX;
 		};
 		CFC22D542A78E49B00524D88 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

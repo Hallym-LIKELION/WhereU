@@ -21,7 +21,6 @@ class HomeHeader: UIView {
     private let weatherImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .systemBlue
         return iv
     }()
     
@@ -58,7 +57,7 @@ class HomeHeader: UIView {
     }()
     
     let viewModel: HomeViewModel
-    
+      
     //MARK: - LifeCycle
     
     init(viewModel: HomeViewModel) {
@@ -66,6 +65,7 @@ class HomeHeader: UIView {
         super.init(frame: .zero)
         
         configureUI()
+        addViewModelObservers()
     }
     
     required init?(coder: NSCoder) {
@@ -98,5 +98,12 @@ class HomeHeader: UIView {
         }
         
     }
-
+    func addViewModelObservers() {
+        viewModel.weatherObserver = {
+            // 날씨 정보 업데이트
+            DispatchQueue.main.async { [weak self] in
+                self?.weatherImageView.image = self?.viewModel.weatherImage
+            }
+        }
+    }
 }

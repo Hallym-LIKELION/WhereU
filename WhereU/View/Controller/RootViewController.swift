@@ -16,6 +16,7 @@ class RootViewController: UITabBarController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         baseSetUp()
         fetchUser()
         checkLogin()
