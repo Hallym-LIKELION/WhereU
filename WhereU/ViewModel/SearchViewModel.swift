@@ -36,6 +36,10 @@ final class SearchViewModel {
         return !searchResultTextIsHidden && searchResultCount == 0 ? false : true
     }
     
+    var clearButtonIsHidden: Bool {
+        return searchText == "" ? true : false
+    }
+    
     func fetchSearchResults(results: [MKLocalSearchCompletion]) {
         searchResults = results
     }
@@ -56,6 +60,7 @@ final class SearchViewModel {
         } else {
             searchCompleter.queryFragment = searchText
         }
+        
     }
     
     func findCurrentLocation() {

@@ -29,6 +29,7 @@ class SearchLocationViewController: UIViewController {
         button.setImage(UIImage(named: "icon_cancel"), for: .normal)
         button.heightAnchor.constraint(equalToConstant: 20).isActive = true
         button.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        button.isHidden = true
         button.addTarget(self, action: #selector(handleClearButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -102,12 +103,9 @@ class SearchLocationViewController: UIViewController {
         return sv
     }()
     
-    let locationManager = CLLocationManager()
     let viewModel = SearchViewModel()
     weak var delegate: SearchLocationCompleteDelegate?
-    
-    
-    
+
     //MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -122,7 +120,6 @@ class SearchLocationViewController: UIViewController {
         setupTableView()
         setupSearchCompleter()
         addViewModelObserver()
-        
     }
     
     //MARK: - Helpers
@@ -192,6 +189,7 @@ class SearchLocationViewController: UIViewController {
             self?.searchTextField.text = text
             self?.searchLabel.text = self?.viewModel.searchResultText
             self?.searchLabel.isHidden = self?.viewModel.searchResultTextIsHidden ?? true
+            self?.clearButton.isHidden = self?.viewModel.clearButtonIsHidden ?? true
         }
     }
     
@@ -202,6 +200,7 @@ class SearchLocationViewController: UIViewController {
     
     @objc func handleClearButtonTapped() {
         viewModel.searchTextChanged(text: "")
+        resultTableView.reloadData()
     }
     
     @objc func handleSearchTextChanged(_ textField: UITextField) {

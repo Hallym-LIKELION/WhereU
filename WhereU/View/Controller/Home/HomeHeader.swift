@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HomeHeader: UICollectionReusableView {
+class HomeHeader: UIView {
     
     //MARK: - Properties
     private let backgroundImageView: UIImageView = {

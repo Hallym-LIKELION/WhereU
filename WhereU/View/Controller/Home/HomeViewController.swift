@@ -12,6 +12,9 @@ let homeHeaderIdentifier = "HomeHeader"
 class HomeViewController: UIViewController {
     
     //MARK: - Properties
+    
+    private let scrollView = UIScrollView()
+    
     private lazy var weatherHeaderView: HomeHeader = {
         let header = HomeHeader(viewModel: viewModel)
         return header
@@ -42,6 +45,29 @@ class HomeViewController: UIViewController {
         return sv
     }()
     
+    private let divider : UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "D9D9D9")
+        return view
+    }()
+    
+    private let tableView = UITableView()
+    
+    private let collectionViewTitle: UILabel = {
+        let label = UILabel()
+        label.text = "비가 많이 오는 날이에요"
+        label.font = .boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
+    private let collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 8 // cell 간격 설정
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        return cv
+    }()
+    
     let viewModel : HomeViewModel
     
     init(viewModel : HomeViewModel) {
@@ -58,35 +84,122 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        setupTableView()
+        setupCollectionView()
     }
     
     //MARK: - Helpers
     
     func configureUI() {
-        view.addSubview(weatherHeaderView)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.left.right.bottom.top.equalTo(view.safeAreaLayoutGuide)
+        }
+        scrollView.showsVerticalScrollIndicator = false
+        
+        scrollView.addSubview(weatherHeaderView)
         weatherHeaderView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.left.right.equalToSuperview()
+            make.top.equalTo(scrollView)
+            make.left.right.equalTo(scrollView)
             make.height.equalTo(200)
+            make.width.equalTo(scrollView)
         }
         
-        view.addSubview(searchStackView)
+        scrollView.addSubview(searchStackView)
         searchStackView.snp.makeConstraints { make in
             make.top.equalTo(weatherHeaderView.snp.bottom).offset(15)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(35)
         }
-        
         searchTextField.delegate = self
+        
+        scrollView.addSubview(divider)
+        divider.snp.makeConstraints { make in
+            make.top.equalTo(searchStackView.snp.bottom).offset(22)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(0.3)
+        }
+        
+        scrollView.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(divider.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(116)
+        }
+        
+        scrollView.addSubview(collectionViewTitle)
+        collectionViewTitle.snp.makeConstraints { make in
+            make.top.equalTo(tableView.snp.bottom).offset(25)
+            make.left.equalToSuperview().offset(24)
+        }
+        scrollView.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(collectionViewTitle.snp.bottom).offset(20)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10)
+            make.height.equalTo(222)
+        }
     }
+    
+    func setupTableView() {
+        tableView.rowHeight = 58
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(NewsCell.self, forCellReuseIdentifier: "NewsCell")
+        tableView.separatorColor = UIColor(named: "D9D9D9")
+    }
+    
+    func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(GuideCell.self, forCellWithReuseIdentifier: "GuideCell")
+        collectionView.showsHorizontalScrollIndicator = false
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+        cell.separatorInset = .zero
+        return cell
+    }
+}
+//MARK: - UITableViewDelegate
+extension HomeViewController: UITableViewDelegate {
     
 }
 
 //MARK: - UICollectionViewDataSource
-extension HomeViewController {
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GuideCell", for: indexPath) as! GuideCell
+        return cell
+    }
+    
     
 }
+//MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 200, height: collectionView.frame.height)
+    }
+}
+
 //MARK: - UITextFieldDelegate
 extension HomeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
