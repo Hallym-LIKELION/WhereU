@@ -15,9 +15,11 @@ class HomeViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     
-    private lazy var weatherHeaderView: HomeHeader = {
-        let header = HomeHeader(viewModel: viewModel)
-        return header
+    private let weatherCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        return cv
     }()
     
     private lazy var naviIcon : UIButton = {
@@ -100,17 +102,17 @@ class HomeViewController: UIViewController {
         }
         scrollView.showsVerticalScrollIndicator = false
         
-        scrollView.addSubview(weatherHeaderView)
-        weatherHeaderView.snp.makeConstraints { make in
+        scrollView.addSubview(weatherCollectionView)
+        weatherCollectionView.snp.makeConstraints { make in
             make.top.equalTo(scrollView)
             make.left.right.equalTo(scrollView)
-            make.height.equalTo(280)
+            make.height.equalTo(250)
             make.width.equalTo(scrollView)
         }
         
         scrollView.addSubview(searchStackView)
         searchStackView.snp.makeConstraints { make in
-            make.top.equalTo(weatherHeaderView.snp.bottom).offset(15)
+            make.top.equalTo(weatherCollectionView.snp.bottom).offset(15)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(35)
@@ -149,20 +151,34 @@ class HomeViewController: UIViewController {
         tableView.rowHeight = 58
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(NewsCell.self, forCellReuseIdentifier: "NewsCell")
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NameStore.newsCell)
         tableView.separatorColor = UIColor(named: "D9D9D9")
     }
     
     func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(GuideCell.self, forCellWithReuseIdentifier: "GuideCell")
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(GuideCell.self, forCellWithReuseIdentifier: NameStore.guideCell)
+        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        
+        weatherCollectionView.delegate = self
+        weatherCollectionView.dataSource = self
+        weatherCollectionView.showsHorizontalScrollIndicator = false
+        weatherCollectionView.decelerationRate = .fast
+        weatherCollectionView.isPagingEnabled = true
+        weatherCollectionView.register(WeatherMainCell.self, forCellWithReuseIdentifier: NameStore.weatherMainCell)
+        weatherCollectionView.register(WeatherDetailCell.self, forCellWithReuseIdentifier: NameStore.weatherDetailCell)
     }
 
     func addViewModelObserver() {
-        viewModel.locationObserver = { [weak self] address in
+        viewModel.appendLocationObserver { [weak self] address in
             self?.searchTextField.text = address
+        }
+        
+        viewModel.appendWeatherObserver { [weak self] in
+            // change weather data
+            
         }
     }
     
@@ -182,7 +198,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NameStore.newsCell, for: indexPath) as! NewsCell
         cell.separatorInset = .zero
         return cell
     }
@@ -195,14 +211,29 @@ extension HomeViewController: UITableViewDelegate {
 //MARK: - UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if collectionView == self.collectionView {
+            return 10
+        } else {
+            return 2
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GuideCell", for: indexPath) as! GuideCell
-        return cell
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.guideCell, for: indexPath) as! GuideCell
+            return cell
+        } else {
+            if indexPath.row == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.weatherMainCell, for: indexPath) as! WeatherMainCell
+                cell.viewModel = viewModel
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.weatherDetailCell, for: indexPath) as! WeatherDetailCell
+                cell.viewModel = viewModel
+                return cell
+            }
+        }
     }
-    
     
 }
 //MARK: - UICollectionViewDelegate
@@ -212,9 +243,30 @@ extension HomeViewController: UICollectionViewDelegate {
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: collectionView.frame.height)
+    //cell과 collectionview의 크기를 일치
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize
+    {
+        if collectionView == weatherCollectionView {
+            return CGSize.init(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        } else {
+            return CGSize.init(width: 200, height: 222)
+        }
+        
     }
+    //section 내부 cell간의 공간을 제거
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == weatherCollectionView {
+            return 0
+        } else {
+            return 8
+        }
+        
+    }
+    
 }
 
 //MARK: - UITextFieldDelegate
@@ -233,13 +285,8 @@ extension HomeViewController: SearchLocationCompleteDelegate {
     func updateLocation(address: String, x: Int, y: Int) {
         searchTextField.text = address
         
+        viewModel.currentLocation = address
         // 업데이트한 지역 날씨 재검색
-        UIView.animate(withDuration: 1) { [weak self] in
-            self?.weatherHeaderView.blurEffect?.alpha = 1
-            self?.weatherHeaderView.gradientLayer?.opacity = 0.3
-        }
-        
-        weatherHeaderView.loadingIndicator?.startAnimating()
         viewModel.fetchWeather(x: x, y: y)
     }
 }

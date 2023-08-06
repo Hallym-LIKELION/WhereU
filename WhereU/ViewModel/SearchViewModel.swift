@@ -41,7 +41,7 @@ final class SearchViewModel {
     }
     
     func fetchSearchResults(results: [MKLocalSearchCompletion]) {
-        searchResults = results
+        searchResults = results.filter { $0.title.contains("대한민국") }
     }
     
     func searchResultAddress(index: Int) -> String {
@@ -50,7 +50,6 @@ final class SearchViewModel {
     
     func setupSearchCompleter(delegate: MKLocalSearchCompleterDelegate) {
         searchCompleter?.delegate = delegate
-        searchCompleter?.resultTypes = .address
         searchCompleter?.region = MKCoordinateRegion(MKMapRect.world)
     }
     

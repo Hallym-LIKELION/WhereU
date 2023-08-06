@@ -77,7 +77,7 @@ final class StartViewModel {
     
     func makeAttributedText() -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(
-            string: "근처에서 일어나는 재난 실시간 알림부터\n재난 가이드까지\n",
+            string: "근처에서 일어나는 재난 실시간 알림부터\n재난 가이드까지",
             attributes: [.font: UIFont.systemFont(ofSize: 14)]
         )
         attrString.append(

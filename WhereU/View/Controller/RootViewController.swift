@@ -20,6 +20,7 @@ class RootViewController: UITabBarController {
         baseSetUp()
         fetchUser()
         checkLogin()
+        
     }
     
     
@@ -92,12 +93,6 @@ class RootViewController: UITabBarController {
         nav.tabBarItem.selectedImage = selectedImage
         nav.isNavigationBarHidden = true
         nav.interactivePopGestureRecognizer?.delegate = nil
-        // UINavigationBarAppearance를 설정해야 NavBar의 background를 지정할 수 있음
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
-        nav.navigationBar.standardAppearance = appearance
-        nav.navigationBar.scrollEdgeAppearance = appearance
         return nav
     }
 }

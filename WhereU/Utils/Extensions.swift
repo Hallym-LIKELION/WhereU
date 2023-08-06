@@ -38,7 +38,15 @@ extension UIView {
         return (blurView,loadingView)
     }
     
-    func addGradient(isNight: Bool) -> CAGradientLayer {
+    func addGradient(colors: CGColor...) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.locations = [0,1]
+        gradientLayer.frame = bounds
+        gradientLayer.colors = colors
+        layer.addSublayer(gradientLayer)
+    }
+    
+    func addGradientWithAnimation() -> CAGradientLayer {
         let colors: [CGColor] = [
            .init(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1),
            .init(red: 0.4508578777, green: 0.9882974029, blue: 0.8376303315, alpha: 1),
@@ -53,7 +61,7 @@ extension UIView {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame  = bounds
         gradientLayer.colors = colors
-        gradientLayer.opacity = 0.3
+        gradientLayer.opacity = 0.4
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
         layer.addSublayer(gradientLayer)

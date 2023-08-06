@@ -12,18 +12,27 @@ final class HomeViewModel {
     let user: User
     var weatherItems: [Item] = [] {
         didSet {
-            weatherObserver()
+            weatherObservers.forEach { task in
+                task()
+            }
         }
     }
-    var weatherObserver: ()->Void = {}
+    var weatherObservers: [()->Void] = []
+    func appendWeatherObserver(_ task: @escaping () -> Void) {
+        weatherObservers.append(task)
+    }
     
     var currentLocation: String = "" {
         didSet {
-            locationObserver(currentLocation)
+            locationObservers.forEach { task in
+                task(currentLocation)
+            }
         }
     }
-
-    var locationObserver: (String) -> Void = { _ in }
+    var locationObservers: [(String) -> Void] = []
+    func appendLocationObserver(_ task: @escaping (String) -> Void) {
+        locationObservers.append(task)
+    }
     
     init(user: User) {
         self.user = user
@@ -120,11 +129,76 @@ final class HomeViewModel {
         return "\(timeArray.joined(separator: "")) \(pmAm) 업데이트 됨"
     }
     
+    var currentTemperature: String {
+        if weatherItems.isEmpty { return "" }
+        
+        let temp = weatherItems.filter { $0.category == .tmp }[0]
+        return "\(temp.fcstValue)°"
+    }
+    
     func fetchWeather(x: Int, y: Int) {
         // 기상청 API 사용해서 격자값으로 날씨 가져오기
         WeatherManager.shared.fetchWeater(x: x, y: y) { [weak self] items in
             self?.weatherItems = items
         }
+    }
+    
+    var weatherForTimeCount: Int {
+        let temps = weatherItems.filter({ $0.category == .tmp })
+        return temps.count
+    }
+    
+    func getWeatherForTime(index: Int) -> WeatherForTime {
+        let skyTypes = weatherItems.filter({ $0.category == .sky })[index]
+        let rainTypes = weatherItems.filter({ $0.category == .pty })[index]
+        let temps = weatherItems.filter({ $0.category == .tmp })[index]
+        
+        let start = temps.fcstTime.index(temps.fcstTime.startIndex, offsetBy: 0)
+        let end = temps.fcstTime.index(temps.fcstTime.startIndex, offsetBy: 1)
+        let time = String(temps.fcstTime[start...end])
+        
+        var image: UIImage?
+        
+        if time >= "20" || time <= "06" { // 밤
+            switch Int(skyTypes.fcstValue)! {
+            case 1: // 맑음
+                image = UIImage(named: "sunny_night")
+            default: // 구름 많음
+                switch Int(rainTypes.fcstValue)! {
+                case 0: // 비 안옴
+                    image = UIImage(named: "cloudy_night")
+                case 1,2,4 : // 비
+                    image = UIImage(named: "rainy_2")
+                default: // 눈
+                    image = UIImage(named: "snow")
+                }
+            }
+        } else { // 낮
+            switch Int(skyTypes.fcstValue)! {
+            case 1: // 맑음
+                image = UIImage(named: "sunny")
+            case 3: // 구름 많음
+                switch Int(rainTypes.fcstValue)! {
+                case 0: // 비 안옴
+                    image = UIImage(named: "cloudy_1")
+                case 1,2,4 : // 비
+                    image = UIImage(named: "rainy_1")
+                default: // 눈
+                    image = UIImage(named: "snow")
+                }
+            default: // 흐림
+                switch Int(rainTypes.fcstValue)! {
+                case 0: // 비 안옴
+                    image = UIImage(named: "cloudy_2")
+                case 1,2,4 : // 비
+                    image = UIImage(named: "rainy_2")
+                default: // 눈
+                    image = UIImage(named: "snow")
+                }
+            }
+        }
+        
+        return WeatherForTime(time: "\(time)시", image: image, temperature: "\(temps.fcstValue)°")
     }
     
 }

@@ -8,34 +8,32 @@
 import UIKit
 import SnapKit
 
-class HomeHeader: UIView {
+class WeatherMainCell: UICollectionViewCell {
     
     //MARK: - Properties
     private lazy var backgroundImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = viewModel.isNight ? #imageLiteral(resourceName: "bg_sunny_night") : #imageLiteral(resourceName: "bg_sunny")
+        iv.image = #imageLiteral(resourceName: "bg_sunny")
         return iv
     }()
     
     private let weatherImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
+        iv.image = #imageLiteral(resourceName: "cloudy_1")
         return iv
     }()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
-        label.text = "\(viewModel.name)님,"
-        label.textColor = viewModel.adviceTextColor
         return label
     }()
     
     private lazy var adviceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
-        label.textColor = viewModel.adviceTextColor
         return label
     }()
     
@@ -53,36 +51,35 @@ class HomeHeader: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 10)
         label.textColor = UIColor(named: "A39898")
-        label.text = viewModel.upTimeText
         return label
     }()
     
-    var blurEffect: UIVisualEffectView?
-    var loadingIndicator: UIActivityIndicatorView?
-    var gradientLayer: CAGradientLayer?
-    
-    let viewModel: HomeViewModel
+    var viewModel: HomeViewModel? {
+        didSet {
+            configureUI()
+            addViewModelObservers()
+        }
+    }
       
     //MARK: - LifeCycle
     
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
-        super.init(frame: .zero)
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureUI()
-        addViewModelObservers()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        backgroundImageView.layoutIfNeeded()
-        gradientLayer = backgroundImageView.addGradient(isNight: viewModel.isNight)
-        (blurEffect,loadingIndicator) = backgroundImageView.addBlurEffect()
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        backgroundImageView.layoutIfNeeded()
+//
+//        gradientLayer = backgroundImageView.addGradientWithAnimation()
+//        (blurEffect, loadingIndicator) = backgroundImageView.addBlurEffect()
+        
+//    }
     
     //MARK: - Helpers
     func configureUI() {
@@ -99,9 +96,9 @@ class HomeHeader: UIView {
         
         backgroundImageView.addSubview(weatherImageView)
         weatherImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(100)
+            make.width.height.equalTo(120)
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(60)
+            make.left.equalToSuperview().offset(30)
         }
         backgroundImageView.addSubview(stackLabel)
         stackLabel.snp.makeConstraints { make in
@@ -111,18 +108,30 @@ class HomeHeader: UIView {
         
     }
     func addViewModelObservers() {
-        viewModel.weatherObserver = {
+        guard let viewModel = viewModel else { return }
+        
+        viewModel.appendWeatherObserver {
             DispatchQueue.main.async { [weak self] in
-                self?.adviceLabel.text = self?.viewModel.adviceText
-                guard let (weatherImage, backgroundImage) = self?.viewModel.weatherImage else { return }
-                self?.weatherImageView.image = weatherImage
-                self?.backgroundImageView.image = backgroundImage
+                guard let self = self else { return }
                 
-                UIView.animate(withDuration: 1) {
-                    self?.blurEffect?.alpha = 0
-                    self?.gradientLayer?.opacity = 0
-                }
-                self?.loadingIndicator?.stopAnimating()
+                self.adviceLabel.text = viewModel.adviceText
+                self.adviceLabel.textColor = viewModel.adviceTextColor
+                self.nameLabel.text = "\(viewModel.name)님,"
+                self.nameLabel.textColor = viewModel.adviceTextColor
+                self.updateTimeLabel.text = viewModel.upTimeText
+                
+                guard let (weatherImage, backgroundImage) = viewModel.weatherImage else { return }
+                self.weatherImageView.image = weatherImage
+                self.backgroundImageView.image = backgroundImage
+                
+//                UIView.animate(withDuration: 1) {
+//                    self.blurEffect?.alpha = 0
+//                    self.gradientLayer?.opacity = 0
+//                }
+//                loadingIndicator?.stopAnimating()
+                
+                
+                
             }
         }
     }
