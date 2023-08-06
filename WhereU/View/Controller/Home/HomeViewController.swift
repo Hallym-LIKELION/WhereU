@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 let homeHeaderIdentifier = "HomeHeader"
 
@@ -57,9 +58,9 @@ class HomeViewController: UIViewController {
     
     private let tableView = UITableView()
     
-    private let collectionViewTitle: UILabel = {
+    private lazy var collectionViewTitle: UILabel = {
         let label = UILabel()
-        label.text = "비가 많이 오는 날이에요"
+        label.text = viewModel.adviceText
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
@@ -96,6 +97,10 @@ class HomeViewController: UIViewController {
     //MARK: - Helpers
     
     func configureUI() {
+        [collectionViewTitle, searchTextField].forEach { view in
+            view.addSkeletonEffect(baseColor: .lightGray)
+        }
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.left.right.bottom.top.equalTo(view.safeAreaLayoutGuide)
@@ -153,6 +158,12 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.register(NewsCell.self, forCellReuseIdentifier: NameStore.newsCell)
         tableView.separatorColor = UIColor(named: "D9D9D9")
+        tableView.addSkeletonEffect(baseColor: .lightGray)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            self.tableView.stopSkeletonAnimation()
+            self.tableView.hideSkeleton(reloadDataAfter: true)
+        }
     }
     
     func setupCollectionView() {
@@ -161,6 +172,12 @@ class HomeViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(GuideCell.self, forCellWithReuseIdentifier: NameStore.guideCell)
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        collectionView.addSkeletonEffect(baseColor: .lightGray)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            self.collectionView.stopSkeletonAnimation()
+            self.collectionView.hideSkeleton(reloadDataAfter: true)
+        }
         
         weatherCollectionView.delegate = self
         weatherCollectionView.dataSource = self
@@ -170,15 +187,24 @@ class HomeViewController: UIViewController {
         weatherCollectionView.register(WeatherMainCell.self, forCellWithReuseIdentifier: NameStore.weatherMainCell)
         weatherCollectionView.register(WeatherDetailCell.self, forCellWithReuseIdentifier: NameStore.weatherDetailCell)
     }
-
+    
     func addViewModelObserver() {
         viewModel.appendLocationObserver { [weak self] address in
+            self?.searchTextField.stopSkeletonAnimation()
+            self?.searchTextField.hideSkeleton(reloadDataAfter: true)
             self?.searchTextField.text = address
         }
         
         viewModel.appendWeatherObserver { [weak self] in
             // change weather data
-            
+            DispatchQueue.main.async {
+                self?.weatherCollectionView.stopSkeletonAnimation()
+                self?.weatherCollectionView.hideSkeleton(reloadDataAfter: true)
+                self?.collectionViewTitle.stopSkeletonAnimation()
+                self?.collectionViewTitle.hideSkeleton(reloadDataAfter: true)
+                
+                self?.collectionViewTitle.text = self?.viewModel.adviceText
+            }
         }
     }
     
@@ -291,3 +317,25 @@ extension HomeViewController: SearchLocationCompleteDelegate {
     }
 }
 
+//MARK: - SkeletonCollectionViewDataSource
+extension HomeViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return NameStore.guideCell
+    }
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+}
+
+//MARK: - SkeletonTableViewDataSource
+extension HomeViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return NameStore.newsCell
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+    
+}

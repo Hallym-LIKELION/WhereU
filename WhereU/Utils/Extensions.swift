@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 extension UIViewController {
     func activateNavigationBackSwipeMotion() {
@@ -24,6 +25,12 @@ extension String {
 }
 
 extension UIView {
+    func addSkeletonEffect(baseColor: UIColor) {
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+        self.isSkeletonable = true
+        self.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: baseColor), animation: animation, transition: .crossDissolve(0.5))
+    }
+    
     func addBlurEffect() -> (UIVisualEffectView,UIActivityIndicatorView) {
         let blurView = UIVisualEffectView()
         blurView.effect = UIBlurEffect(style: .light)

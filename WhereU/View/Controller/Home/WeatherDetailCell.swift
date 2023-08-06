@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class WeatherDetailCell: UICollectionViewCell {
     
@@ -34,6 +35,13 @@ class WeatherDetailCell: UICollectionViewCell {
         cv.backgroundColor = .init(white: 1, alpha: 0)
         return cv
     }()
+    
+    private lazy var updateTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 10)
+        label.textColor = UIColor(named: "A39898")
+        return label
+    }()
 
     var viewModel: HomeViewModel? {
         didSet {
@@ -44,6 +52,7 @@ class WeatherDetailCell: UICollectionViewCell {
         }
     }
     
+    private lazy var skeletonUI: [UIView] = [localLabel, tempLabel, collectionView, updateTimeLabel]
     
     //MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -60,7 +69,6 @@ class WeatherDetailCell: UICollectionViewCell {
     //MARK: - Helpers
     
     private func configureUI() {
-        
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 12
         contentView.addGradient(colors: UIColor(red: 0.365, green: 0.506, blue: 0.639, alpha: 1).cgColor,
@@ -84,6 +92,11 @@ class WeatherDetailCell: UICollectionViewCell {
             make.left.right.equalToSuperview()
             make.height.equalTo(100)
         }
+        
+        contentView.addSubview(updateTimeLabel)
+        updateTimeLabel.snp.makeConstraints { make in
+            make.bottom.right.equalToSuperview().offset(-12)
+        }
     }
     
     private func addViewModelObserver() {
@@ -91,9 +104,7 @@ class WeatherDetailCell: UICollectionViewCell {
         
         viewModel.appendWeatherObserver { [weak self] in
             DispatchQueue.main.async {
-                self?.localLabel.text = viewModel.currentLocation
-                self?.tempLabel.text = viewModel.currentTemperature
-                self?.collectionView.reloadData()
+                self?.setupInitData()
             }
         }
     }
@@ -103,6 +114,8 @@ class WeatherDetailCell: UICollectionViewCell {
         
         localLabel.text = viewModel.currentLocation
         tempLabel.text = viewModel.currentTemperature
+        updateTimeLabel.text = viewModel.upTimeText
+        collectionView.reloadData()
     }
     
     private func setupInnerCollectionView() {
@@ -112,7 +125,6 @@ class WeatherDetailCell: UICollectionViewCell {
         collectionView.register(WeatherForTimeCell.self, forCellWithReuseIdentifier: NameStore.weatherForTimeCell)
         collectionView.contentInset = .init(top: 0, left: 20, bottom: 0, right: 20)
     }
-    
 }
 
 //MARK: - UICollectionViewDataSource

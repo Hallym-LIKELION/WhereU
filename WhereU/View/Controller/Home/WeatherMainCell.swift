@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class WeatherMainCell: UICollectionViewCell {
     
@@ -14,14 +15,12 @@ class WeatherMainCell: UICollectionViewCell {
     private lazy var backgroundImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "bg_sunny")
         return iv
     }()
     
     private let weatherImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = #imageLiteral(resourceName: "cloudy_1")
         return iv
     }()
     
@@ -60,30 +59,23 @@ class WeatherMainCell: UICollectionViewCell {
             addViewModelObservers()
         }
     }
-      
+    
+    private lazy var skeletonUI: [UIView] = [nameLabel,adviceLabel,weatherImageView]
+    
     //MARK: - LifeCycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        addSkeleton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        backgroundImageView.layoutIfNeeded()
-//
-//        gradientLayer = backgroundImageView.addGradientWithAnimation()
-//        (blurEffect, loadingIndicator) = backgroundImageView.addBlurEffect()
-        
-//    }
-    
     //MARK: - Helpers
     func configureUI() {
-        
         addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
@@ -96,14 +88,25 @@ class WeatherMainCell: UICollectionViewCell {
         
         backgroundImageView.addSubview(weatherImageView)
         weatherImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(120)
+            make.width.height.equalTo(150)
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(30)
         }
+        
         backgroundImageView.addSubview(stackLabel)
         stackLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(weatherImageView.snp.right).offset(20)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.height.equalTo(20)
+            make.width.equalTo(150)
+        }
+        
+        adviceLabel.snp.makeConstraints { make in
+            make.height.equalTo(18)
+            make.width.equalTo(150)
         }
         
     }
@@ -124,15 +127,26 @@ class WeatherMainCell: UICollectionViewCell {
                 self.weatherImageView.image = weatherImage
                 self.backgroundImageView.image = backgroundImage
                 
-//                UIView.animate(withDuration: 1) {
-//                    self.blurEffect?.alpha = 0
-//                    self.gradientLayer?.opacity = 0
-//                }
-//                loadingIndicator?.stopAnimating()
-                
-                
-                
+                removeSkelton()
             }
+        }
+    }
+    
+    func addSkeleton() {
+        self.isSkeletonable = true
+        self.showSkeleton(usingColor: .lightGray)
+        
+        self.skeletonUI.forEach { view in
+            view.addSkeletonEffect(baseColor: .gray)
+        }
+    }
+    func removeSkelton() {
+        self.stopSkeletonAnimation()
+        self.hideSkeleton()
+        
+        self.skeletonUI.forEach { view in
+            view.stopSkeletonAnimation()
+            view.hideSkeleton()
         }
     }
 }

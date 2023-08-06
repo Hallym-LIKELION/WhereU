@@ -23,6 +23,7 @@ class NewsCell: UITableViewCell {
         label.text = "장마철 집중호우로 인한 하천 범람 어쩌고 저쩌고"
         label.textColor = UIColor(named: "525252")
         label.font = .systemFont(ofSize: 13)
+        label.textAlignment = .left
         return label
     }()
     
@@ -30,14 +31,6 @@ class NewsCell: UITableViewCell {
         let iv = UIImageView(image: UIImage(named: "right_arrow"))
         iv.contentMode = .scaleAspectFill
         return iv
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [categoryLabel, contentLabel, rightArrow])
-        sv.spacing = 10
-        sv.distribution = .fillProportionally
-        sv.alignment = .center
-        return sv
     }()
     
     //MARK: - LifeCycle
@@ -53,14 +46,33 @@ class NewsCell: UITableViewCell {
     //MARK: - Helpers
     
     func configureUI() {
-        contentView.addSubview(stackView)
-        stackView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(23)
-            make.right.equalToSuperview().offset(-23)
+        [self,categoryLabel,contentLabel].forEach { view in
+            view.isSkeletonable = true
         }
+        contentView.addSubview(categoryLabel)
+        categoryLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(23)
+            make.centerY.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-19)
+            make.width.equalTo(50)
+        }
+        contentView.addSubview(rightArrow)
         rightArrow.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-23)
             make.height.width.equalTo(10)
         }
+        
+        contentView.addSubview(contentLabel)
+        contentLabel.snp.makeConstraints { make in
+            make.left.equalTo(categoryLabel.snp.right).offset(10)
+            make.right.equalTo(rightArrow.snp.left).offset(-10)
+            make.centerY.equalToSuperview()
+            make.height.equalTo(20)
+            make.width.greaterThanOrEqualTo(300)
+        }
+        
+        
+        
     }
 }

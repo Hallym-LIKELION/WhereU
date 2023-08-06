@@ -28,6 +28,7 @@ class WeatherManager {
             print("잘못된 url")
             return
         }
+        print(requestURLString)
         
         let request = URLRequest(url: requestURL)
         URLSession.shared.dataTask(with: request) { data, response, error in
