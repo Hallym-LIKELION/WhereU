@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF45A3C62A7F56D50037E502 /* LocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C52A7F56D50037E502 /* LocationConverter.swift */; };
+		CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C72A7F56DF0037E502 /* MapGridData.swift */; };
 		CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */; };
 		CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559012A7A2601005E3583 /* StartViewModel.swift */; };
 		CF7559052A7A2F5A005E3583 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559042A7A2F5A005E3583 /* KakaoSDK */; };
@@ -23,8 +25,6 @@
 		CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */; };
 		CF955B902A7E13D3002ED1E9 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8F2A7E13D3002ED1E9 /* GuideCell.swift */; };
 		CF955B932A7E2BC4002ED1E9 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = CF955B922A7E2BC4002ED1E9 /* CoreXLSX */; };
-		CF955B962A7E2BF9002ED1E9 /* OpenXlsx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B952A7E2BF9002ED1E9 /* OpenXlsx.swift */; };
-		CF955B9D2A7E3774002ED1E9 /* XYFromAddress.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = CF955B9C2A7E3766002ED1E9 /* XYFromAddress.xlsx */; };
 		CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */; };
 		CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955BA12A7E4356002ED1E9 /* WeatherManager.swift */; };
 		CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA669E72A7BE6F900F0F259 /* Extensions.swift */; };
@@ -46,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF45A3C52A7F56D50037E502 /* LocationConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationConverter.swift; sourceTree = "<group>"; };
+		CF45A3C72A7F56DF0037E502 /* MapGridData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGridData.swift; sourceTree = "<group>"; };
 		CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = WhereU/View/Controller/Home/StartViewController.swift; sourceTree = SOURCE_ROOT; };
 		CF7559002A7A1E20005E3583 /* WhereU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhereU.entitlements; sourceTree = "<group>"; };
 		CF7559012A7A2601005E3583 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
@@ -58,8 +60,6 @@
 		CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		CF955B8F2A7E13D3002ED1E9 /* GuideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
-		CF955B952A7E2BF9002ED1E9 /* OpenXlsx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenXlsx.swift; sourceTree = "<group>"; };
-		CF955B9C2A7E3766002ED1E9 /* XYFromAddress.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = XYFromAddress.xlsx; sourceTree = "<group>"; };
 		CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		CF955BA12A7E4356002ED1E9 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		CFA669E72A7BE6F900F0F259 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 		CF75590C2A7A3033005E3583 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CF955B952A7E2BF9002ED1E9 /* OpenXlsx.swift */,
+				CF45A3C52A7F56D50037E502 /* LocationConverter.swift */,
 				CF75590D2A7A303A005E3583 /* Constants.swift */,
 				CFA669E72A7BE6F900F0F259 /* Extensions.swift */,
 			);
@@ -205,7 +205,6 @@
 				CFFFF2D92A73CD4800C2B404 /* Assets.xcassets */,
 				CFFFF2DB2A73CD4800C2B404 /* LaunchScreen.storyboard */,
 				CFFFF2DE2A73CD4800C2B404 /* Info.plist */,
-				CF955B9C2A7E3766002ED1E9 /* XYFromAddress.xlsx */,
 			);
 			path = WhereU;
 			sourceTree = "<group>";
@@ -234,6 +233,7 @@
 		CFFFF2E62A73CFB100C2B404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF45A3C72A7F56DF0037E502 /* MapGridData.swift */,
 				CF7559112A7A3C96005E3583 /* User.swift */,
 				CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */,
 			);
@@ -313,7 +313,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF955B9D2A7E3774002ED1E9 /* XYFromAddress.xlsx in Resources */,
 				CFFFF2DD2A73CD4800C2B404 /* LaunchScreen.storyboard in Resources */,
 				CFFFF2DA2A73CD4800C2B404 /* Assets.xcassets in Resources */,
 			);
@@ -339,14 +338,15 @@
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
 				CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */,
 				CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */,
+				CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */,
 				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
 				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
 				CF7559122A7A3C96005E3583 /* User.swift in Sources */,
 				CFC22D5B2A78E7AF00524D88 /* HomeHeader.swift in Sources */,
 				CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */,
 				CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */,
+				CF45A3C62A7F56D50037E502 /* LocationConverter.swift in Sources */,
 				CF75590E2A7A303A005E3583 /* Constants.swift in Sources */,
-				CF955B962A7E2BF9002ED1E9 /* OpenXlsx.swift in Sources */,
 				CFA669EA2A7BEB3D00F0F259 /* LocationManager.swift in Sources */,
 				CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */,
 				CF955B902A7E13D3002ED1E9 /* GuideCell.swift in Sources */,

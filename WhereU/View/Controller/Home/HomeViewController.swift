@@ -104,7 +104,7 @@ class HomeViewController: UIViewController {
         weatherHeaderView.snp.makeConstraints { make in
             make.top.equalTo(scrollView)
             make.left.right.equalTo(scrollView)
-            make.height.equalTo(200)
+            make.height.equalTo(280)
             make.width.equalTo(scrollView)
         }
         
@@ -230,8 +230,17 @@ extension HomeViewController: UITextFieldDelegate {
 extension HomeViewController: SearchLocationCompleteDelegate {
     // SearchController의 대리자 역할 정의
     
-    func updateLocation(location: String) {
-        searchTextField.text = location
+    func updateLocation(address: String, x: Int, y: Int) {
+        searchTextField.text = address
+        
+        // 업데이트한 지역 날씨 재검색
+        UIView.animate(withDuration: 1) { [weak self] in
+            self?.weatherHeaderView.blurEffect?.alpha = 1
+            self?.weatherHeaderView.gradientLayer?.opacity = 0.3
+        }
+        
+        weatherHeaderView.loadingIndicator?.startAnimating()
+        viewModel.fetchWeather(x: x, y: y)
     }
 }
 

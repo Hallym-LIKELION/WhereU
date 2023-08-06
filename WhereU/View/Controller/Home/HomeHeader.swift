@@ -11,10 +11,10 @@ import SnapKit
 class HomeHeader: UIView {
     
     //MARK: - Properties
-    private let backgroundImageView: UIImageView = {
+    private lazy var backgroundImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .lightGray
+        iv.image = viewModel.isNight ? #imageLiteral(resourceName: "bg_sunny_night") : #imageLiteral(resourceName: "bg_sunny")
         return iv
     }()
     
@@ -28,13 +28,14 @@ class HomeHeader: UIView {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
         label.text = "\(viewModel.name)님,"
+        label.textColor = viewModel.adviceTextColor
         return label
     }()
     
-    private let adviceLabel: UILabel = {
+    private lazy var adviceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
-        label.text = "오늘은 우산을 챙겨나가세요"
+        label.textColor = viewModel.adviceTextColor
         return label
     }()
     
@@ -48,13 +49,17 @@ class HomeHeader: UIView {
     }()
     
     
-    private let updateTimeLabel: UILabel = {
+    private lazy var updateTimeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 10)
         label.textColor = UIColor(named: "A39898")
-        label.text = "11:00 AM 업데이트됨"
+        label.text = viewModel.upTimeText
         return label
     }()
+    
+    var blurEffect: UIVisualEffectView?
+    var loadingIndicator: UIActivityIndicatorView?
+    var gradientLayer: CAGradientLayer?
     
     let viewModel: HomeViewModel
       
@@ -72,12 +77,19 @@ class HomeHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        backgroundImageView.layoutIfNeeded()
+        gradientLayer = backgroundImageView.addGradient(isNight: viewModel.isNight)
+        (blurEffect,loadingIndicator) = backgroundImageView.addBlurEffect()
+    }
+    
     //MARK: - Helpers
     func configureUI() {
+        
         addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide)
-            make.left.right.bottom.equalToSuperview()
+            make.top.left.right.bottom.equalToSuperview()
         }
         
         backgroundImageView.addSubview(updateTimeLabel)
@@ -100,9 +112,17 @@ class HomeHeader: UIView {
     }
     func addViewModelObservers() {
         viewModel.weatherObserver = {
-            // 날씨 정보 업데이트
             DispatchQueue.main.async { [weak self] in
-                self?.weatherImageView.image = self?.viewModel.weatherImage
+                self?.adviceLabel.text = self?.viewModel.adviceText
+                guard let (weatherImage, backgroundImage) = self?.viewModel.weatherImage else { return }
+                self?.weatherImageView.image = weatherImage
+                self?.backgroundImageView.image = backgroundImage
+                
+                UIView.animate(withDuration: 1) {
+                    self?.blurEffect?.alpha = 0
+                    self?.gradientLayer?.opacity = 0
+                }
+                self?.loadingIndicator?.stopAnimating()
             }
         }
     }
