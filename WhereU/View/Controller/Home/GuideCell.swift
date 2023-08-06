@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class GuideCell: UICollectionViewCell {
     
@@ -53,6 +54,10 @@ class GuideCell: UICollectionViewCell {
     //MARK: - Helpers
     
     func configureUI() {
+        [self, contentView, bottomBackgroundView, titleLabel, tagLabel].forEach { view in
+            view.isSkeletonable = true
+        }
+        
         contentView.addSubview(thumbnailImageView)
         thumbnailImageView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
@@ -67,15 +72,18 @@ class GuideCell: UICollectionViewCell {
         titleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(13)
             make.top.equalToSuperview().offset(16)
+            make.height.greaterThanOrEqualTo(30)
+            make.width.greaterThanOrEqualTo(100)
         }
         bottomBackgroundView.addSubview(tagLabel)
         tagLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(13)
             make.bottom.equalToSuperview().offset(-13)
+            make.height.equalTo(30)
+            make.width.greaterThanOrEqualTo(100)
         }
         
         clipsToBounds = true
         layer.cornerRadius = 12
     }
-    
 }

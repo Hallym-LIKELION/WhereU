@@ -22,15 +22,19 @@ class LocationManager {
         locationManager.startUpdatingLocation()
     }
     
-    func reverseGeoCodeLocation(completion: @escaping (String) -> Void) {
+    func reverseGeoCodeLocation(completion: @escaping (String, (Int,Int)) -> Void) {
         guard let coor = locationManager.location?.coordinate else { return }
 
         let lat = coor.latitude
         let lon = coor.longitude
         
+        let converter = LocationConverter()
+        let (x,y) = converter.convertGrid(lon: lon, lat: lat)
+        
         let findLocation = CLLocation(latitude: lat, longitude: lon)
         let geoCoder = CLGeocoder()
         let local = Locale(identifier: "Ko-kr")
+        
         geoCoder.reverseGeocodeLocation(findLocation, preferredLocale: local) { places, error in
             if let error = error {
                 // 에러 발생
@@ -44,9 +48,9 @@ class LocationManager {
                 return
             }
             if let subLocal = place.subLocality {
-                completion("\(area) \(local) \(subLocal)")
+                completion("\(area) \(local) \(subLocal)", (x,y))
             } else {
-                completion("\(area) \(local)")
+                completion("\(area) \(local)", (x,y))
             }
         }
     }

@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 protocol SearchLocationCompleteDelegate: AnyObject {
-    func updateLocation(location: String)
+    func updateLocation(address: String, x: Int, y: Int)
 }
 
 class SearchLocationViewController: UIViewController {
@@ -229,8 +229,14 @@ extension SearchLocationViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // cell 터치시
-        let address = viewModel.searchResults[indexPath.row].title
-        delegate?.updateLocation(location: address)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let suggestion = viewModel.searchResults[indexPath.row]
+        viewModel.search(for: suggestion) { [weak self] x,y in
+            let address = suggestion.title
+            self?.delegate?.updateLocation(address: address, x: x, y: y)
+        }
+
         navigationController?.popViewController(animated: true)
     }
 }
