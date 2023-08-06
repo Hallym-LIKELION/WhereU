@@ -24,7 +24,6 @@
 		CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */; };
 		CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */; };
 		CF955B902A7E13D3002ED1E9 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8F2A7E13D3002ED1E9 /* GuideCell.swift */; };
-		CF955B932A7E2BC4002ED1E9 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = CF955B922A7E2BC4002ED1E9 /* CoreXLSX */; };
 		CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */; };
 		CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955BA12A7E4356002ED1E9 /* WeatherManager.swift */; };
 		CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA669E72A7BE6F900F0F259 /* Extensions.swift */; };
@@ -85,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF955B932A7E2BC4002ED1E9 /* CoreXLSX in Frameworks */,
 				CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */,
 				CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */,
 				CF75590B2A7A2F5A005E3583 /* KakaoSDKUser in Frameworks */,
@@ -263,7 +261,6 @@
 				CF7559062A7A2F5A005E3583 /* KakaoSDKAuth */,
 				CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */,
 				CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */,
-				CF955B922A7E2BC4002ED1E9 /* CoreXLSX */,
 			);
 			productName = WhereU;
 			productReference = CFFFF2CD2A73CD4700C2B404 /* WhereU.app */;
@@ -297,7 +294,6 @@
 				CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
-				CF955B912A7E2BC4002ED1E9 /* XCRemoteSwiftPackageReference "CoreXLSX" */,
 			);
 			productRefGroup = CFFFF2CE2A73CD4700C2B404 /* Products */;
 			projectDirPath = "";
@@ -587,14 +583,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		CF955B912A7E2BC4002ED1E9 /* XCRemoteSwiftPackageReference "CoreXLSX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CoreOffice/CoreXLSX.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.14.2;
-			};
-		};
 		CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -633,11 +621,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
-		};
-		CF955B922A7E2BC4002ED1E9 /* CoreXLSX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF955B912A7E2BC4002ED1E9 /* XCRemoteSwiftPackageReference "CoreXLSX" */;
-			productName = CoreXLSX;
 		};
 		CFC22D542A78E49B00524D88 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

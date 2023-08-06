@@ -18,32 +18,21 @@ class StartViewController: UIViewController {
     private let logoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .lightGray
+        iv.image = #imageLiteral(resourceName: "rainy_1")
         return iv
     }()
     
-    private let mainLabel: UILabel = {
+    private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "재난의 WAY, 웨얼유"
-        label.font = .boldSystemFont(ofSize: 16)
-        label.textColor = .black
-        return label
-    }()
-    
-    private let subLabel: UILabel = {
-        let label = UILabel()
-        label.text = "근처에서 일어나는 재난 실시간 알림부터\n재난 가이드까지,\n지금 내 위치를 선택하고 시작해보세요!"
-        label.textAlignment = .center
-        label.numberOfLines = 3
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = .black
+        label.attributedText = viewModel.makeAttributedText()
+        label.numberOfLines = 0
         return label
     }()
     
     private lazy var kakaoButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "kakao_login"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
+        button.imageView?.contentMode = .scaleAspectFill
         button.addTarget(self, action: #selector(handleKakaoButtonTapped), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: 56).isActive = true
         return button
@@ -54,14 +43,6 @@ class StartViewController: UIViewController {
         button.addTarget(self, action: #selector(handleAppleButtonTapped), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: 56).isActive = true
         return button
-    }()
-    
-    private lazy var logoLabelStack: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [logoImageView, mainLabel, subLabel])
-        sv.axis = .vertical
-        sv.alignment = .center
-        sv.spacing = 14
-        return sv
     }()
     
     private lazy var buttonStack: UIStackView = {
@@ -85,21 +66,26 @@ class StartViewController: UIViewController {
     //MARK: - Helpers
     func configureUI() {
         view.backgroundColor = .white
-        view.addSubview(logoLabelStack)
-        logoLabelStack.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(120)
-            make.left.right.equalToSuperview()
-        }
-        logoImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(120)
-        }
-        view.addSubview(buttonStack)
-        buttonStack.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-18)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-100)
+        
+        view.addSubview(mainLabel)
+        mainLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(44)
+            make.left.equalToSuperview().offset(23.5)
+            make.right.equalToSuperview()
         }
         
+        view.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(150)
+        }
+        
+        view.addSubview(buttonStack)
+        buttonStack.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-50)
+            make.left.equalToSuperview().offset(18)
+            make.right.equalToSuperview().offset(-18)
+        }
     }
     
     //MARK: - Actions
