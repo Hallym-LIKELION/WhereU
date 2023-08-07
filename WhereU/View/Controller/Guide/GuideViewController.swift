@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class GuideViewController: UIViewController {
     //MARK: - Properties
     private let topBackgroundView: UIView = {
@@ -23,17 +24,7 @@ class GuideViewController: UIViewController {
         return label
     }()
     
-    private let searchBar: CustomSearchBar = {
-        let sb = CustomSearchBar()
-        sb.setBackgroundColor(color: UIColor(named: "F4F6FA"))
-        sb.setPlaceHolder(text: "재난에 따른 가이드를 찾아보세요")
-        sb.setRightButtonImage(image: UIImage(named: "icon_search"))
-        sb.setTextFieldFont(font: .systemFont(ofSize: 15.64))
-        sb.clipsToBounds = true
-        sb.layer.cornerRadius = 30
-        return sb
-    }()
-    
+
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -65,20 +56,12 @@ class GuideViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-20.14)
         }
         
-        view.addSubview(searchBar)
-        searchBar.snp.makeConstraints { make in
-            make.top.equalTo(topBackgroundView.snp.bottom).offset(23.86)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(55)
-        }
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(14)
+            make.top.equalTo(topBackgroundView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-        
     }
     
     func setupCollectionView() {
@@ -104,6 +87,7 @@ class GuideViewController: UIViewController {
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: NameStore.CategoryCell)
         collectionView.register(ArticleCell.self, forCellWithReuseIdentifier: NameStore.ArticleCell)
         collectionView.register(ArticleHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NameStore.ArticleSectionHeader)
+        collectionView.register(CategoryHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NameStore.CategoryHeader)
         collectionView.backgroundColor = .white
     }
     
@@ -118,6 +102,17 @@ class GuideViewController: UIViewController {
         section.interGroupSpacing = 10
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        // 섹션에 헤더 추가
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(93)) // Header height is estimated
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        header.contentInsets = .init(top: 0, leading: 0, bottom: 14, trailing: 0)
+        section.boundarySupplementaryItems = [header]
+        
         return section
     }
 
@@ -160,6 +155,7 @@ extension GuideViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         if indexPath.section == 0 {
             let categoryCell = cell as! CategoryCell
+            categoryCell.viewModel = CategoryViewModel(categoryIndex: indexPath.row)
             return categoryCell
         } else {
             let articleCell = cell as! ArticleCell
@@ -176,8 +172,16 @@ extension GuideViewController : UICollectionViewDelegate {
     
     // 헤더 생성
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameStore.ArticleSectionHeader, for: indexPath) as! ArticleHeader
-        return header
+        let identifier = indexPath.section == 0 ? NameStore.CategoryHeader : NameStore.ArticleSectionHeader
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: identifier, for: indexPath)
+        if indexPath.section == 0 {
+            let categoryHeader = header as! CategoryHeader
+            return categoryHeader
+        } else {
+            let articleHeader = header as! ArticleHeader
+            return articleHeader
+        }
+        
     }
     
     // item 클릭

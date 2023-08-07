@@ -14,23 +14,27 @@ final class CategoryCell: UICollectionViewCell {
     private let categoryImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "icon_fire")
         return iv
     }()
     
     private let categoryTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "폭염"
         label.font = .systemFont(ofSize: 11.78)
         return label
     }()
+    
+    var viewModel: CategoryViewModel? {
+        didSet {
+            configure()
+        }
+    }
     
 
     //MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configureUI()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
@@ -40,7 +44,7 @@ final class CategoryCell: UICollectionViewCell {
     
     //MARK: - Helpers
     
-    private func configureUI() {
+    private func makeUI() {
         clipsToBounds = true
         layer.cornerRadius = 9
         backgroundColor = UIColor(named: "D9D9D9")
@@ -57,4 +61,9 @@ final class CategoryCell: UICollectionViewCell {
         }
     }
     
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        categoryImageView.image = viewModel.icon
+        categoryTitleLabel.text = viewModel.title
+    }
 }

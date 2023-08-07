@@ -28,4 +28,5 @@ class NameStore {
     static let CategoryCell = "CategoryCell"
     static let ArticleCell = "ArticleCell"
     static let ArticleSectionHeader = "ArticleSectionHeader"
+    static let CategoryHeader = "categoryHeader"
 }
