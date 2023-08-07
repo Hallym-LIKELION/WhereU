@@ -77,7 +77,7 @@ class RootViewController: UITabBarController {
         let boardVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "board"),
             selectedImage: #imageLiteral(resourceName: "board").withTintColor(.systemPurple),
-            rootViewController: BoardViewController()
+            rootViewController: GuideViewController()
         )
         let myPageVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "person"),

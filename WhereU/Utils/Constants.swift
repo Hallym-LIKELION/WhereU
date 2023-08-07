@@ -25,4 +25,7 @@ class NameStore {
     static let weatherDetailCell = "WeatherDetailCell"
     static let guideCell = "GuideCell"
     static let newsCell = "NewsCell"
+    static let CategoryCell = "CategoryCell"
+    static let ArticleCell = "ArticleCell"
+    static let ArticleSectionHeader = "ArticleSectionHeader"
 }
