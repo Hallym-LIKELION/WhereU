@@ -25,6 +25,7 @@
 		CF7A45332A7FB2FE00250F93 /* WeatherForTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45322A7FB2FE00250F93 /* WeatherForTime.swift */; };
 		CF7A45352A7FB33900250F93 /* WeatherForTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45342A7FB33900250F93 /* WeatherForTimeViewModel.swift */; };
 		CF7A45382A7FD79800250F93 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = CF7A45372A7FD79800250F93 /* SkeletonView */; };
+		CF7A45452A80944E00250F93 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45442A80944E00250F93 /* MapViewModel.swift */; };
 		CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */; };
 		CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */; };
 		CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */; };
@@ -64,6 +65,7 @@
 		CF7A452F2A7FAC6800250F93 /* WeatherForTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForTimeCell.swift; sourceTree = "<group>"; };
 		CF7A45322A7FB2FE00250F93 /* WeatherForTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForTime.swift; sourceTree = "<group>"; };
 		CF7A45342A7FB33900250F93 /* WeatherForTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForTimeViewModel.swift; sourceTree = "<group>"; };
+		CF7A45442A80944E00250F93 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */,
 				CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */,
 				CF7A45342A7FB33900250F93 /* WeatherForTimeViewModel.swift */,
+				CF7A45442A80944E00250F93 /* MapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				CF7559122A7A3C96005E3583 /* User.swift in Sources */,
 				CFC22D5B2A78E7AF00524D88 /* WeatherMainCell.swift in Sources */,
 				CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */,
+				CF7A45452A80944E00250F93 /* MapViewModel.swift in Sources */,
 				CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */,
 				CF45A3C62A7F56D50037E502 /* LocationConverter.swift in Sources */,
 				CF75590E2A7A303A005E3583 /* Constants.swift in Sources */,

@@ -62,6 +62,7 @@ class RootViewController: UITabBarController {
         view.backgroundColor = .white
         
         let homeViewModel = HomeViewModel(user: user)
+        let mapViewModel = MapViewModel()
         
         let homeVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "home"),
@@ -71,7 +72,7 @@ class RootViewController: UITabBarController {
         let mapVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "pin"),
             selectedImage: #imageLiteral(resourceName: "pin").withTintColor(.systemPurple),
-            rootViewController: MapViewController()
+            rootViewController: MapViewController(viewModel: mapViewModel)
         )
         let boardVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "board"),
@@ -84,6 +85,7 @@ class RootViewController: UITabBarController {
             rootViewController: MyPageViewController()
         )
         viewControllers = [homeVC, mapVC, boardVC, myPageVC]
+        tabBar.tintColor = UIColor(named: "53B4CB")
     }
     // 기본적인 셋팅이 끝난 NavigationController 생성해서 리턴
     func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController) -> UINavigationController {
