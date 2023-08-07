@@ -19,7 +19,6 @@ class LocationManager {
         locationManager.delegate = delegate
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
     }
     
     func reverseGeoCodeLocation(completion: @escaping (String, (Int,Int)) -> Void) {

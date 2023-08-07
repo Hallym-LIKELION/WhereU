@@ -14,7 +14,12 @@ class MapViewModel {
     
     init() {
         LocationManager.shared.locationManager.requestWhenInUseAuthorization()
+        LocationManager.shared.locationManager.startUpdatingLocation()
         currentLocation = LocationManager.shared.locationManager.location?.coordinate
     }
     
+    
+    deinit {
+        LocationManager.shared.locationManager.stopUpdatingLocation()
+    }
 }

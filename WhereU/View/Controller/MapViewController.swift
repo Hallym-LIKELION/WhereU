@@ -48,6 +48,9 @@ class MapViewController: UIViewController {
         guard let coord = viewModel.currentLocation else { return }
         let region = MKCoordinateRegion(center: coord, span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5))
         mapView.setRegion(region, animated: true)
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(.follow, animated: true)
+        
     }
 
 
