@@ -7,11 +7,14 @@
 
 import UIKit
 import MapKit
+import FloatingPanel
 
 class MapViewController: UIViewController {
     
     //MARK: - Properties
     let mapView = MKMapView()
+    let fpc = FloatingPanelController()
+    
     
     let viewModel: MapViewModel
     
@@ -22,6 +25,7 @@ class MapViewController: UIViewController {
         
         configureUI()
         setupMapView()
+        setupFloatingPannel()
     }
     
     required init?(coder: NSCoder) {
@@ -52,10 +56,31 @@ class MapViewController: UIViewController {
         mapView.setUserTrackingMode(.follow, animated: true)
         
     }
+    
+    func setupFloatingPannel() {
+        fpc.delegate = self
+        
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = 35
+        fpc.surfaceView.appearance = appearance
+        
+        let contentVC = PannelContentViewController()
+        fpc.set(contentViewController: contentVC)
+        // content ViewController의 스크롤뷰를 추적?
+//        fpc.track(scrollView: contentVC.tableView)
+        
+        // floatingPannelController의 부모를 현재 뷰컨트롤러로 지정
+        fpc.addPanel(toParent: self)
+
+    }
 
 
 }
-
+//MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
+    
+}
+//MARK: - FloatingPanelControllerDelegate
+extension MapViewController: FloatingPanelControllerDelegate {
     
 }
