@@ -31,7 +31,19 @@ class GuideViewController: UIViewController {
         return cv
     }()
     
+    let viewModel : GuideViewModel
+    
     //MARK: - LifeCycle
+    
+    init(viewModel : GuideViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -188,7 +200,7 @@ extension GuideViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             // 카테고리
-            
+            viewModel.changedSelect(index: indexPath.row)
         } else {
             // 아티클
             

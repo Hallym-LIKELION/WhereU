@@ -29,6 +29,20 @@ final class CategoryCell: UICollectionViewCell {
         }
     }
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                backgroundColor = UIColor(named: "4C61D3")
+                categoryTitleLabel.textColor = .white
+                categoryImageView.tintColor = .white
+            } else {
+                backgroundColor = UIColor(named: "D9D9D9")
+                categoryTitleLabel.textColor = .black
+                categoryImageView.tintColor = .black
+            }
+        }
+    }
+    
 
     //MARK: - LifeCycle
     override init(frame: CGRect) {

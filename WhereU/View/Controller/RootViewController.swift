@@ -63,28 +63,29 @@ class RootViewController: UITabBarController {
         
         let homeViewModel = HomeViewModel(user: user)
         let mapViewModel = MapViewModel()
+        let guideViewModel = GuideViewModel()
         
         let homeVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "home"),
-            selectedImage: #imageLiteral(resourceName: "home").withTintColor(.systemPurple),
+            selectedImage: #imageLiteral(resourceName: "home"),
             rootViewController: HomeViewController(viewModel: homeViewModel)
         )
         let mapVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "pin"),
-            selectedImage: #imageLiteral(resourceName: "pin").withTintColor(.systemPurple),
+            selectedImage: #imageLiteral(resourceName: "pin"),
             rootViewController: MapViewController(viewModel: mapViewModel)
         )
-        let boardVC = templateNavigationController(
+        let guideVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "board"),
-            selectedImage: #imageLiteral(resourceName: "board").withTintColor(.systemPurple),
-            rootViewController: GuideViewController()
+            selectedImage: #imageLiteral(resourceName: "board"),
+            rootViewController: GuideViewController(viewModel: guideViewModel)
         )
         let myPageVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "person"),
-            selectedImage: #imageLiteral(resourceName: "person").withTintColor(.systemPurple),
+            selectedImage: #imageLiteral(resourceName: "person"),
             rootViewController: MyPageViewController()
         )
-        viewControllers = [homeVC, mapVC, boardVC, myPageVC]
+        viewControllers = [homeVC, mapVC, guideVC, myPageVC]
         tabBar.tintColor = UIColor(named: "53B4CB")
     }
     // 기본적인 셋팅이 끝난 NavigationController 생성해서 리턴
