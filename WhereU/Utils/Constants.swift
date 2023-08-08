@@ -19,14 +19,16 @@ class Constants {
 }
 
 class NameStore {
+    // SearchViewController CollectionView Cell Identifier
     static let searchResultCell = "searchResultCell"
+    // HomeViewController CollectionView Cell Identifier
     static let weatherMainCell = "WeatherMainCell"
     static let weatherForTimeCell = "WeatherForTimeCell"
     static let weatherDetailCell = "WeatherDetailCell"
     static let guideCell = "GuideCell"
     static let newsCell = "NewsCell"
+    // GuideViewController CollectionView Cell Identifier
     static let CategoryCell = "CategoryCell"
     static let ArticleCell = "ArticleCell"
-    static let ArticleSectionHeader = "ArticleSectionHeader"
-    static let CategoryHeader = "categoryHeader"
+    static let GuideHeader = "GuideHeader"
 }

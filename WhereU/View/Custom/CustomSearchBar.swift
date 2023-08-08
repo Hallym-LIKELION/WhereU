@@ -88,6 +88,10 @@ final class CustomSearchBar: UIView {
         searchTextField.font = font
     }
     
+    func setTextFieldEnabled(value: Bool) {
+        searchTextField.isEnabled = value
+    }
+    
     //MARK: - Actions
     @objc func handleRightButtonTapped() {
         delegate?.rightButtonTapped?()
