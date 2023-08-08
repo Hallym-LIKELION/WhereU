@@ -145,7 +145,8 @@ extension GuideViewController: GuideHeaderDelegate {
     }
     
     func touchUpSearchBar() {
-        // move to search 
-        
+        // move to search
+        let guideSearchVC = GuideSearchViewController()
+        navigationController?.pushViewController(guideSearchVC, animated: true)
     }
 }

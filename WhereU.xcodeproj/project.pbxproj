@@ -35,6 +35,7 @@
 		CF7A455F2A80F60800250F93 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A455E2A80F60800250F93 /* CategoryViewModel.swift */; };
 		CF7A45612A81E1F600250F93 /* GuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45602A81E1F600250F93 /* GuideViewModel.swift */; };
 		CF7A45632A82297D00250F93 /* GuideHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45622A82297D00250F93 /* GuideHeader.swift */; };
+		CF7A45652A82555E00250F93 /* GuideSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45642A82555E00250F93 /* GuideSearchViewController.swift */; };
 		CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */; };
 		CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */; };
 		CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */; };
@@ -83,6 +84,7 @@
 		CF7A455E2A80F60800250F93 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		CF7A45602A81E1F600250F93 /* GuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewModel.swift; sourceTree = "<group>"; };
 		CF7A45622A82297D00250F93 /* GuideHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideHeader.swift; sourceTree = "<group>"; };
+		CF7A45642A82555E00250F93 /* GuideSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideSearchViewController.swift; sourceTree = "<group>"; };
 		CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				CF7A45562A80DAB800250F93 /* CategoryCell.swift */,
 				CF7A45582A80DADE00250F93 /* ArticleCell.swift */,
 				CF7A45622A82297D00250F93 /* GuideHeader.swift */,
+				CF7A45642A82555E00250F93 /* GuideSearchViewController.swift */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				CF7A452E2A7F891C00250F93 /* WeatherDetailCell.swift in Sources */,
 				CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
+				CF7A45652A82555E00250F93 /* GuideSearchViewController.swift in Sources */,
 				CF7A45332A7FB2FE00250F93 /* WeatherForTime.swift in Sources */,
 				CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */,
 				CF7A455B2A80E49200250F93 /* ArticleViewModel.swift in Sources */,
