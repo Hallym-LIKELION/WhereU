@@ -19,12 +19,11 @@ class LocationManager {
         locationManager.delegate = delegate
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
     }
     
     func reverseGeoCodeLocation(completion: @escaping (String, (Int,Int)) -> Void) {
         guard let coor = locationManager.location?.coordinate else { return }
-
+        
         let lat = coor.latitude
         let lon = coor.longitude
         

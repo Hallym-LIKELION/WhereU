@@ -159,11 +159,6 @@ class HomeViewController: UIViewController {
         tableView.register(NewsCell.self, forCellReuseIdentifier: NameStore.newsCell)
         tableView.separatorColor = UIColor(named: "D9D9D9")
         tableView.addSkeletonEffect(baseColor: .lightGray)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            self.tableView.stopSkeletonAnimation()
-            self.tableView.hideSkeleton(reloadDataAfter: true)
-        }
     }
     
     func setupCollectionView() {
@@ -173,11 +168,6 @@ class HomeViewController: UIViewController {
         collectionView.register(GuideCell.self, forCellWithReuseIdentifier: NameStore.guideCell)
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
         collectionView.addSkeletonEffect(baseColor: .lightGray)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            self.collectionView.stopSkeletonAnimation()
-            self.collectionView.hideSkeleton(reloadDataAfter: true)
-        }
         
         weatherCollectionView.delegate = self
         weatherCollectionView.dataSource = self
@@ -197,13 +187,14 @@ class HomeViewController: UIViewController {
         
         viewModel.appendWeatherObserver { [weak self] in
             // change weather data
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self?.weatherCollectionView.stopSkeletonAnimation()
-                self?.weatherCollectionView.hideSkeleton(reloadDataAfter: true)
-                self?.collectionViewTitle.stopSkeletonAnimation()
-                self?.collectionViewTitle.hideSkeleton(reloadDataAfter: true)
+                [self.weatherCollectionView,self.collectionViewTitle,self.collectionView,self.tableView].forEach { view in
+                    view.stopSkeletonAnimation()
+                    view.hideSkeleton(reloadDataAfter: true)
+                }
                 
-                self?.collectionViewTitle.text = self?.viewModel.adviceText
+                self.collectionViewTitle.text = self.viewModel.adviceText
             }
         }
     }
@@ -231,7 +222,11 @@ extension HomeViewController: UITableViewDataSource {
 }
 //MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // 속보 클릭
+        
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -339,3 +334,4 @@ extension HomeViewController: SkeletonTableViewDataSource {
     }
     
 }
+

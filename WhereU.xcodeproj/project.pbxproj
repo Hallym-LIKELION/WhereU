@@ -25,6 +25,16 @@
 		CF7A45332A7FB2FE00250F93 /* WeatherForTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45322A7FB2FE00250F93 /* WeatherForTime.swift */; };
 		CF7A45352A7FB33900250F93 /* WeatherForTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45342A7FB33900250F93 /* WeatherForTimeViewModel.swift */; };
 		CF7A45382A7FD79800250F93 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = CF7A45372A7FD79800250F93 /* SkeletonView */; };
+		CF7A45452A80944E00250F93 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45442A80944E00250F93 /* MapViewModel.swift */; };
+		CF7A45482A809BBA00250F93 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = CF7A45472A809BBA00250F93 /* FloatingPanel */; };
+		CF7A454B2A809C6400250F93 /* PannelContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A454A2A809C6400250F93 /* PannelContentViewController.swift */; };
+		CF7A454D2A80A9F900250F93 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A454C2A80A9F900250F93 /* CustomSearchBar.swift */; };
+		CF7A45552A80D9E800250F93 /* ArticleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45542A80D9E800250F93 /* ArticleHeader.swift */; };
+		CF7A45572A80DAB800250F93 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45562A80DAB800250F93 /* CategoryCell.swift */; };
+		CF7A45592A80DADE00250F93 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A45582A80DADE00250F93 /* ArticleCell.swift */; };
+		CF7A455B2A80E49200250F93 /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A455A2A80E49200250F93 /* ArticleViewModel.swift */; };
+		CF7A455D2A80F08400250F93 /* CategoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A455C2A80F08400250F93 /* CategoryHeader.swift */; };
+		CF7A455F2A80F60800250F93 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7A455E2A80F60800250F93 /* CategoryViewModel.swift */; };
 		CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */; };
 		CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */; };
 		CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */; };
@@ -45,7 +55,7 @@
 		CFFFF2DD2A73CD4800C2B404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFFFF2DB2A73CD4800C2B404 /* LaunchScreen.storyboard */; };
 		CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2E72A73D07800C2B404 /* HomeViewController.swift */; };
 		CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2E92A73D08700C2B404 /* MapViewController.swift */; };
-		CFFFF2EC2A73D0A800C2B404 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2EB2A73D0A800C2B404 /* BoardViewController.swift */; };
+		CFFFF2EC2A73D0A800C2B404 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2EB2A73D0A800C2B404 /* GuideViewController.swift */; };
 		CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2ED2A73D0B100C2B404 /* MyPageViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +74,15 @@
 		CF7A452F2A7FAC6800250F93 /* WeatherForTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForTimeCell.swift; sourceTree = "<group>"; };
 		CF7A45322A7FB2FE00250F93 /* WeatherForTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForTime.swift; sourceTree = "<group>"; };
 		CF7A45342A7FB33900250F93 /* WeatherForTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForTimeViewModel.swift; sourceTree = "<group>"; };
+		CF7A45442A80944E00250F93 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		CF7A454A2A809C6400250F93 /* PannelContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PannelContentViewController.swift; sourceTree = "<group>"; };
+		CF7A454C2A80A9F900250F93 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		CF7A45542A80D9E800250F93 /* ArticleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHeader.swift; sourceTree = "<group>"; };
+		CF7A45562A80DAB800250F93 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		CF7A45582A80DADE00250F93 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
+		CF7A455A2A80E49200250F93 /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
+		CF7A455C2A80F08400250F93 /* CategoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeader.swift; sourceTree = "<group>"; };
+		CF7A455E2A80F60800250F93 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		CF955B8D2A7E071D002ED1E9 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -84,7 +103,7 @@
 		CFFFF2DE2A73CD4800C2B404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFFFF2E72A73D07800C2B404 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CFFFF2E92A73D08700C2B404 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		CFFFF2EB2A73D0A800C2B404 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
+		CFFFF2EB2A73D0A800C2B404 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		CFFFF2ED2A73D0B100C2B404 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFC22D582A78E4A900524D88 /* SDWebImage in Frameworks */,
+				CF7A45482A809BBA00250F93 /* FloatingPanel in Frameworks */,
 				CF7A45382A7FD79800250F93 /* SkeletonView in Frameworks */,
 				CFC22D552A78E49B00524D88 /* SnapKit in Frameworks */,
 				CF75590B2A7A2F5A005E3583 /* KakaoSDKUser in Frameworks */,
@@ -112,10 +132,10 @@
 				CF7558FD2A7A19B8005E3583 /* Login */,
 				CFC22D592A78E6FE00524D88 /* Home */,
 				CF7559152A7A625C005E3583 /* Search */,
-				CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */,
-				CFFFF2E92A73D08700C2B404 /* MapViewController.swift */,
-				CFFFF2EB2A73D0A800C2B404 /* BoardViewController.swift */,
+				CF7A45492A809C1A00250F93 /* Map */,
+				CF7A45532A80D9C600250F93 /* Guide */,
 				CFFFF2ED2A73D0B100C2B404 /* MyPageViewController.swift */,
+				CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -156,6 +176,27 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		CF7A45492A809C1A00250F93 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CFFFF2E92A73D08700C2B404 /* MapViewController.swift */,
+				CF7A454A2A809C6400250F93 /* PannelContentViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		CF7A45532A80D9C600250F93 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				CFFFF2EB2A73D0A800C2B404 /* GuideViewController.swift */,
+				CF7A45542A80D9E800250F93 /* ArticleHeader.swift */,
+				CF7A45562A80DAB800250F93 /* CategoryCell.swift */,
+				CF7A45582A80DADE00250F93 /* ArticleCell.swift */,
+				CF7A455C2A80F08400250F93 /* CategoryHeader.swift */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
 		CF955BA02A7E433F002ED1E9 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */,
+				CF7A454C2A80A9F900250F93 /* CustomSearchBar.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -237,6 +279,9 @@
 				CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */,
 				CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */,
 				CF7A45342A7FB33900250F93 /* WeatherForTimeViewModel.swift */,
+				CF7A45442A80944E00250F93 /* MapViewModel.swift */,
+				CF7A455A2A80E49200250F93 /* ArticleViewModel.swift */,
+				CF7A455E2A80F60800250F93 /* CategoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,6 +321,7 @@
 				CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */,
 				CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */,
 				CF7A45372A7FD79800250F93 /* SkeletonView */,
+				CF7A45472A809BBA00250F93 /* FloatingPanel */,
 			);
 			productName = WhereU;
 			productReference = CFFFF2CD2A73CD4700C2B404 /* WhereU.app */;
@@ -310,6 +356,7 @@
 				CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				CF7A45362A7FD79800250F93 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				CF7A45462A809BBA00250F93 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = CFFFF2CE2A73CD4700C2B404 /* Products */;
 			projectDirPath = "";
@@ -344,29 +391,38 @@
 				CF7A45302A7FAC6800250F93 /* WeatherForTimeCell.swift in Sources */,
 				CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */,
 				CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */,
+				CF7A45552A80D9E800250F93 /* ArticleHeader.swift in Sources */,
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
 				CF7559172A7A6274005E3583 /* SearchResultCell.swift in Sources */,
+				CF7A454B2A809C6400250F93 /* PannelContentViewController.swift in Sources */,
+				CF7A455F2A80F60800250F93 /* CategoryViewModel.swift in Sources */,
 				CF7A452E2A7F891C00250F93 /* WeatherDetailCell.swift in Sources */,
+				CF7A455D2A80F08400250F93 /* CategoryHeader.swift in Sources */,
 				CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
 				CF7A45332A7FB2FE00250F93 /* WeatherForTime.swift in Sources */,
 				CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */,
+				CF7A455B2A80E49200250F93 /* ArticleViewModel.swift in Sources */,
+				CF7A454D2A80A9F900250F93 /* CustomSearchBar.swift in Sources */,
 				CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */,
 				CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */,
 				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
 				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
 				CF7A45352A7FB33900250F93 /* WeatherForTimeViewModel.swift in Sources */,
+				CF7A45572A80DAB800250F93 /* CategoryCell.swift in Sources */,
 				CF7559122A7A3C96005E3583 /* User.swift in Sources */,
 				CFC22D5B2A78E7AF00524D88 /* WeatherMainCell.swift in Sources */,
 				CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */,
+				CF7A45452A80944E00250F93 /* MapViewModel.swift in Sources */,
 				CFA669E82A7BE6F900F0F259 /* Extensions.swift in Sources */,
 				CF45A3C62A7F56D50037E502 /* LocationConverter.swift in Sources */,
 				CF75590E2A7A303A005E3583 /* Constants.swift in Sources */,
 				CFA669EA2A7BEB3D00F0F259 /* LocationManager.swift in Sources */,
 				CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */,
 				CF955B902A7E13D3002ED1E9 /* GuideCell.swift in Sources */,
-				CFFFF2EC2A73D0A800C2B404 /* BoardViewController.swift in Sources */,
+				CFFFF2EC2A73D0A800C2B404 /* GuideViewController.swift in Sources */,
+				CF7A45592A80DADE00250F93 /* ArticleCell.swift in Sources */,
 				CFC22D602A78FAF200524D88 /* PaddingTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,6 +667,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		CF7A45462A809BBA00250F93 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		CFC22D532A78E49B00524D88 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -654,6 +718,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CF7A45362A7FD79800250F93 /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
+		};
+		CF7A45472A809BBA00250F93 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7A45462A809BBA00250F93 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 		CFC22D542A78E49B00524D88 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
