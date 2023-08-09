@@ -21,6 +21,7 @@ class RootViewController: UITabBarController {
         fetchUser()
         checkLogin()
         
+        LocationManager.shared.registLocation() // 테스트 지오펜싱
     }
     
     
@@ -35,7 +36,7 @@ class RootViewController: UITabBarController {
         tabBarAppear.shadowColor = .black
         tabBar.standardAppearance = tabBarAppear
         tabBar.scrollEdgeAppearance = tabBarAppear
-        LocationManager.shared.setupLocationManger(delegate: self)
+        
     }
     
     func checkLogin() {
@@ -106,7 +107,3 @@ extension RootViewController: AuthenticationDelegate {
     }
 }
 
-//MARK: - CLLocationManagerDelegate
-extension RootViewController: CLLocationManagerDelegate {
-    
-}

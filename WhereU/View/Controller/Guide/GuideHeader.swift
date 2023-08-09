@@ -134,3 +134,4 @@ extension GuideHeader: UICollectionViewDelegate {
         delegate?.header(changedCategory: indexPath.row)
     }
 }
+

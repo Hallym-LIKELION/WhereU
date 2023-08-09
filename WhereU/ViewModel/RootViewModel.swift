@@ -10,7 +10,6 @@ import KakaoSDKUser
 import AuthenticationServices
 
 final class RootViewModel {
-    
     var user: User? {
         didSet {
             guard let user = user else { return }
