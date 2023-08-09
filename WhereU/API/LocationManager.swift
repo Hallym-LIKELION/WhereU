@@ -117,7 +117,7 @@ extension LocationManager: CLLocationManagerDelegate {
         case .inside:
             requestLocalNotification(title: "WhereU", body: "재난 발생 지역 근처입니다.\n재난 상황에 대비하세요!")
         case .outside:
-            requestLocalNotification(title: "WhereU", body: "재난 발생 지역에서 벗어났습니다.")
+            requestLocalNotification(title: "WhereU", body: "현재 재난 발생 지역이 아닙니다.")
         case .unknown: break
         }
     }
