@@ -45,7 +45,7 @@ final class ArticleCell: UICollectionViewCell {
             configure()
         }
     }
-    
+
     //MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)

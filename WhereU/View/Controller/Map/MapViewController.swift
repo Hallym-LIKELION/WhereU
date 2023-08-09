@@ -39,6 +39,7 @@ class MapViewController: UIViewController {
         configureUI()
         setupMapView()
         setupFloatingPannel()
+        addViewModelObservers()
     }
     
     required init?(coder: NSCoder) {
@@ -76,15 +77,19 @@ class MapViewController: UIViewController {
         fpc.surfaceView.appearance = appearance
         fpc.layout = MyFloatingPanelLayout()
         
-        let contentVC = PannelContentViewController()
-        contentVC.delegate = self
+        let contentVC = PannelContentViewController(viewModel: viewModel)
         fpc.set(contentViewController: contentVC)
         // content ViewController의 스크롤뷰를 추적?
 //        fpc.track(scrollView: contentVC.tableView)
         
         // floatingPannelController의 부모를 현재 뷰컨트롤러로 지정
         fpc.addPanel(toParent: self)
-        
+    }
+    
+    func addViewModelObservers() {
+        viewModel.categoryObserver = { category in
+            print("카테고리 변경 : \(category.rawValue)")
+        }
     }
 
 
@@ -98,13 +103,6 @@ extension MapViewController: FloatingPanelControllerDelegate {
     
 }
 
-//MARK: - panelViewControllerDelegate
-extension MapViewController: panelViewControllerDelegate {
-    func panel() {
-        
-    }
-}
-
 
 class MyFloatingPanelLayout: FloatingPanelLayout {
     var position: FloatingPanel.FloatingPanelPosition = .bottom
@@ -112,8 +110,8 @@ class MyFloatingPanelLayout: FloatingPanelLayout {
     var initialState: FloatingPanel.FloatingPanelState = .tip
     
     let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
-            .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
+//            .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
             .half: FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea),
-            .tip: FloatingPanelLayoutAnchor(absoluteInset: 60.0, edge: .bottom, referenceGuide: .safeArea),
+            .tip: FloatingPanelLayoutAnchor(absoluteInset: 80.0, edge: .bottom, referenceGuide: .safeArea),
     ]
 }

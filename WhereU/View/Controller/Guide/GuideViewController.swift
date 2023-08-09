@@ -27,11 +27,24 @@ class GuideViewController: UIViewController {
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return cv
     }()
     
+    let viewModel : GuideViewModel
+    
     //MARK: - LifeCycle
+    
+    init(viewModel : GuideViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,77 +78,12 @@ class GuideViewController: UIViewController {
     }
     
     func setupCollectionView() {
-        // 가로방향 스크롤 섹션 레이아웃
-        let horizontalLayout = UICollectionViewFlowLayout()
-        horizontalLayout.scrollDirection = .horizontal
-
-        // 세로방향 스크롤 섹션 레이아웃
-        let verticalLayout = UICollectionViewFlowLayout()
-        verticalLayout.scrollDirection = .vertical
-        
-        
-        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-            if sectionIndex == 0 {
-                return self.createHorizontalSection(using: horizontalLayout)
-            } else {
-                return self.createVerticalSection(using: verticalLayout)
-            }
-        }
-        
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: NameStore.CategoryCell)
-        collectionView.register(ArticleCell.self, forCellWithReuseIdentifier: NameStore.ArticleCell)
-        collectionView.register(ArticleHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NameStore.ArticleSectionHeader)
-        collectionView.register(CategoryHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NameStore.CategoryHeader)
         collectionView.backgroundColor = .white
-    }
-    
-    // 가로 방향 섹션 레이아웃 만들기
-    private func createHorizontalSection(using layout: UICollectionViewFlowLayout) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(74), heightDimension: .absolute(74))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(74), heightDimension: .estimated(74))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
-        
-        // 섹션에 헤더 추가
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(93)) // Header height is estimated
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-        header.contentInsets = .init(top: 0, leading: 0, bottom: 14, trailing: 0)
-        section.boundarySupplementaryItems = [header]
-        
-        return section
-    }
-
-    // 세로 방향 섹션 레이아웃 만들기
-    private func createVerticalSection(using layout: UICollectionViewFlowLayout) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(view.bounds.width - 40), heightDimension: .absolute(157))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(view.bounds.width - 40), heightDimension: .absolute(157))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 14
-        section.contentInsets = .init(top: 10, leading: 20, bottom: 10, trailing: 20)
-        
-        // 섹션에 헤더 추가
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(62)) // Header height is estimated
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-        
-        section.boundarySupplementaryItems = [header]
-        return section
+        collectionView.register(ArticleCell.self, forCellWithReuseIdentifier: NameStore.ArticleCell)
+        collectionView.register(GuideHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NameStore.GuideHeader)
     }
 }
 
@@ -143,56 +91,62 @@ class GuideViewController: UIViewController {
 extension GuideViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? 5 : 10
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = indexPath.section == 0 ? NameStore.CategoryCell : NameStore.ArticleCell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-        if indexPath.section == 0 {
-            let categoryCell = cell as! CategoryCell
-            categoryCell.viewModel = CategoryViewModel(categoryIndex: indexPath.row)
-            return categoryCell
-        } else {
-            let articleCell = cell as! ArticleCell
-            articleCell.viewModel = ArticleViewModel()
-            return articleCell
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.ArticleCell, for: indexPath) as! ArticleCell
+        cell.viewModel = ArticleViewModel()
+        return cell
     }
     
-    
+    // 헤더 생성
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameStore.GuideHeader, for: indexPath) as! GuideHeader
+        header.delegate = self
+        return header
+    }
+}
+
+extension GuideViewController: UICollectionViewDelegateFlowLayout {
+    // 연속적인 셀 사이의 간격 조정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 14
+    }
+    // cell의 크기 조정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (view.frame.width - 40)
+        return CGSize(width: width, height: 157)
+    }
+    // header의 크기 조정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 237)
+    }
 }
 
 //MARK: - UICollectionViewDelegate
 extension GuideViewController : UICollectionViewDelegate {
-    
-    // 헤더 생성
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let identifier = indexPath.section == 0 ? NameStore.CategoryHeader : NameStore.ArticleSectionHeader
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: identifier, for: indexPath)
-        if indexPath.section == 0 {
-            let categoryHeader = header as! CategoryHeader
-            return categoryHeader
-        } else {
-            let articleHeader = header as! ArticleHeader
-            return articleHeader
-        }
+    // item 클릭
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // show guide...
         
     }
     
-    // item 클릭
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            // 카테고리
-            
-        } else {
-            // 아티클
-            
-        }
+}
+
+extension GuideViewController: GuideHeaderDelegate {
+    func header(changedCategory index: Int) {
+        viewModel.changedSelect(index: index) // 카테고리 변경
+        print(viewModel.selected.rawValue)
     }
     
+    func touchUpSearchBar() {
+        // move to search
+        let guideSearchVC = GuideSearchViewController()
+        navigationController?.pushViewController(guideSearchVC, animated: true)
+    }
 }

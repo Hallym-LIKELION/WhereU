@@ -27,17 +27,18 @@ enum DisasterCategory: String {
             return UIImage(named: "icon_mountain")
         }
     }
+    
+    static var categories: [DisasterCategory] {
+        [.heatWave, .heavyRain, .coldWave, .dust, .landSlide]
+    }
 }
 
 final class CategoryViewModel {
     
-    let categories: [DisasterCategory] = [.heatWave, .heavyRain, .coldWave, .dust, .landSlide]
-    let categoryIndex: Int
     let category: DisasterCategory
     
     init(categoryIndex: Int) {
-        self.categoryIndex = categoryIndex
-        self.category = categories[categoryIndex]
+        self.category = DisasterCategory.categories[categoryIndex]
     }
     
     var icon: UIImage? {
