@@ -36,7 +36,6 @@ class RootViewController: UITabBarController {
         tabBarAppear.shadowColor = .black
         tabBar.standardAppearance = tabBarAppear
         tabBar.scrollEdgeAppearance = tabBarAppear
-        
     }
     
     func checkLogin() {

@@ -49,6 +49,10 @@
 		CFC22D5B2A78E7AF00524D88 /* WeatherMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5A2A78E7AF00524D88 /* WeatherMainCell.swift */; };
 		CFC22D5D2A78F69800524D88 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */; };
 		CFC22D602A78FAF200524D88 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */; };
+		CFCF63DE2A85267500CF4BC6 /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCF63DD2A85267500CF4BC6 /* Disaster.swift */; };
+		CFCF63E02A852A3F00CF4BC6 /* DisasterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCF63DF2A852A3F00CF4BC6 /* DisasterManager.swift */; };
+		CFCF63E22A852E6F00CF4BC6 /* DisasterAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCF63E12A852E6F00CF4BC6 /* DisasterAnnotation.swift */; };
+		CFCF63E42A852F3E00CF4BC6 /* DisasterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCF63E32A852F3E00CF4BC6 /* DisasterAnnotationView.swift */; };
 		CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */; };
 		CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */; };
 		CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */; };
@@ -96,6 +100,10 @@
 		CFC22D5A2A78E7AF00524D88 /* WeatherMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMainCell.swift; sourceTree = "<group>"; };
 		CFC22D5C2A78F69800524D88 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
+		CFCF63DD2A85267500CF4BC6 /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
+		CFCF63DF2A852A3F00CF4BC6 /* DisasterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterManager.swift; sourceTree = "<group>"; };
+		CFCF63E12A852E6F00CF4BC6 /* DisasterAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterAnnotation.swift; sourceTree = "<group>"; };
+		CFCF63E32A852F3E00CF4BC6 /* DisasterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterAnnotationView.swift; sourceTree = "<group>"; };
 		CFFFF2CD2A73CD4700C2B404 /* WhereU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +212,7 @@
 			children = (
 				CFA669E92A7BEB3D00F0F259 /* LocationManager.swift */,
 				CF955BA12A7E4356002ED1E9 /* WeatherManager.swift */,
+				CFCF63DF2A852A3F00CF4BC6 /* DisasterManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 			children = (
 				CFC22D5F2A78FAF200524D88 /* PaddingTextField.swift */,
 				CF7A454C2A80A9F900250F93 /* CustomSearchBar.swift */,
+				CFCF63E32A852F3E00CF4BC6 /* DisasterAnnotationView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -292,10 +302,12 @@
 		CFFFF2E62A73CFB100C2B404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFCF63E12A852E6F00CF4BC6 /* DisasterAnnotation.swift */,
 				CF45A3C72A7F56DF0037E502 /* MapGridData.swift */,
 				CF7559112A7A3C96005E3583 /* User.swift */,
 				CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */,
 				CF7A45322A7FB2FE00250F93 /* WeatherForTime.swift */,
+				CFCF63DD2A85267500CF4BC6 /* Disaster.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,12 +416,14 @@
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
 				CF7A45652A82555E00250F93 /* GuideSearchViewController.swift in Sources */,
 				CF7A45332A7FB2FE00250F93 /* WeatherForTime.swift in Sources */,
+				CFCF63E02A852A3F00CF4BC6 /* DisasterManager.swift in Sources */,
 				CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */,
 				CF7A455B2A80E49200250F93 /* ArticleViewModel.swift in Sources */,
 				CF7A454D2A80A9F900250F93 /* CustomSearchBar.swift in Sources */,
 				CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */,
 				CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */,
 				CF7A45612A81E1F600250F93 /* GuideViewModel.swift in Sources */,
+				CFCF63E42A852F3E00CF4BC6 /* DisasterAnnotationView.swift in Sources */,
 				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
 				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
 				CF7A45352A7FB33900250F93 /* WeatherForTimeViewModel.swift in Sources */,
@@ -425,6 +439,8 @@
 				CFA669EA2A7BEB3D00F0F259 /* LocationManager.swift in Sources */,
 				CFFFF2E82A73D07800C2B404 /* HomeViewController.swift in Sources */,
 				CF955B902A7E13D3002ED1E9 /* GuideCell.swift in Sources */,
+				CFCF63E22A852E6F00CF4BC6 /* DisasterAnnotation.swift in Sources */,
+				CFCF63DE2A85267500CF4BC6 /* Disaster.swift in Sources */,
 				CFFFF2EC2A73D0A800C2B404 /* GuideViewController.swift in Sources */,
 				CF7A45592A80DADE00250F93 /* ArticleCell.swift in Sources */,
 				CFC22D602A78FAF200524D88 /* PaddingTextField.swift in Sources */,

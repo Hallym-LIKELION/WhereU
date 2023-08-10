@@ -87,8 +87,8 @@ class MapViewController: UIViewController {
     }
     
     func addViewModelObservers() {
-        viewModel.categoryObserver = { category in
-            print("카테고리 변경 : \(category.rawValue)")
+        viewModel.disasterObserver = { [weak self] disaster in
+            
         }
     }
 

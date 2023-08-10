@@ -15,11 +15,16 @@ class MapViewModel {
     var selectedCategory: DisasterCategory? {
         didSet {
             // 재난 카테고리 변경 시
-            guard let category = selectedCategory else { return }
-            categoryObserver(category)
+            fetchDisaster()
         }
     }
-    var categoryObserver: (DisasterCategory)->Void = { _ in }
+    
+    var disaster: Disaster = [] {
+        didSet {
+            disasterObserver(disaster)
+        }
+    }
+    var disasterObserver: (Disaster) -> Void = { _ in }
     
     init() {
         LocationManager.shared.locationManager.requestWhenInUseAuthorization()
@@ -49,5 +54,13 @@ class MapViewModel {
     
     func setCategory(selectedIndex: Int) {
         self.selectedCategory = DisasterCategory.categories[selectedIndex]
+    }
+    
+    func fetchDisaster() {
+        guard let categoryIndex = self.selectedCategory?.rawValue else { return }
+        
+        DisasterManager.shared.fetchDisasters(categoryIndex: categoryIndex) { [weak self] disaster in
+            self?.disaster = disaster
+        }
     }
 }
