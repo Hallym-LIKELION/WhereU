@@ -15,7 +15,7 @@ final class CategoryViewModel {
     }
     
     var icon: UIImage? {
-        return category.image
+        return category.icon
     }
     
     var title: String {

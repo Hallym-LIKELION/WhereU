@@ -7,10 +7,35 @@
 
 import UIKit
 import SkeletonView
+import JGProgressHUD
 
 extension UIViewController {
+    
+    static let hud = JGProgressHUD(style: .dark)
+    
     func activateNavigationBackSwipeMotion() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    func alert(title: String, body: String, style: UIAlertController.Style ,actions: [UIAlertAction]) {
+        let alertController = UIAlertController(title: title, message: body, preferredStyle: style)
+        actions.forEach { action in
+            alertController.addAction(action)
+        }
+        self.present(alertController, animated: true)
+    }
+    
+    func showLoader(_ show: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let safeSelf = self else { return }
+            safeSelf.view.endEditing(true)
+            
+            if show {
+                UIViewController.hud.show(in: safeSelf.view)
+            } else {
+                UIViewController.hud.dismiss()
+            }
+        }
     }
 }
 
@@ -98,7 +123,7 @@ extension UIView {
             let shape = CAShapeLayer()
             shape.path = maskPath.cgPath
             layer.mask = shape
-        }
+    }
 }
 extension UIBezierPath {
     convenience init(shouldRoundRect rect: CGRect, topLeftRadius: CGSize = .zero, topRightRadius: CGSize = .zero, bottomLeftRadius: CGSize = .zero, bottomRightRadius: CGSize = .zero){

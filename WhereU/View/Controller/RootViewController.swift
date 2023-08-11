@@ -20,8 +20,6 @@ class RootViewController: UITabBarController {
         baseSetUp()
         fetchUser()
         checkLogin()
-        
-        LocationManager.shared.registLocation() // 테스트 지오펜싱
     }
     
     

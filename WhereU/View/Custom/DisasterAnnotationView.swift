@@ -84,8 +84,7 @@ class DisasterAnnotationView: MKAnnotationView {
         print("localName: \(annotation.localName)")
         print("coordinate: \(annotation.coordinate)")
         
-        disasterImageView.image = annotation.disasterType.image
-        
+        disasterImageView.image = annotation.disasterType.icon
         
         // 이미지의 크기 및 레이블의 사이즈가 변경될 수 있으므로 레이아웃을 업데이트 한다.
         setNeedsLayout()

@@ -23,34 +23,74 @@ struct DisasterElement: Codable {
 typealias Disaster = [DisasterElement]
 
 enum DisasterCategory: Int {
+    case all = 0
     case strongWind = 1 // 강풍
     case heavyRain = 2 // 호우
     case coldWave = 3 // 한파
     case dry = 4 // 건조
-    case storm = 5 // 폭풍 해일
+    case storm = 5 // 해일
     case wind = 6 // 풍랑
     case typhoon = 7 // 태풍
     case snowstorm = 8 // 대설
     case dust = 9 // 황사
     case heatWave = 12 // 폭염
     
-    var image: UIImage? {
+    var icon: UIImage? {
         switch self {
-        case .heatWave:
-            return UIImage(named: "icon_fire")
+        case .all:
+            return UIImage(systemName: "globe.asia.australia")
+        case .strongWind, .wind:
+            return UIImage(systemName: "wind")
         case .heavyRain:
             return UIImage(named: "icon_wave")
         case .coldWave:
             return UIImage(named: "icon_snow")
+        case .dry:
+            return UIImage(systemName: "humidity")
+        case .storm:
+            return UIImage(systemName: "water.waves.and.arrow.up")
+        case.typhoon:
+            return UIImage(systemName: "tornado")
         case .dust:
             return UIImage(named: "icon_wind")
+        case .heatWave:
+            return UIImage(named: "icon_fire")
         default:
             return UIImage(named: "icon_mountain")
         }
     }
     
+    var image: UIImage? {
+        switch self {
+        case .strongWind:
+            return UIImage(named: "bg_rain")
+        case .heavyRain:
+            return UIImage(named: "bg_rain")
+        case .coldWave:
+            return UIImage(named: "bg_cold")
+        case .dry:
+            return UIImage(named: "bg_bad_air")
+        case .storm:
+            return UIImage(named: "bg_rain")
+        case .wind:
+            return UIImage(named: "bg_rain")
+        case .typhoon:
+            return UIImage(named: "bg_rain")
+        case .snowstorm:
+            return UIImage(named: "bg_cold")
+        case .dust:
+            return UIImage(named: "bg_bad_air")
+        case .heatWave:
+            return UIImage(named: "bg_fire")
+        default:
+            return UIImage(named: "bg_bad_air")
+        }
+    }
+    
     var name: String {
         switch self {
+        case .all:
+            return "전체"
         case .strongWind:
             return "강풍"
         case .heavyRain:
@@ -60,7 +100,7 @@ enum DisasterCategory: Int {
         case .dry:
             return "건조"
         case .storm:
-            return "폭풍해일"
+            return "해일"
         case .wind:
             return "풍랑"
         case .typhoon:
@@ -75,6 +115,6 @@ enum DisasterCategory: Int {
     }
     
     static var categories: [DisasterCategory] {
-        [.strongWind, .heavyRain, .coldWave, .dry, .storm, .wind, .typhoon, .snowstorm, .dust, .heatWave]
+        [.all, .strongWind, .heavyRain, .coldWave, .dry, .storm, .wind, .typhoon, .snowstorm, .dust, .heatWave]
     }
 }

@@ -18,7 +18,6 @@ final class ArticleCell: UICollectionViewCell {
     
     private let subLabel: UILabel = {
         let label = UILabel()
-        label.text = "산사태가 발생할 조짐에 대해\n웨얼유에서 읽어보세요."
         label.font = .systemFont(ofSize: 10)
         label.numberOfLines = 0
         return label
@@ -82,5 +81,7 @@ final class ArticleCell: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         mainLabel.attributedText = viewModel.makeMutableAttributedText()
+        subLabel.text = viewModel.subLabelText
+        backgroundImageView.image = viewModel.backgroundImage
     }
 }

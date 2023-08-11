@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class GuideViewController: UIViewController {
     //MARK: - Properties
     private let topBackgroundView: UIView = {
@@ -50,6 +49,7 @@ class GuideViewController: UIViewController {
 
         configureUI()
         setupCollectionView()
+        viewModelBinding()
     }
     
     //MARK: - Helpers
@@ -85,6 +85,16 @@ class GuideViewController: UIViewController {
         collectionView.register(ArticleCell.self, forCellWithReuseIdentifier: NameStore.ArticleCell)
         collectionView.register(GuideHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NameStore.GuideHeader)
     }
+    
+    func viewModelBinding() {
+        viewModel.guidesObserver = { [weak self] guides in
+            print(guides)
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
+        viewModel.fetchGuides()
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -95,12 +105,13 @@ extension GuideViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.selected == nil ? viewModel.guidesCount : viewModel.filteredGuidesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.ArticleCell, for: indexPath) as! ArticleCell
-        cell.viewModel = ArticleViewModel()
+        let guides = viewModel.selected == nil ? viewModel.guides : viewModel.filteredGuides
+        cell.viewModel = ArticleViewModel(guide: guides[indexPath.row])
         return cell
     }
     
@@ -133,15 +144,17 @@ extension GuideViewController : UICollectionViewDelegate {
     // item 클릭
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // show guide...
-        
+        let guideUrl = viewModel.selected == nil ? viewModel.guides[indexPath.row].url : viewModel.filteredGuides[indexPath.row].url
+        let detailViewModel = GuideDetailViewModel(url: guideUrl)
+        let detailVC = GuideDetailViewController(viewModel: detailViewModel)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
-    
 }
 
 extension GuideViewController: GuideHeaderDelegate {
     func header(changedCategory index: Int) {
         viewModel.changedSelect(index: index) // 카테고리 변경
-        print(viewModel.selected.rawValue)
+        collectionView.reloadData()
     }
     
     func touchUpSearchBar() {

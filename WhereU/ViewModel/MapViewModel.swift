@@ -11,6 +11,7 @@ import UIKit
 
 class MapViewModel {
     
+    let categories: [DisasterCategory] = DisasterCategory.categories.filter { $0 != .all }
     var currentLocation: CLLocationCoordinate2D?
     var selectedCategory: DisasterCategory? {
         didSet {
@@ -25,6 +26,14 @@ class MapViewModel {
         }
     }
     var disasterObserver: (Disaster) -> Void = { _ in }
+    
+    var isLoading: Bool = false {
+        didSet {
+            loadingStateObserver(isLoading)
+        }
+    }
+    var loadingStateObserver: (Bool) -> Void = { _ in }
+    
     
     init() {
         LocationManager.shared.locationManager.requestWhenInUseAuthorization()
@@ -53,11 +62,12 @@ class MapViewModel {
     }
     
     func setCategory(selectedIndex: Int) {
-        self.selectedCategory = DisasterCategory.categories[selectedIndex]
+        self.selectedCategory = categories[selectedIndex]
     }
     
     func fetchDisaster() {
         guard let categoryIndex = self.selectedCategory?.rawValue else { return }
+        isLoading = true
         
         DisasterManager.shared.fetchDisasters(categoryIndex: categoryIndex) { [weak self] result in
             switch result {
@@ -81,6 +91,7 @@ class MapViewModel {
                 
                 self?.disaster = []
             }
+            self?.isLoading = false
             
         }
     }

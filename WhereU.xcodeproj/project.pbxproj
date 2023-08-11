@@ -55,6 +55,11 @@
 		CFCF63E42A852F3E00CF4BC6 /* DisasterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCF63E32A852F3E00CF4BC6 /* DisasterAnnotationView.swift */; };
 		CFDDCEE72A85E58E0057A088 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDDCEE62A85E58E0057A088 /* APIError.swift */; };
 		CFDDCEE92A85E5980057A088 /* APIManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDDCEE82A85E5980057A088 /* APIManagerType.swift */; };
+		CFDDCEEC2A85EDE20057A088 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = CFDDCEEB2A85EDE20057A088 /* JGProgressHUD */; };
+		CFDDCEEE2A85F0400057A088 /* GuideManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDDCEED2A85F0400057A088 /* GuideManager.swift */; };
+		CFDDCEF02A85F0CF0057A088 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDDCEEF2A85F0CF0057A088 /* Guide.swift */; };
+		CFDDCEF22A86197A0057A088 /* GuideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDDCEF12A86197A0057A088 /* GuideDetailViewController.swift */; };
+		CFDDCEF42A8619FA0057A088 /* GuideDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDDCEF32A8619FA0057A088 /* GuideDetailViewModel.swift */; };
 		CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */; };
 		CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */; };
 		CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFFF2D42A73CD4700C2B404 /* RootViewController.swift */; };
@@ -108,6 +113,10 @@
 		CFCF63E32A852F3E00CF4BC6 /* DisasterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterAnnotationView.swift; sourceTree = "<group>"; };
 		CFDDCEE62A85E58E0057A088 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		CFDDCEE82A85E5980057A088 /* APIManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerType.swift; sourceTree = "<group>"; };
+		CFDDCEED2A85F0400057A088 /* GuideManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideManager.swift; sourceTree = "<group>"; };
+		CFDDCEEF2A85F0CF0057A088 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		CFDDCEF12A86197A0057A088 /* GuideDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailViewController.swift; sourceTree = "<group>"; };
+		CFDDCEF32A8619FA0057A088 /* GuideDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailViewModel.swift; sourceTree = "<group>"; };
 		CFFFF2CD2A73CD4700C2B404 /* WhereU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFFF2D02A73CD4700C2B404 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +142,7 @@
 				CF75590B2A7A2F5A005E3583 /* KakaoSDKUser in Frameworks */,
 				CF7559052A7A2F5A005E3583 /* KakaoSDK in Frameworks */,
 				CF7559092A7A2F5A005E3583 /* KakaoSDKCommon in Frameworks */,
+				CFDDCEEC2A85EDE20057A088 /* JGProgressHUD in Frameworks */,
 				CF7559072A7A2F5A005E3583 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +217,7 @@
 				CF7A45582A80DADE00250F93 /* ArticleCell.swift */,
 				CF7A45622A82297D00250F93 /* GuideHeader.swift */,
 				CF7A45642A82555E00250F93 /* GuideSearchViewController.swift */,
+				CFDDCEF12A86197A0057A088 /* GuideDetailViewController.swift */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -219,6 +230,7 @@
 				CFCF63DF2A852A3F00CF4BC6 /* DisasterManager.swift */,
 				CFDDCEE62A85E58E0057A088 /* APIError.swift */,
 				CFDDCEE82A85E5980057A088 /* APIManagerType.swift */,
+				CFDDCEED2A85F0400057A088 /* GuideManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -301,6 +313,7 @@
 				CF7A455A2A80E49200250F93 /* ArticleViewModel.swift */,
 				CF7A455E2A80F60800250F93 /* CategoryViewModel.swift */,
 				CF7A45602A81E1F600250F93 /* GuideViewModel.swift */,
+				CFDDCEF32A8619FA0057A088 /* GuideDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -314,6 +327,7 @@
 				CF955B9E2A7E4284002ED1E9 /* WeatherResponse.swift */,
 				CF7A45322A7FB2FE00250F93 /* WeatherForTime.swift */,
 				CFCF63DD2A85267500CF4BC6 /* Disaster.swift */,
+				CFDDCEEF2A85F0CF0057A088 /* Guide.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,6 +357,7 @@
 				CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */,
 				CF7A45372A7FD79800250F93 /* SkeletonView */,
 				CF7A45472A809BBA00250F93 /* FloatingPanel */,
+				CFDDCEEB2A85EDE20057A088 /* JGProgressHUD */,
 			);
 			productName = WhereU;
 			productReference = CFFFF2CD2A73CD4700C2B404 /* WhereU.app */;
@@ -378,6 +393,7 @@
 				CF7559032A7A2F5A005E3583 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				CF7A45362A7FD79800250F93 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				CF7A45462A809BBA00250F93 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				CFDDCEEA2A85EDE20057A088 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = CFFFF2CE2A73CD4700C2B404 /* Products */;
 			projectDirPath = "";
@@ -407,6 +423,7 @@
 			files = (
 				CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */,
 				CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */,
+				CFDDCEF22A86197A0057A088 /* GuideDetailViewController.swift in Sources */,
 				CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */,
 				CFDDCEE92A85E5980057A088 /* APIManagerType.swift in Sources */,
 				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
@@ -416,6 +433,7 @@
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
 				CF7559172A7A6274005E3583 /* SearchResultCell.swift in Sources */,
+				CFDDCEF02A85F0CF0057A088 /* Guide.swift in Sources */,
 				CF7A454B2A809C6400250F93 /* PannelContentViewController.swift in Sources */,
 				CFDDCEE72A85E58E0057A088 /* APIError.swift in Sources */,
 				CF7A455F2A80F60800250F93 /* CategoryViewModel.swift in Sources */,
@@ -427,6 +445,7 @@
 				CFCF63E02A852A3F00CF4BC6 /* DisasterManager.swift in Sources */,
 				CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */,
 				CF7A455B2A80E49200250F93 /* ArticleViewModel.swift in Sources */,
+				CFDDCEEE2A85F0400057A088 /* GuideManager.swift in Sources */,
 				CF7A454D2A80A9F900250F93 /* CustomSearchBar.swift in Sources */,
 				CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */,
 				CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */,
@@ -434,6 +453,7 @@
 				CFCF63E42A852F3E00CF4BC6 /* DisasterAnnotationView.swift in Sources */,
 				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
 				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
+				CFDDCEF42A8619FA0057A088 /* GuideDetailViewModel.swift in Sources */,
 				CF7A45352A7FB33900250F93 /* WeatherForTimeViewModel.swift in Sources */,
 				CF7A45632A82297D00250F93 /* GuideHeader.swift in Sources */,
 				CF7A45572A80DAB800250F93 /* CategoryCell.swift in Sources */,
@@ -719,6 +739,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		CFDDCEEA2A85EDE20057A088 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -761,6 +789,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CFC22D562A78E4A900524D88 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		CFDDCEEB2A85EDE20057A088 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFDDCEEA2A85EDE20057A088 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

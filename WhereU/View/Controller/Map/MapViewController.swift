@@ -93,12 +93,20 @@ class MapViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.mapView.removeAnnotations(self?.mapView.annotations ?? [])
                 
+                if disaster.isEmpty {
+                    self?.showAlert()
+                    return
+                }
+                
                 disaster.forEach { element in
                     let type = DisasterCategory.init(rawValue: element.warnVar)!
                     let coordinate = CLLocationCoordinate2D(latitude: element.lat, longitude: element.lon)
                     self?.addAnnotation(localName: element.areaName, type: type, coordinate: coordinate)
                 }
             }
+        }
+        viewModel.loadingStateObserver = { [weak self] state in
+            self?.showLoader(state)
         }
     }
     
@@ -112,7 +120,12 @@ class MapViewController: UIViewController {
         // dequeueReusableAnnotationView: 식별자를 확인하여 사용가능한 뷰가 있으면 해당 뷰를 반환
         return mapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(DisasterAnnotationView.self), for: annotation)
     }
-
+    
+    private func showAlert() {
+        let action = UIAlertAction(title: "확인", style: .default)
+        self.alert(title: "재난 위치", body: "현재 재난이 없습니다", style: .alert, actions: [action])
+    }
+    
 
 }
 //MARK: - MKMapViewDelegate
