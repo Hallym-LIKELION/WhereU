@@ -59,8 +59,29 @@ class MapViewModel {
     func fetchDisaster() {
         guard let categoryIndex = self.selectedCategory?.rawValue else { return }
         
-        DisasterManager.shared.fetchDisasters(categoryIndex: categoryIndex) { [weak self] disaster in
-            self?.disaster = disaster
+        DisasterManager.shared.fetchDisasters(categoryIndex: categoryIndex) { [weak self] result in
+            switch result {
+            case .success(let disaster):
+                self?.disaster = disaster
+            case .failure(let error):
+                switch error {
+                case .invalidURL:
+                    print("invalidURL Error")
+                case .decodeError:
+                    print("decodeError Error")
+                case .emptyData:
+                    print("emptyData Error")
+                case .networkError:
+                    print("networkError Error")
+                case .timeout:
+                    print("timeout Error")
+                case .unknown:
+                    print("unknown Error")
+                }
+                
+                self?.disaster = []
+            }
+            
         }
     }
 }

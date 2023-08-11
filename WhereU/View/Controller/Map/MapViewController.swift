@@ -90,17 +90,20 @@ class MapViewController: UIViewController {
     
     func addViewModelObservers() {
         viewModel.disasterObserver = { [weak self] disaster in
-            disaster.forEach { element in
-                let type = DisasterCategory.init(rawValue: element.warnVar)!
-                let coordinate = CLLocationCoordinate2D(latitude: element.lat, longitude: element.lon)
-                self?.addAnnotation(localName: element.areaName, type: type, coordinate: coordinate)
+            DispatchQueue.main.async {
+                self?.mapView.removeAnnotations(self?.mapView.annotations ?? [])
+                
+                disaster.forEach { element in
+                    let type = DisasterCategory.init(rawValue: element.warnVar)!
+                    let coordinate = CLLocationCoordinate2D(latitude: element.lat, longitude: element.lon)
+                    self?.addAnnotation(localName: element.areaName, type: type, coordinate: coordinate)
+                }
             }
         }
     }
     
     func addAnnotation(localName: String, type: DisasterCategory, coordinate: CLLocationCoordinate2D) {
         let annotation = DisasterAnnotation(localName: localName, disasterType: type, coordinate: coordinate)
-        
         mapView.addAnnotation(annotation)
     }
     
