@@ -9,7 +9,7 @@ import UIKit
 import AuthenticationServices
 
 protocol AuthenticationDelegate: AnyObject {
-    func authenticationComplete()
+    func authenticationComplete(user: User?)
 }
 
 class StartViewController: UIViewController {
@@ -91,7 +91,7 @@ class StartViewController: UIViewController {
     //MARK: - Actions
     @objc func handleKakaoButtonTapped() {
         viewModel.kakaoLogin { [weak self] in
-            self?.delegate?.authenticationComplete()
+            self?.delegate?.authenticationComplete(user: nil)
             self?.dismiss(animated: true)
         }
     }
@@ -107,9 +107,15 @@ extension StartViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     
     // Apple ID 연동 성공 시
     func authorizationController(controller _: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        viewModel.successAppleLogin(authorization: authorization)
-        delegate?.authenticationComplete()
-        dismiss(animated: true)
+        let params = viewModel.successAppleLogin(authorization: authorization)
+        
+        viewModel.fetchUser(params: params) { user in
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.authenticationComplete(user: user)
+                self?.dismiss(animated: true)
+            }
+        }
+        
     }
 
     // Apple ID 연동 실패 시

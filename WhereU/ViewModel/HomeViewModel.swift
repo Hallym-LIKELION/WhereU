@@ -47,7 +47,7 @@ final class HomeViewModel {
     }
     
     var name: String {
-        return user.name
+        return user.name.isEmpty ? "알 수 없음" : user.name
     }
     
     var weatherImage: (UIImage?,UIImage?)? {

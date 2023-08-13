@@ -26,6 +26,9 @@ class LocationManager: NSObject {
         locationManager.startUpdatingLocation()
     }
     
+    func requestAuthorization() {
+        locationManager.requestAlwaysAuthorization()
+    }
 }
 
 extension LocationManager {

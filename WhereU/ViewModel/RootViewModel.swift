@@ -45,18 +45,14 @@ final class RootViewModel {
             return
         }
         
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: uid) { (credentialState, error) in
-            switch credentialState {
-            case .authorized:
-                // Authorization Logic
-                print("애플 로그인 완료")
-                self.user = User(uid: uid, name: "홍길동")
-                completion(true)
-            default:
+        LoginManager.shared.fetchUser(parameters: ["uid": uid]) { [weak self] user in
+            guard let user = user else {
                 completion(false)
-                break
+                return
             }
+            self?.user = user
+            print(user)
+            completion(true)
         }
     }
     

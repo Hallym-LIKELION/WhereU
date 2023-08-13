@@ -40,8 +40,6 @@ class MapViewController: UIViewController {
         setupMapView()
         setupFloatingPannel()
         addViewModelObservers()
-        
-        addAnnotation(localName: "sample", type: .strongWind, coordinate: .init(latitude: 37.2719952, longitude: 127.4348221))
     }
     
     required init?(coder: NSCoder) {
