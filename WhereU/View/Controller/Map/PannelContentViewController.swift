@@ -74,12 +74,12 @@ final class PannelContentViewController: UIViewController {
 extension PannelContentViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DisasterCategory.categories.count
+        return viewModel.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.CategoryCell, for: indexPath) as! CategoryCell
-        cell.viewModel = CategoryViewModel(categoryIndex: indexPath.row)
+        cell.viewModel = CategoryViewModel(categoryIndex: indexPath.row + 1)
         return cell
     }
 }

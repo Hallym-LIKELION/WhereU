@@ -88,7 +88,7 @@ extension GuideSearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.ArticleCell, for: indexPath) as! ArticleCell
-        cell.viewModel = ArticleViewModel()
+        cell.viewModel = ArticleViewModel(guide: GuideElement(gid: 1, url: "", keyword: ""))
         return cell
     }
 }

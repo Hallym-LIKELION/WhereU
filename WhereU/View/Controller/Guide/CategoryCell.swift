@@ -14,6 +14,7 @@ final class CategoryCell: UICollectionViewCell {
     private let categoryImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
+        iv.tintColor = .black
         return iv
     }()
     

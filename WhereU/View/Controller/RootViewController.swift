@@ -20,8 +20,6 @@ class RootViewController: UITabBarController {
         baseSetUp()
         fetchUser()
         checkLogin()
-        
-        LocationManager.shared.registLocation() // 테스트 지오펜싱
     }
     
     
@@ -37,6 +35,7 @@ class RootViewController: UITabBarController {
         tabBar.standardAppearance = tabBarAppear
         tabBar.scrollEdgeAppearance = tabBarAppear
         
+        LocationManager.shared.requestAuthorization()
     }
     
     func checkLogin() {
@@ -102,8 +101,13 @@ class RootViewController: UITabBarController {
 }
 //MARK: - AuthenticationDelegate
 extension RootViewController: AuthenticationDelegate {
-    func authenticationComplete() {
-        viewModel.checkUserLoggedIn { _ in } // 로그인 완료 시점에 다시 한번 호출
+    func authenticationComplete(user: User?) {
+        guard let user = user else {
+            viewModel.checkUserLoggedIn { _ in } // 로그인 완료 시점에 다시 한번 호출
+            return
+        }
+        
+        self.configureViewControllers(user: user)
     }
 }
 

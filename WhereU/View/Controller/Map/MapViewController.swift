@@ -66,7 +66,7 @@ class MapViewController: UIViewController {
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
-        
+        mapView.register(DisasterAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(DisasterAnnotationView.self))
     }
     
     func setupFloatingPannel() {
@@ -87,16 +87,60 @@ class MapViewController: UIViewController {
     }
     
     func addViewModelObservers() {
-        viewModel.categoryObserver = { category in
-            print("카테고리 변경 : \(category.rawValue)")
+        viewModel.disasterObserver = { [weak self] disaster in
+            DispatchQueue.main.async {
+                self?.mapView.removeAnnotations(self?.mapView.annotations ?? [])
+                
+                if disaster.isEmpty {
+                    self?.showAlert()
+                    return
+                }
+                
+                disaster.forEach { element in
+                    let type = DisasterCategory.init(rawValue: element.warnVar)!
+                    let coordinate = CLLocationCoordinate2D(latitude: element.lat, longitude: element.lon)
+                    self?.addAnnotation(localName: element.areaName, type: type, coordinate: coordinate)
+                }
+            }
+        }
+        viewModel.loadingStateObserver = { [weak self] state in
+            self?.showLoader(state)
         }
     }
-
+    
+    func addAnnotation(localName: String, type: DisasterCategory, coordinate: CLLocationCoordinate2D) {
+        let annotation = DisasterAnnotation(localName: localName, disasterType: type, coordinate: coordinate)
+        mapView.addAnnotation(annotation)
+    }
+    
+    // 식별자를 갖고 Annotation view 생성
+    func setupAnnotationView(for annotation: DisasterAnnotation, on mapView: MKMapView) -> MKAnnotationView {
+        // dequeueReusableAnnotationView: 식별자를 확인하여 사용가능한 뷰가 있으면 해당 뷰를 반환
+        return mapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(DisasterAnnotationView.self), for: annotation)
+    }
+    
+    private func showAlert() {
+        let action = UIAlertAction(title: "확인", style: .default)
+        self.alert(title: "재난 위치", body: "현재 재난이 없습니다", style: .alert, actions: [action])
+    }
+    
 
 }
 //MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 현재 위치 표시(점)도 일종에 어노테이션이기 때문에, 이 처리를 안하게 되면, 유저 위치 어노테이션도 변경 된다.
+        guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
+        
+        var annotationView: MKAnnotationView?
+        
+        // 다운캐스팅이 되면 CustomAnnotation를 갖고 CustomAnnotationView를 생성
+        if let disasterAnnotation = annotation as? DisasterAnnotation {
+            annotationView = setupAnnotationView(for: disasterAnnotation, on: mapView)
+        }
+        
+        return annotationView
+    }
 }
 //MARK: - FloatingPanelControllerDelegate
 extension MapViewController: FloatingPanelControllerDelegate {

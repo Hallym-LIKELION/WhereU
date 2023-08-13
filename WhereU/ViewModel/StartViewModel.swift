@@ -22,25 +22,34 @@ final class StartViewModel {
         authorizationController.performRequests()
     }
     
-    func successAppleLogin(authorization: ASAuthorization) {
+    func successAppleLogin(authorization: ASAuthorization) -> [String: Any] {
         switch authorization.credential {
             // Apple ID
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             // 계정 정보 가져오기
+            var params: [String:String] = [:]
             let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let name =  (fullName?.familyName ?? "") + (fullName?.givenName ?? "")
-            let email = appleIDCredential.email
             
-            print("User ID : \(userIdentifier)")
-            print("User Email : \(email ?? "")")
-            print("User Name : \(name)")
+            params["uid"] = userIdentifier
+            
+            if let fullName = appleIDCredential.fullName {
+                // 최초 로그인
+                params["name"] = (fullName.givenName ?? "") + (fullName.familyName ?? "")
+            }
+            
+            print(#function, params)
             
             UserDefaults.standard.setValue(userIdentifier, forKey: Constants.APPLE_USER_ID)
             UserDefaults.standard.setValue(Constants.APPLE, forKey: Constants.LOGIN_PLATFORM)
+            
+            return params
         default:
-            break
+            return [:]
         }
+    }
+    
+    func fetchUser(params: [String: Any], completion: @escaping (User?) -> Void) {
+        LoginManager.shared.fetchUser(parameters: params, completion: completion)
     }
     
     func kakaoLogin(completion: @escaping () -> Void) {

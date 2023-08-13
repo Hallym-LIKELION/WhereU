@@ -47,7 +47,7 @@ final class HomeViewModel {
     }
     
     var name: String {
-        return user.name
+        return user.name.isEmpty ? "알 수 없음" : user.name
     }
     
     var weatherImage: (UIImage?,UIImage?)? {
@@ -138,8 +138,14 @@ final class HomeViewModel {
     
     func fetchWeather(x: Int, y: Int) {
         // 기상청 API 사용해서 격자값으로 날씨 가져오기
-        WeatherManager.shared.fetchWeater(x: x, y: y) { [weak self] items in
-            self?.weatherItems = items
+        WeatherManager.shared.fetchWeater(x: x, y: y) { [weak self] result in
+            switch result {
+            case .success(let items):
+                self?.weatherItems = items
+            case .failure(let error):
+                print(error.localizedDescription)
+                self?.weatherItems = []
+            }
         }
     }
     

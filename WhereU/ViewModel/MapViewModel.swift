@@ -11,15 +11,29 @@ import UIKit
 
 class MapViewModel {
     
+    let categories: [DisasterCategory] = DisasterCategory.categories.filter { $0 != .all }
     var currentLocation: CLLocationCoordinate2D?
     var selectedCategory: DisasterCategory? {
         didSet {
             // 재난 카테고리 변경 시
-            guard let category = selectedCategory else { return }
-            categoryObserver(category)
+            fetchDisaster()
         }
     }
-    var categoryObserver: (DisasterCategory)->Void = { _ in }
+    
+    var disaster: Disaster = [] {
+        didSet {
+            disasterObserver(disaster)
+        }
+    }
+    var disasterObserver: (Disaster) -> Void = { _ in }
+    
+    var isLoading: Bool = false {
+        didSet {
+            loadingStateObserver(isLoading)
+        }
+    }
+    var loadingStateObserver: (Bool) -> Void = { _ in }
+    
     
     init() {
         LocationManager.shared.locationManager.requestWhenInUseAuthorization()
@@ -48,6 +62,37 @@ class MapViewModel {
     }
     
     func setCategory(selectedIndex: Int) {
-        self.selectedCategory = DisasterCategory.categories[selectedIndex]
+        self.selectedCategory = categories[selectedIndex]
+    }
+    
+    func fetchDisaster() {
+        guard let categoryIndex = self.selectedCategory?.rawValue else { return }
+        isLoading = true
+        
+        DisasterManager.shared.fetchDisasters(categoryIndex: categoryIndex) { [weak self] result in
+            switch result {
+            case .success(let disaster):
+                self?.disaster = disaster
+            case .failure(let error):
+                switch error {
+                case .invalidURL:
+                    print("invalidURL Error")
+                case .decodeError:
+                    print("decodeError Error")
+                case .emptyData:
+                    print("emptyData Error")
+                case .networkError:
+                    print("networkError Error")
+                case .timeout:
+                    print("timeout Error")
+                case .unknown:
+                    print("unknown Error")
+                }
+                
+                self?.disaster = []
+            }
+            self?.isLoading = false
+            
+        }
     }
 }
