@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CF45A3C62A7F56D50037E502 /* LocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C52A7F56D50037E502 /* LocationConverter.swift */; };
 		CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C72A7F56DF0037E502 /* MapGridData.swift */; };
+		CF5740E82A88902600FF7AB3 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5740E72A88902600FF7AB3 /* LoginManager.swift */; };
 		CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */; };
 		CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559012A7A2601005E3583 /* StartViewModel.swift */; };
 		CF7559052A7A2F5A005E3583 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559042A7A2F5A005E3583 /* KakaoSDK */; };
@@ -74,6 +75,7 @@
 /* Begin PBXFileReference section */
 		CF45A3C52A7F56D50037E502 /* LocationConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationConverter.swift; sourceTree = "<group>"; };
 		CF45A3C72A7F56DF0037E502 /* MapGridData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGridData.swift; sourceTree = "<group>"; };
+		CF5740E72A88902600FF7AB3 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = WhereU/View/Controller/Home/StartViewController.swift; sourceTree = SOURCE_ROOT; };
 		CF7559002A7A1E20005E3583 /* WhereU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhereU.entitlements; sourceTree = "<group>"; };
 		CF7559012A7A2601005E3583 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				CFDDCEE62A85E58E0057A088 /* APIError.swift */,
 				CFDDCEE82A85E5980057A088 /* APIManagerType.swift */,
 				CFDDCEED2A85F0400057A088 /* GuideManager.swift */,
+				CF5740E72A88902600FF7AB3 /* LoginManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				CFDDCEF22A86197A0057A088 /* GuideDetailViewController.swift in Sources */,
 				CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */,
 				CFDDCEE92A85E5980057A088 /* APIManagerType.swift in Sources */,
+				CF5740E82A88902600FF7AB3 /* LoginManager.swift in Sources */,
 				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
 				CF7A45302A7FAC6800250F93 /* WeatherForTimeCell.swift in Sources */,
 				CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */,

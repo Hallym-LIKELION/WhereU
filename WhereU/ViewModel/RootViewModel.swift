@@ -51,7 +51,7 @@ final class RootViewModel {
             case .authorized:
                 // Authorization Logic
                 print("애플 로그인 완료")
-                self.user = User(id: uid, name: "홍길동", profileImage: "")
+                self.user = User(uid: uid, name: "홍길동")
                 completion(true)
             default:
                 completion(false)
@@ -74,10 +74,10 @@ final class RootViewModel {
                     return
                 }
                 guard let id = user.id,
-                      let name = user.properties?["nickname"],
-                      let profileImageUrl = user.properties?["profile_image"] else { return }
+                      let name = user.properties?["nickname"] else { return }
+                      
                         
-                let currentUser = User(id: String(id), name: name, profileImage: profileImageUrl)
+                let currentUser = User(uid: String(id), name: name)
                 self.user = currentUser
                 completion(true)
             }

@@ -22,7 +22,7 @@ class WeatherManager: APIManagerType {
         let baseTime = getBaseTime()
         
         let requestURLString = "\(Constants.WEATHER_BASE_URL)&base_date=\(date)&base_time=\(baseTime)&nx=\(x)&ny=\(y)"
-        
+        print(requestURLString)
         fetch(url: requestURLString) { (result: Result<WeatherResponse,APIError>) in
             switch result {
             case .success(let response):
