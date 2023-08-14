@@ -48,7 +48,13 @@ final class GuideViewModel {
         GuideManager.shared.fetchAll { [weak self] result in
             switch result {
             case .success(let guides):
-                self?.guides = guides
+                self?.guides = guides.filter { guide in
+                    
+                    DisasterCategory.categories.contains(where: { category in
+                        category.name == guide.keyword
+                    })
+                    
+                }
             case .failure(let error):
                 self?.guides = []
                 print(error)
