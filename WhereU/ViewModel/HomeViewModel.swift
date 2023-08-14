@@ -34,6 +34,13 @@ final class HomeViewModel {
         locationObservers.append(task)
     }
     
+    var guides: Guide = [] {
+        didSet {
+            guidesObserver(guides)
+        }
+    }
+    var guidesObserver: (Guide) -> Void = { _ in }
+    
     init(user: User) {
         self.user = user
         
@@ -44,6 +51,7 @@ final class HomeViewModel {
             let (x,y) = pos
             self?.fetchWeather(x: x, y: y)
         }
+        fetchGuides()
     }
     
     var name: String {
@@ -205,6 +213,24 @@ final class HomeViewModel {
         }
         
         return WeatherForTime(time: "\(time)시", image: image, temperature: "\(temps.fcstValue)°")
+    }
+    
+    func fetchGuides() {
+        GuideManager.shared.fetchAll { [weak self] result in
+            switch result {
+            case .success(let guides):
+                self?.guides = guides.filter { guide in
+                    
+                    DisasterCategory.categories.contains(where: { category in
+                        category.name == guide.keyword
+                    })
+                    
+                }
+            case .failure(let error):
+                self?.guides = []
+                print(error)
+            }
+        }
     }
     
 }

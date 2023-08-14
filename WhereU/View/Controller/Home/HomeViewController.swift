@@ -197,6 +197,10 @@ class HomeViewController: UIViewController {
                 self.collectionViewTitle.text = self.viewModel.adviceText
             }
         }
+        
+        viewModel.guidesObserver = { [weak self] _ in
+            self?.collectionView.reloadData()
+        }
     }
     
     //MARK: - Actions
@@ -233,7 +237,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
-            return 10
+            return viewModel.guides.count
         } else {
             return 2
         }
@@ -242,6 +246,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.guideCell, for: indexPath) as! GuideCell
+            cell.viewModel = ArticleViewModel(guide: viewModel.guides[indexPath.row])
             return cell
         } else {
             if indexPath.row == 0 {
