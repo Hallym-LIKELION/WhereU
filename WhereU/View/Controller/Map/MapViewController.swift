@@ -37,9 +37,9 @@ class MapViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         configureUI()
-        setupMapView()
         setupFloatingPannel()
         addViewModelObservers()
+        setupMapView()
     }
     
     required init?(coder: NSCoder) {
@@ -129,16 +129,17 @@ class MapViewController: UIViewController {
 //MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         // 현재 위치 표시(점)도 일종에 어노테이션이기 때문에, 이 처리를 안하게 되면, 유저 위치 어노테이션도 변경 된다.
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
-        
+
         var annotationView: MKAnnotationView?
-        
+
         // 다운캐스팅이 되면 CustomAnnotation를 갖고 CustomAnnotationView를 생성
         if let disasterAnnotation = annotation as? DisasterAnnotation {
             annotationView = setupAnnotationView(for: disasterAnnotation, on: mapView)
         }
-        
+
         return annotationView
     }
 }

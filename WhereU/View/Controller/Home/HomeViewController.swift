@@ -62,6 +62,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = viewModel.adviceText
         label.font = .boldSystemFont(ofSize: 18)
+        label.text = "재난 가이드를 읽어보세요"
         return label
     }()
     
@@ -193,8 +194,6 @@ class HomeViewController: UIViewController {
                     view.stopSkeletonAnimation()
                     view.hideSkeleton(reloadDataAfter: true)
                 }
-                
-                self.collectionViewTitle.text = self.viewModel.adviceText
             }
         }
         
@@ -264,6 +263,14 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView {
+            let viewModel = GuideDetailViewModel(guide: viewModel.guides[indexPath.row])
+            let guideDetailVC = GuideDetailViewController(viewModel: viewModel)
+            navigationController?.pushViewController(guideDetailVC, animated: true)
+        }
+    }
     
 }
 

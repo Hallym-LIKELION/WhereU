@@ -111,6 +111,7 @@ extension LocationManager {
 
 //MARK: - CLLocationManagerDelegate
 extension LocationManager: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         print("didStartMonitoringFor")
     }

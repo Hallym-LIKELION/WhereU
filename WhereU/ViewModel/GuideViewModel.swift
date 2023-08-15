@@ -28,6 +28,18 @@ final class GuideViewModel {
     
     var filteredGuides: Guide = []
     
+    var searchResult: Guide = []
+    
+    var keyword: String = "" {
+        didSet {
+            searchResult = guides.filter { $0.keyword.contains(keyword) }
+        }
+    }
+    
+    var isSearching: Bool {
+        return !keyword.isEmpty
+    }
+    
     var guidesCount: Int {
         return guides.count
     }
@@ -38,6 +50,10 @@ final class GuideViewModel {
     
     func guide(index: Int) -> GuideElement {
         return guides[index]
+    }
+    
+    func changedSearch(keyword: String) {
+        self.keyword = keyword
     }
     
     func changedSelect(index: Int) {

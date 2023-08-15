@@ -144,8 +144,8 @@ extension GuideViewController : UICollectionViewDelegate {
     // item 클릭
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // show guide...
-        let guideUrl = viewModel.selected == nil ? viewModel.guides[indexPath.row].url : viewModel.filteredGuides[indexPath.row].url
-        let detailViewModel = GuideDetailViewModel(url: guideUrl)
+        let guide = viewModel.selected == nil ? viewModel.guides[indexPath.row] : viewModel.filteredGuides[indexPath.row]
+        let detailViewModel = GuideDetailViewModel(guide: guide)
         let detailVC = GuideDetailViewController(viewModel: detailViewModel)
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -159,7 +159,7 @@ extension GuideViewController: GuideHeaderDelegate {
     
     func touchUpSearchBar() {
         // move to search
-        let guideSearchVC = GuideSearchViewController()
+        let guideSearchVC = GuideSearchViewController(viewModel: viewModel)
         navigationController?.pushViewController(guideSearchVC, animated: true)
     }
 }
