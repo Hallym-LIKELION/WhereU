@@ -107,7 +107,7 @@ class MapViewController: UIViewController {
             self?.showLoader(state)
         }
     }
-    
+
     func addAnnotation(localName: String, type: DisasterCategory, coordinate: CLLocationCoordinate2D) {
         let annotation = DisasterAnnotation(localName: localName, disasterType: type, coordinate: coordinate)
         mapView.addAnnotation(annotation)
@@ -129,7 +129,6 @@ class MapViewController: UIViewController {
 //MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         // 현재 위치 표시(점)도 일종에 어노테이션이기 때문에, 이 처리를 안하게 되면, 유저 위치 어노테이션도 변경 된다.
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
 
@@ -139,6 +138,8 @@ extension MapViewController: MKMapViewDelegate {
         if let disasterAnnotation = annotation as? DisasterAnnotation {
             annotationView = setupAnnotationView(for: disasterAnnotation, on: mapView)
         }
+
+        annotationView?.canShowCallout = true
 
         return annotationView
     }

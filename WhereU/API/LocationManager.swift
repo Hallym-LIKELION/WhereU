@@ -76,7 +76,7 @@ extension LocationManager {
                 return
             }
             if let subLocal = place.subLocality {
-                completion("\(area) \(local) \(subLocal)", (x,y))
+                completion("\(area) \(subLocal)", (x,y))
             } else {
                 completion("\(area) \(local)", (x,y))
             }

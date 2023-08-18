@@ -26,7 +26,7 @@ class WeatherMainCell: UICollectionViewCell {
     
     private lazy var adviceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 13)
+        label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
     
@@ -82,6 +82,7 @@ class WeatherMainCell: UICollectionViewCell {
         adviceLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(weatherImageView.snp.right).offset(20)
+            make.right.equalToSuperview().inset(10)
         }
         
         adviceLabel.snp.makeConstraints { make in
