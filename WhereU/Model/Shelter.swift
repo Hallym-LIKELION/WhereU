@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Shelter: Codable {
+struct Shelter: Codable, Equatable {
     let areaName: String
     let lat: Double
     let lon: Double
