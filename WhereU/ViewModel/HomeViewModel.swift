@@ -9,7 +9,6 @@ import UIKit
 
 final class HomeViewModel {
     
-    let user: User
     var weatherItems: [Item] = [] {
         didSet {
             weatherObservers.forEach { task in
@@ -41,9 +40,7 @@ final class HomeViewModel {
     }
     var guidesObserver: (Guide) -> Void = { _ in }
     
-    init(user: User) {
-        self.user = user
-        
+    init() {
         // 현재 위치 가져오기
         LocationManager.shared.reverseGeoCodeLocation { [weak self] address, pos in
             self?.currentLocation = address
@@ -52,10 +49,6 @@ final class HomeViewModel {
             self?.fetchWeather(x: x, y: y)
         }
         fetchGuides()
-    }
-    
-    var name: String {
-        return user.name.isEmpty ? "알 수 없음" : user.name
     }
     
     var weatherImage: (UIImage?,UIImage?)? {
@@ -107,11 +100,13 @@ final class HomeViewModel {
     }
     
     var adviceText: String? {
-        let rainRate = weatherItems.filter{ $0.category == .pop }
+        let rainRate = weatherItems
+            .filter { $0.fcstDate == "yyyyMMdd".stringFromDate() }
+            .filter { $0.category == .pcp }
         
         var isRainy = false
         rainRate.forEach { item in
-            if Int(item.fcstValue)! > 0 {
+            if item.fcstValue != "강수없음" {
                 isRainy = true
             }
         }

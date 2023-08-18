@@ -11,57 +11,22 @@ import CoreLocation
 class RootViewController: UITabBarController {
     
     //MARK: - Properties
-    let viewModel = RootViewModel()
+
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        baseSetUp()
-        fetchUser()
-        checkLogin()
+        configureViewControllers()
     }
     
     
     //MARK: - Helpers
     
-    func baseSetUp() {
+    func configureViewControllers() {
         view.backgroundColor = .white
         
-        let tabBarAppear = UITabBarAppearance()
-        tabBarAppear.configureWithOpaqueBackground()
-        tabBarAppear.backgroundColor = .white
-        tabBarAppear.shadowColor = .black
-        tabBar.standardAppearance = tabBarAppear
-        tabBar.scrollEdgeAppearance = tabBarAppear
-        
-        LocationManager.shared.requestAuthorization()
-    }
-    
-    func checkLogin() {
-        viewModel.checkUserLoggedIn { isLoggedIn in
-            if !isLoggedIn {
-                DispatchQueue.main.async { [weak self] in
-                    let startVC = StartViewController()
-                    startVC.delegate = self
-                    let nav = UINavigationController(rootViewController: startVC)
-                    nav.modalPresentationStyle = .fullScreen
-                    self?.present(nav, animated: true)
-                }
-            }
-        }
-    }
-    
-    func fetchUser() {
-        viewModel.loginStateObserver = { [weak self] user in
-            self?.configureViewControllers(user: user)
-        }
-    }
-    
-    func configureViewControllers(user: User) {
-        view.backgroundColor = .white
-        
-        let homeViewModel = HomeViewModel(user: user)
+        let homeViewModel = HomeViewModel()
         let mapViewModel = MapViewModel()
         let guideViewModel = GuideViewModel()
         
@@ -87,6 +52,7 @@ class RootViewController: UITabBarController {
         )
         viewControllers = [homeVC, mapVC, guideVC, myPageVC]
         tabBar.tintColor = UIColor(named: "53B4CB")
+        tabBar.backgroundColor = .white
     }
     // 기본적인 셋팅이 끝난 NavigationController 생성해서 리턴
     func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController) -> UINavigationController {
@@ -99,15 +65,3 @@ class RootViewController: UITabBarController {
         return nav
     }
 }
-//MARK: - AuthenticationDelegate
-extension RootViewController: AuthenticationDelegate {
-    func authenticationComplete(user: User?) {
-        guard let user = user else {
-            viewModel.checkUserLoggedIn { _ in } // 로그인 완료 시점에 다시 한번 호출
-            return
-        }
-        
-        self.configureViewControllers(user: user)
-    }
-}
-

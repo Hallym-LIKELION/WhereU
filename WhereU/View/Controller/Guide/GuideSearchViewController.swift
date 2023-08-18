@@ -24,7 +24,8 @@ class GuideSearchViewController: UIViewController {
         sb.setTextFieldFont(font: .systemFont(ofSize: 15.64))
         sb.delegate = self
         sb.clipsToBounds = true
-        sb.layer.cornerRadius = 30
+        sb.layer.cornerRadius = 25
+        sb.layer.borderColor = UIColor.black.cgColor
         return sb
     }()
     
@@ -143,6 +144,12 @@ extension GuideSearchViewController : UICollectionViewDelegate {
 extension GuideSearchViewController : CustomSearchBarDelegate {
     func searchTextChanged(text: String?) {
         guard let text = text else { return }
+        
+        if text.isEmpty {
+            searchBar.layer.borderWidth = 0
+        } else {
+            searchBar.layer.borderWidth = 1
+        }
         
         viewModel.keyword = text
         collectionView.reloadData()
