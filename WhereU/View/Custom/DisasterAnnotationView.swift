@@ -14,12 +14,13 @@ class DisasterAnnotationView: MKAnnotationView {
     private let imageCircle: UIView = {
         let view = UIView()
         view.clipsToBounds = true
-        view.backgroundColor = UIColor(named: "9BC6E4")?.withAlphaComponent(0.81)
+        view.backgroundColor = UIColor(red: 0.064, green: 0.261, blue: 0.442, alpha: 1).withAlphaComponent(0.81)
         return view
     }()
     
     private let disasterImageView: UIImageView = {
         let iv = UIImageView()
+        iv.tintColor = .white
         iv.contentMode = .scaleAspectFill
         return iv
     }()
@@ -27,7 +28,7 @@ class DisasterAnnotationView: MKAnnotationView {
     private let pointView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
-        view.backgroundColor = UIColor(named: "9BC6E4")?.withAlphaComponent(0.81)
+        view.backgroundColor = UIColor(red: 0.064, green: 0.261, blue: 0.442, alpha: 1).withAlphaComponent(0.81)
         return view
     }()
     
@@ -55,13 +56,13 @@ class DisasterAnnotationView: MKAnnotationView {
     private func configureUI() {
         self.addSubview(imageCircle)
         imageCircle.snp.makeConstraints { make in
-            make.width.equalTo(33)
-            make.height.equalTo(37)
+            make.edges.equalToSuperview()
         }
         
         imageCircle.addSubview(disasterImageView)
         disasterImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(8)
+            make.height.width.equalTo(18)
+            make.centerX.centerY.equalToSuperview()
         }
         
         self.addSubview(pointView)
@@ -80,10 +81,6 @@ class DisasterAnnotationView: MKAnnotationView {
         
         guard let annotation = annotation as? DisasterAnnotation else { return }
         
-        
-        print("localName: \(annotation.localName)")
-        print("coordinate: \(annotation.coordinate)")
-        
         disasterImageView.image = annotation.disasterType.icon
         
         // 이미지의 크기 및 레이블의 사이즈가 변경될 수 있으므로 레이아웃을 업데이트 한다.
@@ -92,12 +89,10 @@ class DisasterAnnotationView: MKAnnotationView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        bounds.size = CGSize(width: 36, height: 36)
-        
-        centerOffset = CGPoint(x: 0, y: 18)
-        imageCircle.roundCorners(topLeft: 18, topRight: 18, bottomLeft: 22, bottomRight: 22)
-        
+
+        bounds.size = CGSize(width: 33, height: 37)
+        imageCircle.roundCorners(topLeft: imageCircle.frame.width/2, topRight: imageCircle.frame.width/2, bottomLeft: imageCircle.frame.width/2 + 8, bottomRight: imageCircle.frame.width/2 + 8)
+
     }
     
 }

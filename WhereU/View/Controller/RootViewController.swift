@@ -29,6 +29,7 @@ class RootViewController: UITabBarController {
         let homeViewModel = HomeViewModel()
         let mapViewModel = MapViewModel()
         let guideViewModel = GuideViewModel()
+        let hospitalViewModel = HospitalViewModel()
         
         let homeVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "home"),
@@ -45,12 +46,13 @@ class RootViewController: UITabBarController {
             selectedImage: #imageLiteral(resourceName: "board"),
             rootViewController: GuideViewController(viewModel: guideViewModel)
         )
-        let myPageVC = templateNavigationController(
+        
+        let hospitalVC = templateNavigationController(
             unselectedImage: #imageLiteral(resourceName: "person"),
             selectedImage: #imageLiteral(resourceName: "person"),
-            rootViewController: MyPageViewController()
+            rootViewController: HospitalController(viewModel: hospitalViewModel)
         )
-        viewControllers = [homeVC, mapVC, guideVC, myPageVC]
+        viewControllers = [homeVC, mapVC, guideVC, hospitalVC]
         tabBar.tintColor = UIColor(named: "53B4CB")
         tabBar.backgroundColor = .white
     }

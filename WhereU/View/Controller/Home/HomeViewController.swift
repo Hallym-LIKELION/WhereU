@@ -198,7 +198,9 @@ class HomeViewController: UIViewController {
         }
         
         viewModel.guidesObserver = { [weak self] _ in
-            self?.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
         }
     }
     

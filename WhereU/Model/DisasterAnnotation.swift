@@ -10,15 +10,21 @@ import MapKit
 
 class DisasterAnnotation: NSObject, MKAnnotation {
     
+    var title: String?
+    var subtitle: String?
     @objc dynamic var coordinate: CLLocationCoordinate2D
-    var localName: String
-    var disasterType: DisasterCategory
+    
+    let disasterType: DisasterCategory
     
     init(localName: String, disasterType: DisasterCategory, coordinate: CLLocationCoordinate2D) {
-        self.localName = localName
-        self.disasterType = disasterType
+        
+        self.title = localName
+        self.subtitle = disasterType.name
         self.coordinate = coordinate
+        
+        self.disasterType = disasterType
+        
     }
     
-    
 }
+
