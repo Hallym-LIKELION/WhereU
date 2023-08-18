@@ -26,6 +26,19 @@ class GuideDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = false
+        navigationItem.title = viewModel.title
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

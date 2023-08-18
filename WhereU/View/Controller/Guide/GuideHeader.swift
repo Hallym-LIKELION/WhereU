@@ -23,7 +23,7 @@ final class GuideHeader: UICollectionReusableView {
         sb.setTextFieldFont(font: .systemFont(ofSize: 15.64))
         sb.setTextFieldEnabled(value: false)
         sb.clipsToBounds = true
-        sb.layer.cornerRadius = 30
+        sb.layer.cornerRadius = 25
         sb.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSearchBarTapped))
         sb.addGestureRecognizer(gestureRecognizer)

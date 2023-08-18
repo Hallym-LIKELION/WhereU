@@ -24,25 +24,10 @@ class WeatherMainCell: UICollectionViewCell {
         return iv
     }()
     
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
-        return label
-    }()
-    
     private lazy var adviceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
         return label
-    }()
-    
-    private lazy var stackLabel: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [nameLabel, adviceLabel])
-        sv.axis = .vertical
-        sv.spacing = 12
-        sv.alignment = .fill
-        sv.distribution = .fill
-        return sv
     }()
     
     
@@ -60,7 +45,7 @@ class WeatherMainCell: UICollectionViewCell {
         }
     }
     
-    private lazy var skeletonUI: [UIView] = [nameLabel,adviceLabel,weatherImageView]
+    private lazy var skeletonUI: [UIView] = [adviceLabel,weatherImageView]
     
     //MARK: - LifeCycle
     
@@ -93,15 +78,10 @@ class WeatherMainCell: UICollectionViewCell {
             make.left.equalToSuperview().offset(30)
         }
         
-        backgroundImageView.addSubview(stackLabel)
-        stackLabel.snp.makeConstraints { make in
+        backgroundImageView.addSubview(adviceLabel)
+        adviceLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(weatherImageView.snp.right).offset(20)
-        }
-        
-        nameLabel.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.width.equalTo(150)
         }
         
         adviceLabel.snp.makeConstraints { make in
@@ -119,8 +99,6 @@ class WeatherMainCell: UICollectionViewCell {
                 
                 self.adviceLabel.text = viewModel.adviceText
                 self.adviceLabel.textColor = viewModel.adviceTextColor
-                self.nameLabel.text = "\(viewModel.name)님,"
-                self.nameLabel.textColor = viewModel.adviceTextColor
                 self.updateTimeLabel.text = viewModel.upTimeText
                 
                 guard let (weatherImage, backgroundImage) = viewModel.weatherImage else { return }

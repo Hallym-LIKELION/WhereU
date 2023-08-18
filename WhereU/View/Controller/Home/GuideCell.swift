@@ -26,25 +26,28 @@ class GuideCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "이럴때\n산사태 의심할 수 있어요!"
-        label.numberOfLines = 2
-        label.font = .boldSystemFont(ofSize: 15)
+        label.numberOfLines = 0
         label.textColor = .white
         return label
     }()
     
     private let tagLabel: UILabel = {
         let label = UILabel()
-        label.text = "#산사태 #안전 #대피방법"
         label.font = .systemFont(ofSize: 11)
         label.textColor = .white
         return label
     }()
     
+    var viewModel: ArticleViewModel? {
+        didSet {
+            configure()
+        }
+    }
+    
     //MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        makeUI()
     }
     
     required init?(coder: NSCoder) {
@@ -53,7 +56,7 @@ class GuideCell: UICollectionViewCell {
     
     //MARK: - Helpers
     
-    func configureUI() {
+    func makeUI() {
         [self, contentView, bottomBackgroundView, titleLabel, tagLabel].forEach { view in
             view.isSkeletonable = true
         }
@@ -85,5 +88,11 @@ class GuideCell: UICollectionViewCell {
         
         clipsToBounds = true
         layer.cornerRadius = 12
+    }
+    
+    private func configure() {
+        thumbnailImageView.image = viewModel?.backgroundImage
+        titleLabel.attributedText = viewModel?.makeMutableAttributedText()
+        tagLabel.text = viewModel?.tagText
     }
 }

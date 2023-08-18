@@ -22,8 +22,10 @@ class GuideSearchViewController: UIViewController {
         sb.setPlaceHolder(text: "재난에 따른 가이드를 찾아보세요")
         sb.setRightButtonImage(image: UIImage(named: "icon_search"))
         sb.setTextFieldFont(font: .systemFont(ofSize: 15.64))
+        sb.delegate = self
         sb.clipsToBounds = true
-        sb.layer.cornerRadius = 30
+        sb.layer.cornerRadius = 25
+        sb.layer.borderColor = UIColor.black.cgColor
         return sb
     }()
     
@@ -33,7 +35,20 @@ class GuideSearchViewController: UIViewController {
         return cv
     }()
     
+    let viewModel: GuideViewModel
+    
     //MARK: - LifeCycle
+    
+    init(viewModel: GuideViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +57,10 @@ class GuideSearchViewController: UIViewController {
     }
     
     //MARK: - Helpers
+    private func configure() {
+        
+    }
+    
     private func configureUI() {
         view.backgroundColor = .white
         
@@ -62,6 +81,8 @@ class GuideSearchViewController: UIViewController {
             make.top.equalTo(searchBar.snp.bottom).offset(20)
             make.left.right.bottom.equalToSuperview()
         }
+        
+        searchBar.searchTextField.becomeFirstResponder()
     }
     
     private func setupCollectionView() {
@@ -83,12 +104,13 @@ class GuideSearchViewController: UIViewController {
 extension GuideSearchViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.isSearching ? viewModel.searchResult.count : viewModel.guidesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.ArticleCell, for: indexPath) as! ArticleCell
-        cell.viewModel = ArticleViewModel(guide: GuideElement(gid: 1, url: "", keyword: ""))
+        let guide = viewModel.isSearching ? viewModel.searchResult[indexPath.row] : viewModel.guide(index: indexPath.row)
+        cell.viewModel = ArticleViewModel(guide: guide)
         return cell
     }
 }
@@ -110,7 +132,26 @@ extension GuideSearchViewController : UICollectionViewDelegate {
     // item 클릭
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // show guide...
-        
+        let guide = viewModel.isSearching ? viewModel.searchResult[indexPath.row] : viewModel.guides[indexPath.row]
+        let detailViewModel = GuideDetailViewModel(guide: guide)
+        let detailVC = GuideDetailViewController(viewModel: detailViewModel)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
+}
+
+//MARK: - CustomSearchBarDelegate
+extension GuideSearchViewController : CustomSearchBarDelegate {
+    func searchTextChanged(text: String?) {
+        guard let text = text else { return }
+        
+        if text.isEmpty {
+            searchBar.layer.borderWidth = 0
+        } else {
+            searchBar.layer.borderWidth = 1
+        }
+        
+        viewModel.keyword = text
+        collectionView.reloadData()
+    }
 }

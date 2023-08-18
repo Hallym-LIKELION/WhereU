@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 // MARK: - DisasterElement
+struct DisasterResponse: Decodable {
+    let result: Disaster
+}
+
 struct DisasterElement: Codable {
     let warnVar, warnStress: Int
     let areaName: String

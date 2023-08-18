@@ -9,15 +9,11 @@
 /* Begin PBXBuildFile section */
 		CF45A3C62A7F56D50037E502 /* LocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C52A7F56D50037E502 /* LocationConverter.swift */; };
 		CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C72A7F56DF0037E502 /* MapGridData.swift */; };
-		CF5740E82A88902600FF7AB3 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5740E72A88902600FF7AB3 /* LoginManager.swift */; };
-		CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */; };
-		CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559012A7A2601005E3583 /* StartViewModel.swift */; };
 		CF7559052A7A2F5A005E3583 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559042A7A2F5A005E3583 /* KakaoSDK */; };
 		CF7559072A7A2F5A005E3583 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559062A7A2F5A005E3583 /* KakaoSDKAuth */; };
 		CF7559092A7A2F5A005E3583 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */; };
 		CF75590B2A7A2F5A005E3583 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = CF75590A2A7A2F5A005E3583 /* KakaoSDKUser */; };
 		CF75590E2A7A303A005E3583 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF75590D2A7A303A005E3583 /* Constants.swift */; };
-		CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF75590F2A7A361D005E3583 /* RootViewModel.swift */; };
 		CF7559122A7A3C96005E3583 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559112A7A3C96005E3583 /* User.swift */; };
 		CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559132A7A4704005E3583 /* HomeViewModel.swift */; };
 		CF7559172A7A6274005E3583 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7559162A7A6274005E3583 /* SearchResultCell.swift */; };
@@ -75,12 +71,8 @@
 /* Begin PBXFileReference section */
 		CF45A3C52A7F56D50037E502 /* LocationConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationConverter.swift; sourceTree = "<group>"; };
 		CF45A3C72A7F56DF0037E502 /* MapGridData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGridData.swift; sourceTree = "<group>"; };
-		CF5740E72A88902600FF7AB3 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = WhereU/View/Controller/Home/StartViewController.swift; sourceTree = SOURCE_ROOT; };
 		CF7559002A7A1E20005E3583 /* WhereU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhereU.entitlements; sourceTree = "<group>"; };
-		CF7559012A7A2601005E3583 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		CF75590D2A7A303A005E3583 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CF75590F2A7A361D005E3583 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		CF7559112A7A3C96005E3583 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CF7559132A7A4704005E3583 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CF7559162A7A6274005E3583 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -155,7 +147,6 @@
 		CF0938202A7520A1009666FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CF7558FD2A7A19B8005E3583 /* Login */,
 				CFC22D592A78E6FE00524D88 /* Home */,
 				CF7559152A7A625C005E3583 /* Search */,
 				CF7A45492A809C1A00250F93 /* Map */,
@@ -173,14 +164,6 @@
 				CFFFF2D22A73CD4700C2B404 /* SceneDelegate.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		CF7558FD2A7A19B8005E3583 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				CF7558FE2A7A1A8E005E3583 /* StartViewController.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		CF75590C2A7A3033005E3583 /* Utils */ = {
@@ -233,7 +216,6 @@
 				CFDDCEE62A85E58E0057A088 /* APIError.swift */,
 				CFDDCEE82A85E5980057A088 /* APIManagerType.swift */,
 				CFDDCEED2A85F0400057A088 /* GuideManager.swift */,
-				CF5740E72A88902600FF7AB3 /* LoginManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -306,8 +288,6 @@
 		CFFFF2E52A73CFAC00C2B404 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CF7559012A7A2601005E3583 /* StartViewModel.swift */,
-				CF75590F2A7A361D005E3583 /* RootViewModel.swift */,
 				CF7559132A7A4704005E3583 /* HomeViewModel.swift */,
 				CF7BC5422A7A7AD4009310D4 /* SearchResultViewModel.swift */,
 				CF7BC5442A7A801A009310D4 /* SearchViewModel.swift */,
@@ -425,11 +405,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */,
-				CF7559022A7A2601005E3583 /* StartViewModel.swift in Sources */,
 				CFDDCEF22A86197A0057A088 /* GuideDetailViewController.swift in Sources */,
 				CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */,
 				CFDDCEE92A85E5980057A088 /* APIManagerType.swift in Sources */,
-				CF5740E82A88902600FF7AB3 /* LoginManager.swift in Sources */,
 				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
 				CF7A45302A7FAC6800250F93 /* WeatherForTimeCell.swift in Sources */,
 				CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */,
@@ -455,8 +433,6 @@
 				CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */,
 				CF7A45612A81E1F600250F93 /* GuideViewModel.swift in Sources */,
 				CFCF63E42A852F3E00CF4BC6 /* DisasterAnnotationView.swift in Sources */,
-				CF7558FF2A7A1A8E005E3583 /* StartViewController.swift in Sources */,
-				CF7559102A7A361D005E3583 /* RootViewModel.swift in Sources */,
 				CFDDCEF42A8619FA0057A088 /* GuideDetailViewModel.swift in Sources */,
 				CF7A45352A7FB33900250F93 /* WeatherForTimeViewModel.swift in Sources */,
 				CF7A45632A82297D00250F93 /* GuideHeader.swift in Sources */,

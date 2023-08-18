@@ -9,14 +9,18 @@ import Foundation
 
 class GuideDetailViewModel {
     
-    let url: String
+    let guide: GuideElement
     
-    init(url: String) {
-        self.url = url
+    init(guide: GuideElement) {
+        self.guide = guide
     }
     
     var guideURL: URL? {
-        return URL(string: url)
+        return URL(string: guide.url)
+    }
+    
+    var title: String {
+        return "\(guide.keyword) 대처요령"
     }
     
     var urlRequest: URLRequest? {

@@ -10,7 +10,7 @@ import UIKit
 
 @objc protocol CustomSearchBarDelegate: AnyObject {
     @objc optional func rightButtonTapped()
-    @objc optional func searchTextChanged()
+    @objc optional func searchTextChanged(text: String?)
 }
 
 final class CustomSearchBar: UIView {
@@ -27,7 +27,7 @@ final class CustomSearchBar: UIView {
         return button
     }()
     
-    private lazy var searchTextField: UITextField = {
+    lazy var searchTextField: UITextField = {
         let textField = UITextField()
         textField.font = .systemFont(ofSize: 12)
         textField.placeholder = "동면(읍,면) 으로 검색 (ex. 석사동)"
@@ -98,6 +98,6 @@ final class CustomSearchBar: UIView {
     }
     
     @objc func handleSearchTextChanged() {
-        delegate?.searchTextChanged?()
+        delegate?.searchTextChanged?(text: searchTextField.text)
     }
 }

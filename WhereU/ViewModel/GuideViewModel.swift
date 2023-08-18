@@ -28,6 +28,18 @@ final class GuideViewModel {
     
     var filteredGuides: Guide = []
     
+    var searchResult: Guide = []
+    
+    var keyword: String = "" {
+        didSet {
+            searchResult = guides.filter { $0.keyword.contains(keyword) }
+        }
+    }
+    
+    var isSearching: Bool {
+        return !keyword.isEmpty
+    }
+    
     var guidesCount: Int {
         return guides.count
     }
@@ -40,6 +52,10 @@ final class GuideViewModel {
         return guides[index]
     }
     
+    func changedSearch(keyword: String) {
+        self.keyword = keyword
+    }
+    
     func changedSelect(index: Int) {
         self.selected = DisasterCategory.categories[index]
     }
@@ -48,7 +64,13 @@ final class GuideViewModel {
         GuideManager.shared.fetchAll { [weak self] result in
             switch result {
             case .success(let guides):
-                self?.guides = guides
+                self?.guides = guides.filter { guide in
+                    
+                    DisasterCategory.categories.contains(where: { category in
+                        category.name == guide.keyword
+                    })
+                    
+                }
             case .failure(let error):
                 self?.guides = []
                 print(error)

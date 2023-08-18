@@ -9,7 +9,6 @@ import UIKit
 
 final class HomeViewModel {
     
-    let user: User
     var weatherItems: [Item] = [] {
         didSet {
             weatherObservers.forEach { task in
@@ -34,9 +33,14 @@ final class HomeViewModel {
         locationObservers.append(task)
     }
     
-    init(user: User) {
-        self.user = user
-        
+    var guides: Guide = [] {
+        didSet {
+            guidesObserver(guides)
+        }
+    }
+    var guidesObserver: (Guide) -> Void = { _ in }
+    
+    init() {
         // 현재 위치 가져오기
         LocationManager.shared.reverseGeoCodeLocation { [weak self] address, pos in
             self?.currentLocation = address
@@ -44,10 +48,7 @@ final class HomeViewModel {
             let (x,y) = pos
             self?.fetchWeather(x: x, y: y)
         }
-    }
-    
-    var name: String {
-        return user.name.isEmpty ? "알 수 없음" : user.name
+        fetchGuides()
     }
     
     var weatherImage: (UIImage?,UIImage?)? {
@@ -99,11 +100,13 @@ final class HomeViewModel {
     }
     
     var adviceText: String? {
-        let rainRate = weatherItems.filter{ $0.category == .pop }
+        let rainRate = weatherItems
+            .filter { $0.fcstDate == "yyyyMMdd".stringFromDate() }
+            .filter { $0.category == .pcp }
         
         var isRainy = false
         rainRate.forEach { item in
-            if Int(item.fcstValue)! > 0 {
+            if item.fcstValue != "강수없음" {
                 isRainy = true
             }
         }
@@ -205,6 +208,24 @@ final class HomeViewModel {
         }
         
         return WeatherForTime(time: "\(time)시", image: image, temperature: "\(temps.fcstValue)°")
+    }
+    
+    func fetchGuides() {
+        GuideManager.shared.fetchAll { [weak self] result in
+            switch result {
+            case .success(let guides):
+                self?.guides = guides.filter { guide in
+                    
+                    DisasterCategory.categories.contains(where: { category in
+                        category.name == guide.keyword
+                    })
+                    
+                }
+            case .failure(let error):
+                self?.guides = []
+                print(error)
+            }
+        }
     }
     
 }

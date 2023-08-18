@@ -18,8 +18,14 @@ class DisasterManager: APIManagerType {
     
     func fetchDisasters(categoryIndex: Int, completion: @escaping (Result<Disaster,APIError>) -> Void) {
         let urlString = "\(Constants.BASE_URL)api/weather/\(categoryIndex)"
-        fetch(url: urlString) { (result: Result<Disaster, APIError>) in
-            completion(result)
+        print(urlString)
+        fetch(url: urlString) { (result: Result<DisasterResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
     

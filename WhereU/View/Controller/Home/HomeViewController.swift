@@ -62,6 +62,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = viewModel.adviceText
         label.font = .boldSystemFont(ofSize: 18)
+        label.text = "재난 가이드를 읽어보세요"
         return label
     }()
     
@@ -193,9 +194,11 @@ class HomeViewController: UIViewController {
                     view.stopSkeletonAnimation()
                     view.hideSkeleton(reloadDataAfter: true)
                 }
-                
-                self.collectionViewTitle.text = self.viewModel.adviceText
             }
+        }
+        
+        viewModel.guidesObserver = { [weak self] _ in
+            self?.collectionView.reloadData()
         }
     }
     
@@ -233,7 +236,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
-            return 10
+            return viewModel.guides.count
         } else {
             return 2
         }
@@ -242,6 +245,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NameStore.guideCell, for: indexPath) as! GuideCell
+            cell.viewModel = ArticleViewModel(guide: viewModel.guides[indexPath.row])
             return cell
         } else {
             if indexPath.row == 0 {
@@ -259,6 +263,14 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView {
+            let viewModel = GuideDetailViewModel(guide: viewModel.guides[indexPath.row])
+            let guideDetailVC = GuideDetailViewController(viewModel: viewModel)
+            navigationController?.pushViewController(guideDetailVC, animated: true)
+        }
+    }
     
 }
 

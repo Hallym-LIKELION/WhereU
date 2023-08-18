@@ -26,6 +26,10 @@ final class ArticleViewModel {
         return "생활 속 \(guide.keyword) 대처요령을 알아보세요"
     }
     
+    var tagText: String {
+        return "#\(guide.keyword) #안전 #대피/대처방법"
+    }
+    
     var guideUrl: String {
         return guide.url
     }

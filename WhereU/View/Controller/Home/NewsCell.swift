@@ -20,7 +20,7 @@ class NewsCell: UITableViewCell {
     
     private let contentLabel: UILabel = {
         let label = UILabel()
-        label.text = "장마철 집중호우로 인한 하천 범람 어쩌고 저쩌고"
+        label.text = "장마철 집중호우로 인한 하천 범람..."
         label.textColor = UIColor(named: "525252")
         label.font = .systemFont(ofSize: 13)
         label.textAlignment = .left
