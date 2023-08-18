@@ -48,8 +48,8 @@ class RootViewController: UITabBarController {
         )
         
         let hospitalVC = templateNavigationController(
-            unselectedImage: #imageLiteral(resourceName: "person"),
-            selectedImage: #imageLiteral(resourceName: "person"),
+            unselectedImage: UIImage(systemName: "magnifyingglass")!,
+            selectedImage: UIImage(systemName: "magnifyingglass")!,
             rootViewController: HospitalController(viewModel: hospitalViewModel)
         )
         viewControllers = [homeVC, mapVC, guideVC, hospitalVC]
