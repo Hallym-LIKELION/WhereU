@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		CF45A3C62A7F56D50037E502 /* LocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C52A7F56D50037E502 /* LocationConverter.swift */; };
 		CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF45A3C72A7F56DF0037E502 /* MapGridData.swift */; };
+		CF6C6FCA2A8F4A3400E6AD23 /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C6FC92A8F4A3400E6AD23 /* Hospital.swift */; };
+		CF6C6FCC2A8F4B1B00E6AD23 /* HospitalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C6FCB2A8F4B1B00E6AD23 /* HospitalManager.swift */; };
+		CF6C6FCE2A8F4CCF00E6AD23 /* ShelterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C6FCD2A8F4CCF00E6AD23 /* ShelterManager.swift */; };
+		CF6C6FD02A8F4D0400E6AD23 /* Shelter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C6FCF2A8F4D0400E6AD23 /* Shelter.swift */; };
 		CF7559052A7A2F5A005E3583 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559042A7A2F5A005E3583 /* KakaoSDK */; };
 		CF7559072A7A2F5A005E3583 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559062A7A2F5A005E3583 /* KakaoSDKAuth */; };
 		CF7559092A7A2F5A005E3583 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = CF7559082A7A2F5A005E3583 /* KakaoSDKCommon */; };
@@ -71,6 +75,10 @@
 /* Begin PBXFileReference section */
 		CF45A3C52A7F56D50037E502 /* LocationConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationConverter.swift; sourceTree = "<group>"; };
 		CF45A3C72A7F56DF0037E502 /* MapGridData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGridData.swift; sourceTree = "<group>"; };
+		CF6C6FC92A8F4A3400E6AD23 /* Hospital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital.swift; sourceTree = "<group>"; };
+		CF6C6FCB2A8F4B1B00E6AD23 /* HospitalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalManager.swift; sourceTree = "<group>"; };
+		CF6C6FCD2A8F4CCF00E6AD23 /* ShelterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterManager.swift; sourceTree = "<group>"; };
+		CF6C6FCF2A8F4D0400E6AD23 /* Shelter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shelter.swift; sourceTree = "<group>"; };
 		CF7559002A7A1E20005E3583 /* WhereU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhereU.entitlements; sourceTree = "<group>"; };
 		CF75590D2A7A303A005E3583 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CF7559112A7A3C96005E3583 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -216,6 +224,8 @@
 				CFDDCEE62A85E58E0057A088 /* APIError.swift */,
 				CFDDCEE82A85E5980057A088 /* APIManagerType.swift */,
 				CFDDCEED2A85F0400057A088 /* GuideManager.swift */,
+				CF6C6FCB2A8F4B1B00E6AD23 /* HospitalManager.swift */,
+				CF6C6FCD2A8F4CCF00E6AD23 /* ShelterManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -311,6 +321,8 @@
 				CF7A45322A7FB2FE00250F93 /* WeatherForTime.swift */,
 				CFCF63DD2A85267500CF4BC6 /* Disaster.swift */,
 				CFDDCEEF2A85F0CF0057A088 /* Guide.swift */,
+				CF6C6FC92A8F4A3400E6AD23 /* Hospital.swift */,
+				CF6C6FCF2A8F4D0400E6AD23 /* Shelter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +423,8 @@
 				CF7559142A7A4704005E3583 /* HomeViewModel.swift in Sources */,
 				CF7A45302A7FAC6800250F93 /* WeatherForTimeCell.swift in Sources */,
 				CF955BA22A7E4356002ED1E9 /* WeatherManager.swift in Sources */,
+				CF6C6FD02A8F4D0400E6AD23 /* Shelter.swift in Sources */,
+				CF6C6FCA2A8F4A3400E6AD23 /* Hospital.swift in Sources */,
 				CF7BC5452A7A801A009310D4 /* SearchViewModel.swift in Sources */,
 				CFFFF2EE2A73D0B100C2B404 /* MyPageViewController.swift in Sources */,
 				CFFFF2D32A73CD4700C2B404 /* SceneDelegate.swift in Sources */,
@@ -421,6 +435,7 @@
 				CF7A455F2A80F60800250F93 /* CategoryViewModel.swift in Sources */,
 				CF7A452E2A7F891C00250F93 /* WeatherDetailCell.swift in Sources */,
 				CF7BC5432A7A7AD4009310D4 /* SearchResultViewModel.swift in Sources */,
+				CF6C6FCE2A8F4CCF00E6AD23 /* ShelterManager.swift in Sources */,
 				CFFFF2EA2A73D08700C2B404 /* MapViewController.swift in Sources */,
 				CF7A45652A82555E00250F93 /* GuideSearchViewController.swift in Sources */,
 				CF7A45332A7FB2FE00250F93 /* WeatherForTime.swift in Sources */,
@@ -432,6 +447,7 @@
 				CF955B9F2A7E4284002ED1E9 /* WeatherResponse.swift in Sources */,
 				CF45A3C82A7F56DF0037E502 /* MapGridData.swift in Sources */,
 				CF7A45612A81E1F600250F93 /* GuideViewModel.swift in Sources */,
+				CF6C6FCC2A8F4B1B00E6AD23 /* HospitalManager.swift in Sources */,
 				CFCF63E42A852F3E00CF4BC6 /* DisasterAnnotationView.swift in Sources */,
 				CFDDCEF42A8619FA0057A088 /* GuideDetailViewModel.swift in Sources */,
 				CF7A45352A7FB33900250F93 /* WeatherForTimeViewModel.swift in Sources */,
