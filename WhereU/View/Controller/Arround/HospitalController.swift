@@ -24,6 +24,7 @@ class HospitalController: UIViewController {
         tv.rowHeight = 120
         tv.register(HospitalCell.self, forCellReuseIdentifier: HospitalCell.identity)
         tv.dataSource = self
+        tv.delegate = self
         return tv
     }()
     
@@ -127,8 +128,9 @@ extension HospitalController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
-        
+        let detailViewModel = HospitalDetailViewModel(hospital: viewModel.hospitalList[indexPath.row])
+        let hospitalDetailVC = HospitalDetailViewController(viewModel: detailViewModel)
+        navigationController?.pushViewController(hospitalDetailVC, animated: true)
     }
     
 }
@@ -139,7 +141,5 @@ extension HospitalController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let keyword = searchController.searchBar.text ?? ""
         viewModel.keyword = keyword
-        
-        print(keyword)
     }
 }

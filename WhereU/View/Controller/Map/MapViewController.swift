@@ -116,7 +116,7 @@ class MapViewController: UIViewController {
     // 식별자를 갖고 Annotation view 생성
     func setupAnnotationView(for annotation: DisasterAnnotation, on mapView: MKMapView) -> MKAnnotationView {
         // dequeueReusableAnnotationView: 식별자를 확인하여 사용가능한 뷰가 있으면 해당 뷰를 반환
-        return mapView.dequeueReusableAnnotationView(withIdentifier: "Custom", for: annotation)
+        return mapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(DisasterAnnotationView.self), for: annotation)
     }
     
     private func showAlert() {

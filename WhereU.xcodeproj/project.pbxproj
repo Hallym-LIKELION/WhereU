@@ -16,6 +16,8 @@
 		CF50202B2A8F84B800CC1320 /* ShelterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF50202A2A8F84B800CC1320 /* ShelterListViewController.swift */; };
 		CF50202D2A8F853C00CC1320 /* ShelterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF50202C2A8F853C00CC1320 /* ShelterViewModel.swift */; };
 		CF635D3E2A8FA09A0098352A /* HospitalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF635D3D2A8FA09A0098352A /* HospitalCell.swift */; };
+		CF635D402A8FACBD0098352A /* HospitalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF635D3F2A8FACBD0098352A /* HospitalDetailViewController.swift */; };
+		CF635D422A8FAD4D0098352A /* HospitalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF635D412A8FAD4D0098352A /* HospitalDetailViewModel.swift */; };
 		CF6C6FCA2A8F4A3400E6AD23 /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C6FC92A8F4A3400E6AD23 /* Hospital.swift */; };
 		CF6C6FCC2A8F4B1B00E6AD23 /* HospitalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C6FCB2A8F4B1B00E6AD23 /* HospitalManager.swift */; };
 		CF6C6FCE2A8F4CCF00E6AD23 /* ShelterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C6FCD2A8F4CCF00E6AD23 /* ShelterManager.swift */; };
@@ -89,6 +91,8 @@
 		CF50202A2A8F84B800CC1320 /* ShelterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterListViewController.swift; sourceTree = "<group>"; };
 		CF50202C2A8F853C00CC1320 /* ShelterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterViewModel.swift; sourceTree = "<group>"; };
 		CF635D3D2A8FA09A0098352A /* HospitalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalCell.swift; sourceTree = "<group>"; };
+		CF635D3F2A8FACBD0098352A /* HospitalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailViewController.swift; sourceTree = "<group>"; };
+		CF635D412A8FAD4D0098352A /* HospitalDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailViewModel.swift; sourceTree = "<group>"; };
 		CF6C6FC92A8F4A3400E6AD23 /* Hospital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital.swift; sourceTree = "<group>"; };
 		CF6C6FCB2A8F4B1B00E6AD23 /* HospitalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalManager.swift; sourceTree = "<group>"; };
 		CF6C6FCD2A8F4CCF00E6AD23 /* ShelterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterManager.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				CF5020282A8F841100CC1320 /* ShelterViewController.swift */,
 				CF50202A2A8F84B800CC1320 /* ShelterListViewController.swift */,
 				CF635D3D2A8FA09A0098352A /* HospitalCell.swift */,
+				CF635D3F2A8FACBD0098352A /* HospitalDetailViewController.swift */,
 			);
 			path = Arround;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				CFDDCEF32A8619FA0057A088 /* GuideDetailViewModel.swift */,
 				CF50201E2A8F660B00CC1320 /* HospitalViewModel.swift */,
 				CF50202C2A8F853C00CC1320 /* ShelterViewModel.swift */,
+				CF635D412A8FAD4D0098352A /* HospitalDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFFFF2D52A73CD4700C2B404 /* RootViewController.swift in Sources */,
+				CF635D422A8FAD4D0098352A /* HospitalDetailViewModel.swift in Sources */,
 				CFDDCEF22A86197A0057A088 /* GuideDetailViewController.swift in Sources */,
 				CFFFF2D12A73CD4700C2B404 /* AppDelegate.swift in Sources */,
 				CFDDCEE92A85E5980057A088 /* APIManagerType.swift in Sources */,
@@ -472,6 +479,7 @@
 				CF7A45332A7FB2FE00250F93 /* WeatherForTime.swift in Sources */,
 				CFCF63E02A852A3F00CF4BC6 /* DisasterManager.swift in Sources */,
 				CF955B8E2A7E071D002ED1E9 /* NewsCell.swift in Sources */,
+				CF635D402A8FACBD0098352A /* HospitalDetailViewController.swift in Sources */,
 				CF7A455B2A80E49200250F93 /* ArticleViewModel.swift in Sources */,
 				CFDDCEEE2A85F0400057A088 /* GuideManager.swift in Sources */,
 				CF7A454D2A80A9F900250F93 /* CustomSearchBar.swift in Sources */,
